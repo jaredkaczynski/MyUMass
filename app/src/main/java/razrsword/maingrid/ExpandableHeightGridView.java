@@ -1,4 +1,4 @@
-package razrsword.main;
+package razrsword.maingrid;
 
 import android.content.Context;
 import android.util.AttributeSet;
