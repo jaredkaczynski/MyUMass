@@ -1,6 +1,7 @@
 package razrsword.main;
 
 import android.content.Context;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -14,9 +15,11 @@ import android.widget.ImageButton;
 public class ButtonAdapter extends BaseAdapter {
     private Context mContext;
 
+
     public ButtonAdapter(Context c) {
         mContext = c;
     }
+
 
     public int getCount() {
         return mThumbIds.length;
@@ -32,12 +35,15 @@ public class ButtonAdapter extends BaseAdapter {
 
     // create a new ImageView for each item referenced by the Adapter
     public View getView(int position, View convertView, ViewGroup parent) {
+         DisplayMetrics metrics = mContext.getResources().getDisplayMetrics();
+         int width = metrics.widthPixels;
+         //int height = metrics.heightPixels;
         //ImageView imageView;
         ImageButton button;
         if (convertView == null) {
             // if it's not recycled, initialize some attributes
             button = new ImageButton(mContext);
-            button.setLayoutParams(new GridView.LayoutParams(85, 85));
+            button.setLayoutParams(new GridView.LayoutParams(width/3, width/3));
             //button.setScaleType(ImageView.ScaleType.CENTER_CROP);
             button.setPadding(8, 8, 8, 8);
         } else {
