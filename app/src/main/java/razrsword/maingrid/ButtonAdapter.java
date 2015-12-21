@@ -6,11 +6,11 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
 
 import razrsword.activities.NavigationActivity;
+import razrsword.activities.UMassMapActivity;
 import razrsword.main.R;
 
 /**
@@ -62,9 +62,9 @@ public class ButtonAdapter extends BaseAdapter {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent myIntent;
-                switch(position){
+                switch (position) {
                     case 0:
-                        myIntent = new Intent(mContext, NavigationActivity.class);
+                        myIntent = new Intent(mContext, UMassMapActivity.class);
                         //myIntent.putExtra("key", value); //Optional parameters
                         mContext.startActivity(myIntent);
                         break;
