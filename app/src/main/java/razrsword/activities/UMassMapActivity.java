@@ -37,7 +37,8 @@ public class UMassMapActivity extends AppCompatActivity {
         GeoPoint startPoint = new GeoPoint(42.38955,-72.52817);
         mapController.setCenter(startPoint);
 
-        Toast toast = Toast.makeText(this, OpenStreetMapTileProviderConstants.getUserAgentValue(), Toast.LENGTH_LONG);
-        toast.show();
+        /*Toast toast = Toast.makeText(this, OpenStreetMapTileProviderConstants.getUserAgentValue(), Toast.LENGTH_LONG);
+        toast.show();*/
+        //Button button =
     }
 }
