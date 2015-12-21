@@ -40,23 +40,24 @@
             android:baselineAligned="false">
 
             <ImageButton
-                android:layout_width="@dimen/abc_text_size_display_2_material"
-                android:layout_height="@dimen/abc_text_size_display_2_material"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:id="@+id/imageButton"
                 android:src="@android:drawable/ic_media_rew"
-                android:backgroundTint="#ffffff" />
+                android:layout_weight=".15" />
 
             <AutoCompleteTextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:id="@+id/autoCompleteTextView"
                 android:layout_column="1"
-                android:editable="true"
                 android:enabled="true"
-                android:hint="Search UMass                           "
+                android:hint="Search UMass"
                 android:singleLine="false"
                 android:background="@android:color/transparent"
-                android:gravity="center_vertical"/>
+                android:gravity="center_vertical"
+                android:elegantTextHeight="false"
+                android:layout_weight=".85" />
 
         </TableRow>
 
