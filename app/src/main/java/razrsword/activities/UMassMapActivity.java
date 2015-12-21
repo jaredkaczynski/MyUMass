@@ -59,6 +59,7 @@ public class UMassMapActivity extends AppCompatActivity {
         mapController.setZoom(14);
 
         map.setTilesScaledToDpi(true);
+
         final GeoPoint startPoint = new GeoPoint(42.38955, -72.52817);
         mapController.setCenter(startPoint);
 
@@ -85,14 +86,15 @@ public class UMassMapActivity extends AppCompatActivity {
 
                     //String oUrl = poiProvider.urlForPOISearch("brown", map.getBoundingBox(), 100, 10);
                     //ArrayList<POI> pois = poiProvider.getPOIsFromUrl(oUrl);
-                    AsyncTaskRunner runner = new AsyncTaskRunner();
+                    /*AsyncTaskRunner runner = new AsyncTaskRunner();
                     runner.execute(startPoint.toString(),edittext.getText().toString());
                     ArrayList<POI> pois = runner.pois;
                     if (pois != null) {
                         Toast toast = Toast.makeText(UMassMapActivity.this.getContext(), pois.get(0).mDescription, Toast.LENGTH_LONG);
                         toast.show();
-                    }
-                    Toast toast = Toast.makeText(UMassMapActivity.this.getContext(), "No Result Found", Toast.LENGTH_LONG);
+                    }*/
+
+                    Toast toast = Toast.makeText(UMassMapActivity.this, "No Result Found", Toast.LENGTH_LONG);
                     toast.show();
                     return true;
                 }
@@ -149,8 +151,8 @@ public class UMassMapActivity extends AppCompatActivity {
         );
         AppIndex.AppIndexApi.end(client, viewAction);
         client.disconnect();
-    }
-*/
+    }*/
+
 
 
 
@@ -158,47 +160,5 @@ public class UMassMapActivity extends AppCompatActivity {
         return context;
     }
 
-    private class AsyncTaskRunner extends AsyncTask<String, String, String> {
 
-        private String resp;
-        ArrayList<POI> pois;
-
-        @Override
-        protected String doInBackground(String... params) {
-            try {
-                NominatimPOIProvider poiProvider = new NominatimPOIProvider("Razrsword's UMass App V.05");
-                poiProvider.setService(NominatimPOIProvider.NOMINATIM_POI_SERVICE);
-                pois = poiProvider.getPOICloseTo(GeoPoint.fromIntString(params[0]), params[1], 50, 0.1);
-            } catch (Exception e) {
-                e.printStackTrace();
-                resp = e.getMessage();
-            }
-            return resp;
-        }
-
-        /*
-         * (non-Javadoc)
-         *
-         * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
-         */
-        @Override
-        protected void onPostExecute(String result) {
-            // execution of result of Long time consuming operation
-            //finalResult.setText(result);
-
-        }
-
-
-        /*
-                 * (non-Javadoc)
-                 *
-                 * @see android.os.AsyncTask#onPreExecute()
-                 */
-        @Override
-        protected void onPreExecute() {
-            // Things to be done before execution of long running operation. For
-            // example showing ProgessDialog
-        }
-
-    }
 }
