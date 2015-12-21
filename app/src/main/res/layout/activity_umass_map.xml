@@ -5,7 +5,20 @@
     android:layout_height="match_parent"
     android:theme="@style/AppTheme.NoActionBar"
     tools:context="razrsword.activities.UMassMapActivity">
+
     <org.osmdroid.views.MapView android:id="@+id/map"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right|end"
+        android:src="@android:drawable/ic_dialog_map"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_marginBottom="@dimen/fab_margin"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
 </RelativeLayout>
