@@ -88,7 +88,11 @@ public class UMassMapActivity extends AppCompatActivity {
                     AsyncTaskRunner runner = new AsyncTaskRunner();
                     runner.execute(startPoint.toString(),edittext.getText().toString());
                     ArrayList<POI> pois = runner.pois;
-                    Toast toast = Toast.makeText(UMassMapActivity.this.getContext(), pois.get(0).mDescription, Toast.LENGTH_LONG);
+                    if (pois != null) {
+                        Toast toast = Toast.makeText(UMassMapActivity.this.getContext(), pois.get(0).mDescription, Toast.LENGTH_LONG);
+                        toast.show();
+                    }
+                    Toast toast = Toast.makeText(UMassMapActivity.this.getContext(), "No Result Found", Toast.LENGTH_LONG);
                     toast.show();
                     return true;
                 }
