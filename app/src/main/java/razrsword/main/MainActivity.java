@@ -1,5 +1,6 @@
 package razrsword.main;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -42,7 +43,9 @@ public class MainActivity extends NavigationActivity {
             }
         });*/
     }
-
+    public Context getContext(){
+        return this;
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
