@@ -112,7 +112,7 @@ public class UMassMapActivity extends AppCompatActivity {
                     File file = new File(Environment
                             .getExternalStorageDirectory().toString() + "map.xml");
                     if(!file.exists()){
-                        new DownloadFileFromURL().doInBackground("104.238.215.86/map.osm");
+                        new DownloadFileFromURL().doInBackground("http://104.238.215.86/map.osm");
                         pDialog = new ProgressDialog(UMassMapActivity.this);
                         pDialog.setMessage("Downloading Map Data...");
                         pDialog.setIndeterminate(false);
@@ -167,46 +167,6 @@ public class UMassMapActivity extends AppCompatActivity {
                 return null;
         }
     }
-        /*
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "UMassMap Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://razrsword.activities/http/host/path")
-        );
-        AppIndex.AppIndexApi.start(client, viewAction);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "UMassMap Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://razrsword.activities/http/host/path")
-        );
-        AppIndex.AppIndexApi.end(client, viewAction);
-        client.disconnect();
-    }*/
 
 
     /**
@@ -268,7 +228,7 @@ public class UMassMapActivity extends AppCompatActivity {
                 input.close();
 
             } catch (Exception e) {
-                Log.e("Error: ", e.getMessage());
+                Log.e("Error: ", " " + e.getMessage());
             }
 
             return null;
