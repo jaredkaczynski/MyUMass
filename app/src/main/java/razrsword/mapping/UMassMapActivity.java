@@ -16,6 +16,7 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
@@ -129,9 +130,32 @@ public class UMassMapActivity extends AppCompatActivity {
         //Set the adapter
         edittext.setAdapter(adapter);
 
+        edittext.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
+            @Override
+            public void onItemClick(AdapterView<?> parent, View arg1, int pos,
+                                    long id) {
+                int listPosition = 0;
+                for (int i = 0; i < listOfPlace.size(); i++) {
+                    if (listOfPlace.get(i).getName().compareTo(edittext.getText().toString()) == 0) {
+                        listPosition = i;
+                        break;
+                    }
+                }
+                InputMethodManager inputManager = (InputMethodManager)
+                        getSystemService(Context.INPUT_METHOD_SERVICE);
 
+                inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+                        InputMethodManager.HIDE_NOT_ALWAYS);
+                GeoPoint goalLocation = new GeoPoint(Double.valueOf(listOfPlace.get(listPosition).getLatitude()), Double.valueOf(listOfPlace.get(listPosition).getLongitude()));
+                addMarker(map,listOfPlace.get(listPosition).getName(),goalLocation);
+                edittext.clearFocus();
 
+                Log.v("Map stuff", goalLocation.getLatitude() + " " + listOfPlace.get(listPosition).getLatitude());
+                Log.v("Map stuff 2", goalLocation.getLongitude() + " " + listOfPlace.get(listPosition).getLongitude());
+                Log.v("Map stuff 3", listPosition + " ");
+            }
+        });
 
         edittext.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -140,17 +164,20 @@ public class UMassMapActivity extends AppCompatActivity {
                         (keyCode == KeyEvent.KEYCODE_ENTER)) {
 
                     int listPosition = 0;
-                    double topPosition = 1;
+                    double topPosition = 50;
+                    String name;
+                    String editTextContent = edittext.getText().toString();
                     for (int i = 0; i < listOfPlace.size(); i++) {
-                        if (listOfPlace.get(i).getName().compareTo(edittext.getText().toString()) == 0) {
+                        name = listOfPlace.get(i).getName();
+                        if (name.compareTo(editTextContent) == 0) {
                             listPosition = i;
                             break;
                         } else {
-                            if (Math.abs(listOfPlace.get(i).getName().compareTo(edittext.getText().toString())) <= topPosition) {
-                                topPosition = Math.abs(listOfPlace.get(i).getName().compareTo(edittext.getText().toString()));
+                            if(editDistance(name, editTextContent)<topPosition){
                                 listPosition = i;
                             }
                         }
+
                     }
                     InputMethodManager inputManager = (InputMethodManager)
                             getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -158,28 +185,9 @@ public class UMassMapActivity extends AppCompatActivity {
                     inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
                             InputMethodManager.HIDE_NOT_ALWAYS);
                     GeoPoint goalLocation = new GeoPoint(Double.valueOf(listOfPlace.get(listPosition).getLatitude()), Double.valueOf(listOfPlace.get(listPosition).getLongitude()));
-
+                    addMarker(map,listOfPlace.get(listPosition).getName(),goalLocation);
                     //Toast toast = Toast.makeText(UMassMapActivity.this,listOfPlace.get(listPosition).getLatitude() + " ", Toast.LENGTH_LONG);
                     //toast.show();
-                    startMarker = new Marker(map);
-                    startMarker.setPosition(goalLocation);
-                    startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
-                    startMarker.setTitle(listOfPlace.get(listPosition).getName());
-                    //map.getController().setCenter(goalLocation);
-                    map.getOverlays().clear();
-                    map.getController().setZoom(16);
-                    map.getOverlays().add(startMarker);
-                    map.invalidate();
-                    map.getController().animateTo(goalLocation);
-
-                    /*Toast toast = Toast.makeText(UMassMapActivity.this, "fudge", Toast.LENGTH_LONG);
-                    toast.show();
-                    Marker startMarker = new Marker(map);
-                    startMarker.setPosition(GeoPoint.fromIntString(edittext.getText().toString()));
-                    startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
-                    map.getOverlays().add(startMarker);*/
-
-
                     return true;
                 }
                 return false;
@@ -188,6 +196,46 @@ public class UMassMapActivity extends AppCompatActivity {
 
 
 
+    }
+
+    public void addMarker(MapView map, String locationName, GeoPoint goalLocation){
+        startMarker = new Marker(map);
+        startMarker.setPosition(goalLocation);
+        startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
+        startMarker.setTitle(locationName);
+        //map.getController().setCenter(goalLocation);
+        map.getOverlays().clear();
+        map.getController().setZoom(16);
+        map.getOverlays().add(startMarker);
+        map.invalidate();
+        map.getController().animateTo(goalLocation);
+    }
+
+    public static int editDistance(String s1, String s2) {
+        s1 = s1.toLowerCase();
+        s2 = s2.toLowerCase();
+
+        int[] costs = new int[s2.length() + 1];
+        for (int i = 0; i <= s1.length(); i++) {
+            int lastValue = i;
+            for (int j = 0; j <= s2.length(); j++) {
+                if (i == 0)
+                    costs[j] = j;
+                else {
+                    if (j > 0) {
+                        int newValue = costs[j - 1];
+                        if (s1.charAt(i - 1) != s2.charAt(j - 1))
+                            newValue = Math.min(Math.min(newValue, lastValue),
+                                    costs[j]) + 1;
+                        costs[j - 1] = lastValue;
+                        lastValue = newValue;
+                    }
+                }
+            }
+            if (i > 0)
+                costs[s2.length()] = lastValue;
+        }
+        return costs[s2.length()];
     }
 
 
@@ -291,18 +339,6 @@ public class UMassMapActivity extends AppCompatActivity {
         savedInstanceState.putInt("Zoom", UMassMapActivity.this.map.getZoomLevel());
         // etc.
     }
-    /*
-    @Override
-    public void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        // Restore UI state from the savedInstanceState.
-        // This bundle has also been passed to onCreate.
-        double Latitude = savedInstanceState.getDouble("Latitude");
-        double Longitude = savedInstanceState.getDouble("Longitude");
-        double viewLat = savedInstanceState.getDouble("viewLat");
-        double viewLon = savedInstanceState.getDouble("viewLon");
-        int zoom = savedInstanceState.getInt("Zoom");
-    }*/
 
     public List<String> placesToNames(List<Place> places) {
         List<String> placenames = new ArrayList<>();
