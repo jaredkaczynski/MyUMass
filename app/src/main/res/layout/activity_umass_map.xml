@@ -6,7 +6,15 @@
     android:theme="@style/AppTheme.NoActionBar"
     tools:context="razrsword.mapping.UMassMapActivity">
 
-    <org.osmdroid.views.MapView android:id="@+id/map"
+    <LinearLayout
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_width="0px"
+        android:layout_height="0px">
+    </LinearLayout>
+    <org.osmdroid.views.MapView
+        android:focusable="true"
+        android:id="@+id/map"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />
     <android.support.design.widget.FloatingActionButton
@@ -52,7 +60,7 @@
                 android:id="@+id/autoCompleteTextView"
                 android:layout_column="1"
                 android:enabled="true"
-                android:hint="Search UMass"
+                android:hint="@string/search_umass"
                 android:singleLine="true"
                 android:background="@android:color/transparent"
                 android:gravity="center_vertical"
