@@ -8,10 +8,14 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -38,6 +42,9 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import razrsword.main.R;
 
@@ -73,7 +80,12 @@ public class UMassMapActivity extends AppCompatActivity {
 
 
         final ImageButton button = (ImageButton) findViewById(R.id.imageButton);
-        final EditText edittext = (EditText) findViewById(R.id.autoCompleteTextView);
+        final AutoCompleteTextView edittext = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
+
+
+
+
+
 
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -82,6 +94,37 @@ public class UMassMapActivity extends AppCompatActivity {
 
                 inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
                         InputMethodManager.HIDE_NOT_ALWAYS);
+            }
+        });
+
+
+
+        //Create Array Adapter
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.select_dialog_singlechoice,placesToNames(getPlaces()));
+        //Find TextView control
+        //Set the number of characters the user must type before the drop down list is shown
+        edittext.setThreshold(1);
+        //Set the adapter
+        edittext.setAdapter(adapter);
+
+        edittext.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //here is your code
+
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count,
+                                          int after) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // TODO Auto-generated method stub
+
             }
         });
 
@@ -102,31 +145,17 @@ public class UMassMapActivity extends AppCompatActivity {
                         toast.show();
                     }
                     */
-                    File file = new File("assets/locations.xml");
-                    InputStream stream = null;
-                    try {
-                        stream = context.getAssets().open("locations.xml");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    BufferedReader reader = new BufferedReader(
-                            new InputStreamReader(stream));
 
 
 
-
+                    Toast toast = Toast.makeText(UMassMapActivity.this, "fudge", Toast.LENGTH_LONG);
+                    toast.show();
                     /*Marker startMarker = new Marker(map);
                     startMarker.setPosition(GeoPoint.fromIntString(edittext.getText().toString()));
                     startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
                     map.getOverlays().add(startMarker);*/
 
-                    Toast toast = null;
-                    try {
-                        toast = Toast.makeText(UMassMapActivity.this, reader.readLine(), Toast.LENGTH_LONG);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    toast.show();
+
                     return true;
                 }
                 return false;
@@ -145,6 +174,29 @@ public class UMassMapActivity extends AppCompatActivity {
         //client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
+    public List<Place> getPlaces(){
+        List<Place> places = null;
+        XMLPullParseHandler parser = new XMLPullParseHandler();
+        InputStream is= null;
+        try {
+            is = getAssets().open("locations.xml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        BufferedReader reader = new BufferedReader(
+                new InputStreamReader(is));
+        places = parser.parse(is);
+        return places;
+    }
+    public List<String> placesToNames(List<Place> places){
+        List<String> placenames = new ArrayList<>();;
+        assert places != null;
+        Iterator<Place> location = places.iterator();
+        while(location.hasNext()){
+            placenames.add(location.next().getName());
+        }
+        return placenames;
+    }
 
 
     public Context getContext(){
