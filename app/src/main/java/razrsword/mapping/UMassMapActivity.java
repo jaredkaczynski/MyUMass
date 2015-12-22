@@ -8,6 +8,8 @@ import android.graphics.Rect;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.IBinder;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -60,7 +62,6 @@ public class UMassMapActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         context = this;
         setContentView(R.layout.activity_umass_map);
@@ -101,7 +102,7 @@ public class UMassMapActivity extends AppCompatActivity {
 
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                hideKeyboard();
+                hideKeyboard(getCurrentFocus().getWindowToken());
                 edittext.clearFocus();
             }
         });
@@ -138,7 +139,7 @@ public class UMassMapActivity extends AppCompatActivity {
                         break;
                     }
                 }
-                hideKeyboard();
+                hideKeyboard(getCurrentFocus().getWindowToken());
                 GeoPoint goalLocation = new GeoPoint(Double.valueOf(listOfPlace.get(listPosition).getLatitude()), Double.valueOf(listOfPlace.get(listPosition).getLongitude()));
                 addMarker(map,listOfPlace.get(listPosition).getName(),goalLocation);
                 edittext.clearFocus();
@@ -157,7 +158,7 @@ public class UMassMapActivity extends AppCompatActivity {
 
                     int listPosition = getTopMatch(edittext,listOfPlace);
                     Log.v("Top Location", " " + listPosition);
-                    hideKeyboard();
+                    hideKeyboard(getCurrentFocus().getWindowToken());
                     GeoPoint goalLocation = new GeoPoint(Double.valueOf(listOfPlace.get(listPosition).getLatitude()), Double.valueOf(listOfPlace.get(listPosition).getLongitude()));
                     addMarker(map,listOfPlace.get(listPosition).getName(),goalLocation);
                     //Toast toast = Toast.makeText(UMassMapActivity.this,listOfPlace.get(listPosition).getLatitude() + " ", Toast.LENGTH_LONG);
@@ -171,12 +172,10 @@ public class UMassMapActivity extends AppCompatActivity {
 
 
     }
-
-    private void hideKeyboard(){
+    private void hideKeyboard(IBinder window){
         InputMethodManager inputManager = (InputMethodManager)
                 getSystemService(Context.INPUT_METHOD_SERVICE);
-
-        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+        inputManager.hideSoftInputFromWindow(window,
                 InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
