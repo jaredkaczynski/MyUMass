@@ -11,18 +11,15 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.TintManager;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 
@@ -61,9 +58,11 @@ public class UMassMapActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         context = this;
         setContentView(R.layout.activity_umass_map);
+        overridePendingTransition(R.anim.enter_slide_in, R.anim.enter_slide_out);
         OpenStreetMapTileProviderConstants.setUserAgentValue("Razrsword's UMass App V.1");
         map = (MapView) findViewById(R.id.map);
         GeoPoint viewPoint = new GeoPoint(42.38955, -72.52817);
@@ -130,44 +129,7 @@ public class UMassMapActivity extends AppCompatActivity {
         //Set the adapter
         edittext.setAdapter(adapter);
 
-        edittext.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-            @Override
-            public void onItemClick(AdapterView<?> parent, View arg1, int pos,
-                                    long id) {
-                int listPosition = 0;
-                for (int i = 0; i < listOfPlace.size(); i++) {
-                    if (listOfPlace.get(i).getName().compareTo(edittext.getText().toString()) == 0) {
-                        listPosition = i;
-                        break;
-                    }
-                }
-                InputMethodManager inputManager = (InputMethodManager)
-                        getSystemService(Context.INPUT_METHOD_SERVICE);
-
-                inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
-                        InputMethodManager.HIDE_NOT_ALWAYS);
-                GeoPoint goalLocation = new GeoPoint(Double.valueOf(listOfPlace.get(listPosition).getLatitude()), Double.valueOf(listOfPlace.get(listPosition).getLongitude()));
-
-                //Toast toast = Toast.makeText(UMassMapActivity.this,listOfPlace.get(listPosition).getLatitude() + " ", Toast.LENGTH_LONG);
-                //toast.show();
-                startMarker = new Marker(map);
-                startMarker.setPosition(goalLocation);
-                startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
-                startMarker.setTitle(listOfPlace.get(listPosition).getName());
-                //map.getController().setCenter(goalLocation);
-                map.getOverlays().clear();
-                map.getController().setZoom(16);
-                map.getOverlays().add(startMarker);
-                map.invalidate();
-                map.getController().animateTo(goalLocation);
-                edittext.clearFocus();
-
-                Log.v("Map stuff", goalLocation.getLatitude() + " " + listOfPlace.get(listPosition).getLatitude());
-                Log.v("Map stuff 2", goalLocation.getLongitude() + " " + listOfPlace.get(listPosition).getLongitude());
-                Log.v("Map stuff 3", listPosition + " ");
-            }
-        });
 
 
 
@@ -184,10 +146,10 @@ public class UMassMapActivity extends AppCompatActivity {
                             listPosition = i;
                             break;
                         } else {
-                           if(Math.abs(listOfPlace.get(i).getName().compareTo(edittext.getText().toString())) <= topPosition){
-                               topPosition = Math.abs(listOfPlace.get(i).getName().compareTo(edittext.getText().toString()));
-                               listPosition = i;
-                           }
+                            if (Math.abs(listOfPlace.get(i).getName().compareTo(edittext.getText().toString())) <= topPosition) {
+                                topPosition = Math.abs(listOfPlace.get(i).getName().compareTo(edittext.getText().toString()));
+                                listPosition = i;
+                            }
                         }
                     }
                     InputMethodManager inputManager = (InputMethodManager)
@@ -224,7 +186,31 @@ public class UMassMapActivity extends AppCompatActivity {
             }
         });
 
+
+
     }
+
+
+    @Override
+    public void onBackPressed() {
+        // finish() is called in super: we only override this method to be able to override the transition
+        super.onBackPressed();
+
+        overridePendingTransition(R.anim.exit_slide_in, R.anim.exit_slide_out_down);
+    }
+
+    /*private void setupWindowAnimations() {
+        Slide slide = null;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            slide = new Slide();
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            slide.setDuration(1000);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setExitTransition(slide);
+        }
+    }*/
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
