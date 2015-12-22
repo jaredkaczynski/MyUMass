@@ -4,7 +4,10 @@ import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.ColorFilter;
+import android.graphics.LightingColorFilter;
 import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -28,7 +31,10 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import org.osmdroid.api.IMapController;
 import org.osmdroid.bonuspack.overlays.Marker;
 import org.osmdroid.tileprovider.constants.OpenStreetMapTileProviderConstants;
+import org.osmdroid.tileprovider.tilesource.ITileSource;
+import org.osmdroid.tileprovider.tilesource.OnlineTileSourceBase;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
+import org.osmdroid.tileprovider.tilesource.XYTileSource;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 
@@ -40,6 +46,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import microsoft.mappoint.TileSystem;
 import razrsword.main.R;
 
 public class UMassMapActivity extends AppCompatActivity {
@@ -57,7 +64,11 @@ public class UMassMapActivity extends AppCompatActivity {
     // Progress dialog type (0 - for Horizontal progress bar)
     public static final int progress_bar_type = 0;
     private double[] userLocation = new double[2];
-
+    public static final OnlineTileSourceBase MAPNIKHD = new XYTileSource("Mapnik",
+            0, 18, 512, ".png", new String[] {
+            "http://a.tile.openstreetmap.org/",
+            "http://b.tile.openstreetmap.org/",
+            "http://c.tile.openstreetmap.org/" });
 
 
     @Override
@@ -71,11 +82,16 @@ public class UMassMapActivity extends AppCompatActivity {
         GeoPoint viewPoint = new GeoPoint(42.38955, -72.52817);
         GeoPoint markerPoint;
         IMapController mapController = map.getController();
-
-        map.setTileSource(TileSourceFactory.DEFAULT_TILE_SOURCE);
+        //map.setMaxZoomLevel(21);
+        //ITileSource test = TileSourceFactory.DEFAULT_TILE_SOURCE;
+        map.setTileSource(MAPNIKHD);
         map.setBuiltInZoomControls(true);
         map.setMultiTouchControls(true);
-        map.setTilesScaledToDpi(true);
+        //map.setDPIScaleFactor(.5);
+        map.setTileSize(750);
+        //map.setTilesScaledToDpi(true);
+
+
 
         if (savedInstanceState != null) {
             viewPoint = new GeoPoint(savedInstanceState.getDouble("viewLat"), savedInstanceState.getDouble("viewLon"));
@@ -229,6 +245,11 @@ public class UMassMapActivity extends AppCompatActivity {
         startMarker.setPosition(goalLocation);
         startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
         startMarker.setTitle(locationName);
+        ColorFilter filter = new LightingColorFilter(0x003B5C,0x003B5C);
+        Drawable markerImage = getResources().getDrawable(R.drawable.ic_place_black_48dp);
+        assert markerImage != null;
+        markerImage.setColorFilter(filter);
+        startMarker.setIcon(markerImage);
         //map.getController().setCenter(goalLocation);
         map.getOverlays().clear();
         map.getController().setZoom(16);
