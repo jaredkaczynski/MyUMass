@@ -36,7 +36,7 @@
 
         </activity>
         <activity
-            android:name="razrsword.activities.UMassMapActivity"
+            android:name="razrsword.mapping.UMassMapActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <!-- ATTENTION: This was auto-generated to add Google Play services to your project for

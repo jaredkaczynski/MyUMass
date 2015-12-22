@@ -10,7 +10,7 @@ import android.widget.GridView;
 import android.widget.ImageButton;
 
 import razrsword.activities.NavigationActivity;
-import razrsword.activities.UMassMapActivity;
+import razrsword.mapping.UMassMapActivity;
 import razrsword.main.R;
 
 /**
