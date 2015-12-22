@@ -1,7 +1,9 @@
 package razrsword.main;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.transition.Slide;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -41,6 +43,7 @@ public class MainActivity extends NavigationActivity {
             }
         });*/
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
