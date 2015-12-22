@@ -51,7 +51,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/hideKeyboard"
-                android:src="@android:drawable/ic_media_rew"
+                android:background="@android:color/transparent"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_arrow_back_black_24dp"
                 android:layout_weight=".15" />
 
             <AutoCompleteTextView
@@ -71,8 +73,10 @@
             <ImageButton
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
                 android:id="@+id/clearText"
-                android:src="@android:drawable/ic_media_rew"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_close_black_24dp"
                 android:layout_weight=".15" />
 
         </TableRow>
