@@ -69,14 +69,16 @@ public class UMassMapActivity extends AppCompatActivity {
         setContentView(R.layout.activity_umass_map);
         OpenStreetMapTileProviderConstants.setUserAgentValue("Razrsword's UMass App V.05");
         final MapView map = (MapView) findViewById(R.id.map);
+        GeoPoint startPoint = new GeoPoint(42.38955, -72.52817);
+
         map.setTileSource(TileSourceFactory.DEFAULT_TILE_SOURCE);
         map.setBuiltInZoomControls(true);
         map.setMultiTouchControls(true);
         IMapController mapController = map.getController();
+        mapController.animateTo(startPoint);
         mapController.setZoom(14);
         map.setTilesScaledToDpi(true);
-        final GeoPoint startPoint = new GeoPoint(42.38955, -72.52817);
-        mapController.setCenter(startPoint);
+
 
 
         final ImageButton button = (ImageButton) findViewById(R.id.imageButton);
@@ -122,34 +124,21 @@ public class UMassMapActivity extends AppCompatActivity {
                 inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
                         InputMethodManager.HIDE_NOT_ALWAYS);
                 GeoPoint goalLocation = new GeoPoint(Double.valueOf(listOfPlace.get(listPosition).getLatitude()), Double.valueOf(listOfPlace.get(listPosition).getLongitude()));
+
                 //Toast toast = Toast.makeText(UMassMapActivity.this,listOfPlace.get(listPosition).getLatitude() + " ", Toast.LENGTH_LONG);
                 //toast.show();
                 Marker startMarker = new Marker(map);
                 startMarker.setPosition(goalLocation);
                 startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
+                startMarker.setTitle(listOfPlace.get(listPosition).getName());
+                //map.getController().setCenter(goalLocation);
+                map.getController().setZoom(16);
                 map.getOverlays().add(startMarker);
                 map.invalidate();
-            }
-        });
-
-        edittext.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                //here is your code
-
-
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count,
-                                          int after) {
-                // TODO Auto-generated method stub
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                // TODO Auto-generated method stub
-
+                map.getController().animateTo(goalLocation);
+                Log.v("Map stuff", goalLocation.getLatitude() + " " + listOfPlace.get(listPosition).getLatitude());
+                Log.v("Map stuff 2", goalLocation.getLongitude() + " " + listOfPlace.get(listPosition).getLongitude());
+                Log.v("Map stuff 3", listPosition + " ");
             }
         });
 
