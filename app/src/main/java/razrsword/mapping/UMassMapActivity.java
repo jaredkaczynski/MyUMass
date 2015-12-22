@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 import org.osmdroid.api.IMapController;
+import org.osmdroid.bonuspack.overlays.Marker;
 import org.osmdroid.tileprovider.constants.OpenStreetMapTileProviderConstants;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
@@ -59,6 +61,7 @@ public class UMassMapActivity extends AppCompatActivity {
     private ProgressDialog pDialog;
     // Progress dialog type (0 - for Horizontal progress bar)
     public static final int progress_bar_type = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,15 +69,12 @@ public class UMassMapActivity extends AppCompatActivity {
         setContentView(R.layout.activity_umass_map);
         OpenStreetMapTileProviderConstants.setUserAgentValue("Razrsword's UMass App V.05");
         final MapView map = (MapView) findViewById(R.id.map);
-
         map.setTileSource(TileSourceFactory.DEFAULT_TILE_SOURCE);
         map.setBuiltInZoomControls(true);
         map.setMultiTouchControls(true);
         IMapController mapController = map.getController();
         mapController.setZoom(14);
-
         map.setTilesScaledToDpi(true);
-
         final GeoPoint startPoint = new GeoPoint(42.38955, -72.52817);
         mapController.setCenter(startPoint);
 
@@ -82,9 +82,7 @@ public class UMassMapActivity extends AppCompatActivity {
         final ImageButton button = (ImageButton) findViewById(R.id.imageButton);
         final AutoCompleteTextView edittext = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
 
-
-
-
+        final List<Place> listOfPlace = getPlaces();
 
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -98,14 +96,41 @@ public class UMassMapActivity extends AppCompatActivity {
         });
 
 
-
         //Create Array Adapter
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.select_dialog_singlechoice,placesToNames(getPlaces()));
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.select_dialog_singlechoice, placesToNames(listOfPlace));
         //Find TextView control
         //Set the number of characters the user must type before the drop down list is shown
         edittext.setThreshold(1);
         //Set the adapter
         edittext.setAdapter(adapter);
+
+        edittext.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View arg1, int pos,
+                                    long id) {
+                int listPosition = 0;
+                for (int i = 0; i < listOfPlace.size(); i++) {
+                    if (listOfPlace.get(i).getName().compareTo(edittext.getText().toString()) == 0) {
+                        listPosition = i;
+                        break;
+                    }
+                }
+                InputMethodManager inputManager = (InputMethodManager)
+                        getSystemService(Context.INPUT_METHOD_SERVICE);
+
+                inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+                        InputMethodManager.HIDE_NOT_ALWAYS);
+                GeoPoint goalLocation = new GeoPoint(Double.valueOf(listOfPlace.get(listPosition).getLatitude()), Double.valueOf(listOfPlace.get(listPosition).getLongitude()));
+                //Toast toast = Toast.makeText(UMassMapActivity.this,listOfPlace.get(listPosition).getLatitude() + " ", Toast.LENGTH_LONG);
+                //toast.show();
+                Marker startMarker = new Marker(map);
+                startMarker.setPosition(goalLocation);
+                startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
+                map.getOverlays().add(startMarker);
+                map.invalidate();
+            }
+        });
 
         edittext.addTextChangedListener(new TextWatcher() {
             @Override
@@ -133,19 +158,6 @@ public class UMassMapActivity extends AppCompatActivity {
                 // If the event is a key-down event on the "enter" button
                 if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
                         (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                    // Perform action on key press
-
-                    //String oUrl = poiProvider.urlForPOISearch("brown", map.getBoundingBox(), 100, 10);
-                    //ArrayList<POI> pois = poiProvider.getPOIsFromUrl(oUrl);
-                    /*AsyncTaskRunner runner = new AsyncTaskRunner();
-                    runner.execute(startPoint.toString(),edittext.getText().toString());
-                    ArrayList<POI> pois = runner.pois;
-                    if (pois != null) {
-                        Toast toast = Toast.makeText(UMassMapActivity.this.getContext(), pois.get(0).mDescription, Toast.LENGTH_LONG);
-                        toast.show();
-                    }
-                    */
-
 
 
                     Toast toast = Toast.makeText(UMassMapActivity.this, "fudge", Toast.LENGTH_LONG);
@@ -174,10 +186,10 @@ public class UMassMapActivity extends AppCompatActivity {
         //client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
-    public List<Place> getPlaces(){
+    public List<Place> getPlaces() {
         List<Place> places = null;
         XMLPullParseHandler parser = new XMLPullParseHandler();
-        InputStream is= null;
+        InputStream is = null;
         try {
             is = getAssets().open("locations.xml");
         } catch (IOException e) {
@@ -188,18 +200,20 @@ public class UMassMapActivity extends AppCompatActivity {
         places = parser.parse(is);
         return places;
     }
-    public List<String> placesToNames(List<Place> places){
-        List<String> placenames = new ArrayList<>();;
+
+    public List<String> placesToNames(List<Place> places) {
+        List<String> placenames = new ArrayList<>();
+        ;
         assert places != null;
         Iterator<Place> location = places.iterator();
-        while(location.hasNext()){
+        while (location.hasNext()) {
             placenames.add(location.next().getName());
         }
         return placenames;
     }
 
 
-    public Context getContext(){
+    public Context getContext() {
         return context;
     }
 
