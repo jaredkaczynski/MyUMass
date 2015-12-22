@@ -57,7 +57,9 @@
                 android:background="@android:color/transparent"
                 android:gravity="center_vertical"
                 android:layout_weight=".85"
-                android:layout_gravity="center_vertical" />
+                android:layout_gravity="center_vertical"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp" />
 
         </TableRow>
 
