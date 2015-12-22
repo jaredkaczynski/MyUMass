@@ -21,6 +21,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 
@@ -100,11 +101,8 @@ public class UMassMapActivity extends AppCompatActivity {
 
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                InputMethodManager inputManager = (InputMethodManager)
-                        getSystemService(Context.INPUT_METHOD_SERVICE);
-
-                inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
-                        InputMethodManager.HIDE_NOT_ALWAYS);
+                hideKeyboard();
+                edittext.clearFocus();
             }
         });
 
@@ -127,9 +125,7 @@ public class UMassMapActivity extends AppCompatActivity {
         //Find TextView control
         //Set the number of characters the user must type before the drop down list is shown
         edittext.setThreshold(1);
-        //Set the adapter
         edittext.setAdapter(adapter);
-
         edittext.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -142,11 +138,7 @@ public class UMassMapActivity extends AppCompatActivity {
                         break;
                     }
                 }
-                InputMethodManager inputManager = (InputMethodManager)
-                        getSystemService(Context.INPUT_METHOD_SERVICE);
-
-                inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
-                        InputMethodManager.HIDE_NOT_ALWAYS);
+                hideKeyboard();
                 GeoPoint goalLocation = new GeoPoint(Double.valueOf(listOfPlace.get(listPosition).getLatitude()), Double.valueOf(listOfPlace.get(listPosition).getLongitude()));
                 addMarker(map,listOfPlace.get(listPosition).getName(),goalLocation);
                 edittext.clearFocus();
@@ -163,27 +155,9 @@ public class UMassMapActivity extends AppCompatActivity {
                 if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
                         (keyCode == KeyEvent.KEYCODE_ENTER)) {
 
-                    int listPosition = 0;
-                    double topPosition = 50;
-                    String name;
-                    String editTextContent = edittext.getText().toString();
-                    for (int i = 0; i < listOfPlace.size(); i++) {
-                        name = listOfPlace.get(i).getName();
-                        if (name.compareTo(editTextContent) == 0) {
-                            listPosition = i;
-                            break;
-                        } else {
-                            if(editDistance(name, editTextContent)<topPosition){
-                                listPosition = i;
-                            }
-                        }
-
-                    }
-                    InputMethodManager inputManager = (InputMethodManager)
-                            getSystemService(Context.INPUT_METHOD_SERVICE);
-
-                    inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
-                            InputMethodManager.HIDE_NOT_ALWAYS);
+                    int listPosition = getTopMatch(edittext,listOfPlace);
+                    Log.v("Top Location", " " + listPosition);
+                    hideKeyboard();
                     GeoPoint goalLocation = new GeoPoint(Double.valueOf(listOfPlace.get(listPosition).getLatitude()), Double.valueOf(listOfPlace.get(listPosition).getLongitude()));
                     addMarker(map,listOfPlace.get(listPosition).getName(),goalLocation);
                     //Toast toast = Toast.makeText(UMassMapActivity.this,listOfPlace.get(listPosition).getLatitude() + " ", Toast.LENGTH_LONG);
@@ -196,6 +170,36 @@ public class UMassMapActivity extends AppCompatActivity {
 
 
 
+    }
+
+    private void hideKeyboard(){
+        InputMethodManager inputManager = (InputMethodManager)
+                getSystemService(Context.INPUT_METHOD_SERVICE);
+
+        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+                InputMethodManager.HIDE_NOT_ALWAYS);
+    }
+
+    private int getTopMatch(AutoCompleteTextView edittext, List<Place> listOfPlace){
+        int listPosition = 0;
+        double topPosition = 0;
+        double topValue = 0;
+        String name;
+        String editTextContent = edittext.getText().toString();
+        for (int i = 0; i < listOfPlace.size(); i++) {
+            name = listOfPlace.get(i).getName();
+            if (name.compareTo(editTextContent) == 0) {
+                listPosition = i;
+                break;
+            } else {
+                if((topValue = editDistance(name, editTextContent))>topPosition){
+                    listPosition = i;
+                    topPosition = topValue;
+                }
+            }
+
+        }
+        return listPosition;
     }
 
     public void addMarker(MapView map, String locationName, GeoPoint goalLocation){
@@ -211,31 +215,50 @@ public class UMassMapActivity extends AppCompatActivity {
         map.getController().animateTo(goalLocation);
     }
 
-    public static int editDistance(String s1, String s2) {
-        s1 = s1.toLowerCase();
-        s2 = s2.toLowerCase();
+    /** @return an array of adjacent letter pairs contained in the input string */
+    private static String[] letterPairs(String str) {
+        int numPairs = str.length()-1;
+        String[] pairs = new String[numPairs];
+        for (int i=0; i<numPairs; i++) {
+            pairs[i] = str.substring(i,i+2);
+        }
+        return pairs;
+    }
 
-        int[] costs = new int[s2.length() + 1];
-        for (int i = 0; i <= s1.length(); i++) {
-            int lastValue = i;
-            for (int j = 0; j <= s2.length(); j++) {
-                if (i == 0)
-                    costs[j] = j;
-                else {
-                    if (j > 0) {
-                        int newValue = costs[j - 1];
-                        if (s1.charAt(i - 1) != s2.charAt(j - 1))
-                            newValue = Math.min(Math.min(newValue, lastValue),
-                                    costs[j]) + 1;
-                        costs[j - 1] = lastValue;
-                        lastValue = newValue;
-                    }
+    /** @return an ArrayList of 2-character Strings. */
+    private static ArrayList wordLetterPairs(String str) {
+        ArrayList allPairs = new ArrayList();
+        // Tokenize the string and put the tokens/words into an array
+        String[] words = str.split("\\s");
+        // For each word
+        for (int w=0; w < words.length; w++) {
+            // Find the pairs of characters
+            String[] pairsInWord = letterPairs(words[w]);
+            for (int p=0; p < pairsInWord.length; p++) {
+                allPairs.add(pairsInWord[p]);
+            }
+        }
+        return allPairs;
+    }
+
+    /** @return lexical similarity value in the range [0,1] */
+    public static double editDistance(String str1, String str2) {
+        ArrayList pairs1 = wordLetterPairs(str1.toUpperCase());
+        ArrayList pairs2 = wordLetterPairs(str2.toUpperCase());
+        int intersection = 0;
+        int union = pairs1.size() + pairs2.size();
+        for (int i=0; i<pairs1.size(); i++) {
+            Object pair1=pairs1.get(i);
+            for(int j=0; j<pairs2.size(); j++) {
+                Object pair2=pairs2.get(j);
+                if (pair1.equals(pair2)) {
+                    intersection++;
+                    pairs2.remove(j);
+                    break;
                 }
             }
-            if (i > 0)
-                costs[s2.length()] = lastValue;
         }
-        return costs[s2.length()];
+        return (2.0*intersection)/union;
     }
 
 
