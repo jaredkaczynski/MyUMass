@@ -42,7 +42,7 @@
             <ImageButton
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/imageButton"
+                android:id="@+id/hideKeyboard"
                 android:src="@android:drawable/ic_media_rew"
                 android:layout_weight=".15" />
 
@@ -56,10 +56,16 @@
                 android:singleLine="true"
                 android:background="@android:color/transparent"
                 android:gravity="center_vertical"
-                android:layout_weight=".85"
+                android:layout_weight=".70"
                 android:layout_gravity="center_vertical"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp" />
+            <ImageButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/clearText"
+                android:src="@android:drawable/ic_media_rew"
+                android:layout_weight=".15" />
 
         </TableRow>
 
