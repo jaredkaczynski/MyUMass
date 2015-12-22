@@ -4,6 +4,8 @@ import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.ColorFilter;
+import android.graphics.LightingColorFilter;
 import android.graphics.Rect;
 import android.location.Location;
 import android.location.LocationManager;
@@ -94,13 +96,16 @@ public class UMassMapActivity extends AppCompatActivity {
             mapController.setZoom(zoomLevel);
         }
 
-        final ImageButton button = (ImageButton) findViewById(R.id.hideKeyboard);
+        final ImageButton backButton = (ImageButton) findViewById(R.id.hideKeyboard);
         final AutoCompleteTextView edittext = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
         final FloatingActionButton locateMyself = (FloatingActionButton) findViewById(R.id.fab);
         final List<Place> listOfPlace = getPlaces();
 
 
-        button.setOnClickListener(new View.OnClickListener() {
+        //ColorFilter filter = new LightingColorFilter( 0x881C1C,0x881C1C);
+        //backButton.setColorFilter(filter);
+
+        backButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 hideKeyboard(getCurrentFocus().getWindowToken());
                 edittext.clearFocus();
@@ -152,7 +157,7 @@ public class UMassMapActivity extends AppCompatActivity {
 
         edittext.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
-                // If the event is a key-down event on the "enter" button
+                // If the event is a key-down event on the "enter" backButton
                 if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
                         (keyCode == KeyEvent.KEYCODE_ENTER)) {
 
