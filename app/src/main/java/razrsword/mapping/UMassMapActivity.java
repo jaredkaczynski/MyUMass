@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Rect;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -13,11 +14,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.TintManager;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -119,7 +122,8 @@ public class UMassMapActivity extends AppCompatActivity {
 
 
         //Create Array Adapter
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.select_dialog_singlechoice, placesToNames(listOfPlace));
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.array_dropdown_layout, placesToNames(listOfPlace));
+        //adapter.setDropDownViewResource(R.layout.array_dropdown_layout);
         //Find TextView control
         //Set the number of characters the user must type before the drop down list is shown
         edittext.setThreshold(1);
@@ -157,12 +161,15 @@ public class UMassMapActivity extends AppCompatActivity {
                 map.getOverlays().add(startMarker);
                 map.invalidate();
                 map.getController().animateTo(goalLocation);
+                edittext.clearFocus();
 
                 Log.v("Map stuff", goalLocation.getLatitude() + " " + listOfPlace.get(listPosition).getLatitude());
                 Log.v("Map stuff 2", goalLocation.getLongitude() + " " + listOfPlace.get(listPosition).getLongitude());
                 Log.v("Map stuff 3", listPosition + " ");
             }
         });
+
+
 
         edittext.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -219,6 +226,22 @@ public class UMassMapActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            View v = getCurrentFocus();
+            if ( v instanceof EditText) {
+                Rect outRect = new Rect();
+                v.getGlobalVisibleRect(outRect);
+                if (!outRect.contains((int)event.getRawX(), (int)event.getRawY())) {
+                    v.clearFocus();
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                }
+            }
+        }
+        return super.dispatchTouchEvent( event );
+    }
     public List<Place> getPlaces() {
         List<Place> places = null;
         XMLPullParseHandler parser = new XMLPullParseHandler();
