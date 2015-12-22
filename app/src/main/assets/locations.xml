@@ -1,19 +1,254 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <places>
     <place>
-        <name>Library</name>
-        <latitude>42.3874899</latitude>
-        <longitude>-72.5132357</longitude>
+        <name>Southwest Residential Area</name>
+        <latitude>42.3846276</latitude>
+        <longitude>-72.5301121</longitude>
+    </place>
+    <place>
+        <name>Chabad House</name>
+        <latitude>42.3837008</latitude>
+        <longitude>-72.5281431</longitude>
+    </place>
+    <place>
+        <name>Southwest Shelter</name>
+        <latitude>42.3846860</latitude>
+        <longitude>-72.5284190</longitude>
+    </place>
+    <place>
+        <name>Southwest/University Drive (N)</name>
+        <latitude>42.3817790</latitude>
+        <longitude>-72.5317310</longitude>
+    </place>
+    <place>
+        <name>Southwest/University Drive (S)</name>
+        <latitude>42.3817370</latitude>
+        <longitude>-72.5318370</longitude>
+    </place>
+    <place>
+        <name>WFCR</name>
+        <latitude>42.3849530</latitude>
+        <longitude>-72.5282820</longitude>
+    </place>
+    <place>
+        <name>Commonwealth Avenue</name>
+        <latitude>42.3851630</latitude>
+        <longitude>-72.5309620</longitude>
+    </place>
+    <place>
+        <name>Commonwealth Avenue</name>
+        <latitude>42.3851565</latitude>
+        <longitude>-72.5307939</longitude>
+    </place>
+    <place>
+        <name>Fearing Street</name>
+        <latitude>42.3807344</latitude>
+        <longitude>-72.5319033</longitude>
+    </place>
+    <place>
+        <name>Stadium Access Road North</name>
+        <latitude>42.3821610</latitude>
+        <longitude>-72.5338150</longitude>
+    </place>
+    <place>
+        <name>Sunset Avenue</name>
+        <latitude>42.3811040</latitude>
+        <longitude>-72.5278120</longitude>
+    </place>
+    <place>
+        <name>Commonwealth Avenue</name>
+        <latitude>42.3851630</latitude>
+        <longitude>-72.5309620</longitude>
+    </place>
+    <place>
+        <name>Commonwealth Avenue</name>
+        <latitude>42.3850390</latitude>
+        <longitude>-72.5312760</longitude>
+    </place>
+    <place>
+        <name>North Hadley Road</name>
+        <latitude>42.3843432</latitude>
+        <longitude>-72.5286904</longitude>
+    </place>
+    <place>
+        <name>Sunset Court</name>
+        <latitude>42.3826280</latitude>
+        <longitude>-72.5282530</longitude>
+    </place>
+    <place>
+        <name>Massachusetts Avenue</name>
+        <latitude>42.3845479</latitude>
+        <longitude>-72.5334510</longitude>
+    </place>
+    <place>
+        <name>University of Massachusetts Amherst</name>
+        <latitude>42.3738712</latitude>
+        <longitude>-72.5394075</longitude>
+    </place>
+    <place>
+        <name>Massachusetts Avenue</name>
+        <latitude>42.3858780</latitude>
+        <longitude>-72.5222860</longitude>
+    </place>
+    <place>
+        <name>Southwest Circle "The Horseshoe"</name>
+        <latitude>42.3823660</latitude>
+        <longitude>-72.5317800</longitude>
+    </place>
+    <place>
+        <name>Garber Field</name>
+        <latitude>42.3869376</latitude>
+        <longitude>-72.5298708</longitude>
+    </place>
+    <place>
+        <name>Lot 42 red permit</name>
+        <latitude>42.3856183</latitude>
+        <longitude>-72.5297939</longitude>
+    </place>
+    <place>
+        <name>Lot 50 blue permit</name>
+        <latitude>42.3821900</latitude>
+        <longitude>-72.5310900</longitude>
+    </place>
+    <place>
+        <name>Army ROTC</name>
+        <latitude>42.3850777</latitude>
+        <longitude>-72.5297093</longitude>
+    </place>
+    <place>
+        <name>Boyden Gym</name>
+        <latitude>42.3865992</latitude>
+        <longitude>-72.5309577</longitude>
+    </place>
+    <place>
+        <name>Hampshire Dining Hall</name>
+        <latitude>42.3841285</latitude>
+        <longitude>-72.5302730</longitude>
+    </place>
+    <place>
+        <name>Adams Dorm</name>
+        <latitude>42.3819385</latitude>
+        <longitude>-72.5290005</longitude>
+    </place>
+    <place>
+        <name>Washington Hall</name>
+        <latitude>42.3816772</latitude>
+        <longitude>-72.5291545</longitude>
+    </place>
+    <place>
+        <name>Cance Dorm</name>
+        <latitude>42.3809811</latitude>
+        <longitude>-72.5302388</longitude>
+    </place>
+    <place>
+        <name>University Drive</name>
+        <latitude>42.3680730</latitude>
+        <longitude>-72.5335100</longitude>
+    </place>
+    <place>
+        <name>Amherst UMass Extension</name>
+        <latitude>42.3723050</latitude>
+        <longitude>-72.5328776</longitude>
+    </place>
+    <place>
+        <name>Crampton Dorm</name>
+        <latitude>42.3836700</latitude>
+        <longitude>-72.5290040</longitude>
+    </place>
+    <place>
+        <name>Berkshire Dining Hall</name>
+        <latitude>42.3821095</latitude>
+        <longitude>-72.5294526</longitude>
+    </place>
+    <place>
+        <name>Coolidge Dorm</name>
+        <latitude>42.3837572</latitude>
+        <longitude>-72.5296892</longitude>
+    </place>
+    <place>
+        <name>Emerson Dorm</name>
+        <latitude>42.3835067</latitude>
+        <longitude>-72.5308761</longitude>
+    </place>
+    <place>
+        <name>Hampden Dining Hall</name>
+        <latitude>42.3832743</latitude>
+        <longitude>-72.5295105</longitude>
+    </place>
+    <place>
+        <name>J. Q. Adams Dorm</name>
+        <latitude>42.3823877</latitude>
+        <longitude>-72.5292540</longitude>
+    </place>
+    <place>
+        <name>James Dorm</name>
+        <latitude>42.3842305</latitude>
+        <longitude>-72.5307807</longitude>
+    </place>
+    <place>
+        <name>Kennedy Dorm</name>
+        <latitude>42.3841893</latitude>
+        <longitude>-72.5294484</longitude>
+    </place>
+    <place>
+        <name>MacKimmie Dorm</name>
+        <latitude>42.3832322</latitude>
+        <longitude>-72.5286764</longitude>
+    </place>
+    <place>
+        <name>Melville Dorm</name>
+        <latitude>42.3847049</latitude>
+        <longitude>-72.5302366</longitude>
+    </place>
+    <place>
+        <name>Moore Dorm</name>
+        <latitude>42.3822875</latitude>
+        <longitude>-72.5309278</longitude>
+    </place>
+    <place>
+        <name>Patterson Dorm</name>
+        <latitude>42.3821272</latitude>
+        <longitude>-72.5286091</longitude>
+    </place>
+    <place>
+        <name>Pierpont Dorm</name>
+        <latitude>42.3817240</latitude>
+        <longitude>-72.5311513</longitude>
+    </place>
+    <place>
+        <name>Prince Dorm</name>
+        <latitude>42.3836700</latitude>
+        <longitude>-72.5290040</longitude>
+    </place>
+    <place>
+        <name>Thoreau Dorm</name>
+        <latitude>42.3845700</latitude>
+        <longitude>-72.5303412</longitude>
+    </place>
+    <place>
+        <name>Berkshire House</name>
+        <latitude>42.3857509</latitude>
+        <longitude>-72.5289553</longitude>
+    </place>
+    <place>
+        <name>Middlesex House</name>
+        <latitude>42.3858800</latitude>
+        <longitude>-72.5285109</longitude>
+    </place>
+    <place>
+        <name>Hampshire House</name>
+        <latitude>42.3853541</latitude>
+        <longitude>-72.5286308</longitude>
+    </place>
+    <place>
+        <name>Amherst UMass Extension</name>
+        <latitude>42.3823371</latitude>
+        <longitude>-72.5317157</longitude>
     </place>
     <place>
         <name>University of Massachusetts</name>
         <latitude>42.3889785</latitude>
         <longitude>-72.5286987</longitude>
-    </place>
-    <place>
-        <name>Fraternity Park</name>
-        <latitude>42.3959229</latitude>
-        <longitude>-72.5120317</longitude>
     </place>
     <place>
         <name>WMUA-FM (Amherst)</name>
@@ -41,11 +276,6 @@
         <longitude>-72.5323099</longitude>
     </place>
     <place>
-        <name>Southwest Residential Area</name>
-        <latitude>42.3846276</latitude>
-        <longitude>-72.5301121</longitude>
-    </place>
-    <place>
         <name>Orchard Hill Residential Area</name>
         <latitude>42.3918715</latitude>
         <longitude>-72.5191986</longitude>
@@ -64,11 +294,6 @@
         <name>William Smith Clark Memorial Library</name>
         <latitude>42.3892564</latitude>
         <longitude>-72.5184207</longitude>
-    </place>
-    <place>
-        <name>Chabad House</name>
-        <latitude>42.3837008</latitude>
-        <longitude>-72.5281431</longitude>
     </place>
     <place>
         <name>Furcolo Hall</name>
@@ -96,11 +321,6 @@
         <longitude>-72.5270357</longitude>
     </place>
     <place>
-        <name>First Baptist Church of Amherst</name>
-        <latitude>42.3831453</latitude>
-        <longitude>-72.5203651</longitude>
-    </place>
-    <place>
         <name>Village Park (N)</name>
         <latitude>42.3945880</latitude>
         <longitude>-72.5156630</longitude>
@@ -116,11 +336,6 @@
         <longitude>-72.5253194</longitude>
     </place>
     <place>
-        <name>Admissions Building</name>
-        <latitude>42.3948780</latitude>
-        <longitude>-72.5111080</longitude>
-    </place>
-    <place>
         <name>Arnold House</name>
         <latitude>42.3938260</latitude>
         <longitude>-72.5261080</longitude>
@@ -134,11 +349,6 @@
         <name>Chadbourne (S)</name>
         <latitude>42.3894120</latitude>
         <longitude>-72.5189130</longitude>
-    </place>
-    <place>
-        <name>Cherry Lane</name>
-        <latitude>42.4045330</latitude>
-        <longitude>-72.5148620</longitude>
     </place>
     <place>
         <name>Boyden (N)</name>
@@ -161,26 +371,6 @@
         <longitude>-72.5175930</longitude>
     </place>
     <place>
-        <name>Day School (N)</name>
-        <latitude>42.3814810</latitude>
-        <longitude>-72.5338440</longitude>
-    </place>
-    <place>
-        <name>Day School (S)</name>
-        <latitude>42.3815310</latitude>
-        <longitude>-72.5339130</longitude>
-    </place>
-    <place>
-        <name>Chestnut Street (N)</name>
-        <latitude>42.3836750</latitude>
-        <longitude>-72.5184780</longitude>
-    </place>
-    <place>
-        <name>Chestnut Street (S)</name>
-        <latitude>42.3834690</latitude>
-        <longitude>-72.5187530</longitude>
-    </place>
-    <place>
         <name>CmpSci (Lot 26)</name>
         <latitude>42.3954960</latitude>
         <longitude>-72.5324940</longitude>
@@ -201,44 +391,9 @@
         <longitude>-72.5260770</longitude>
     </place>
     <place>
-        <name>Crestview</name>
-        <latitude>42.4038510</latitude>
-        <longitude>-72.5294420</longitude>
-    </place>
-    <place>
-        <name>Fearing Street (In)</name>
-        <latitude>42.3830410</latitude>
-        <longitude>-72.5204850</longitude>
-    </place>
-    <place>
-        <name>Fearing Street (Out)</name>
-        <latitude>42.3828770</latitude>
-        <longitude>-72.5205610</longitude>
-    </place>
-    <place>
         <name>Fine Arts Center</name>
         <latitude>42.3878210</latitude>
         <longitude>-72.5239110</longitude>
-    </place>
-    <place>
-        <name>Frat/Sort Park</name>
-        <latitude>42.3957860</latitude>
-        <longitude>-72.5111240</longitude>
-    </place>
-    <place>
-        <name>Lot 33 (E)</name>
-        <latitude>42.3822780</latitude>
-        <longitude>-72.5322110</longitude>
-    </place>
-    <place>
-        <name>Lot 33 (W)</name>
-        <latitude>42.3823360</latitude>
-        <longitude>-72.5321730</longitude>
-    </place>
-    <place>
-        <name>Grantwood Drive</name>
-        <latitude>42.4068300</latitude>
-        <longitude>-72.5144650</longitude>
     </place>
     <place>
         <name>Grayson Dorm</name>
@@ -249,11 +404,6 @@
         <name>Hasbrouck</name>
         <latitude>42.3909000</latitude>
         <longitude>-72.5252610</longitude>
-    </place>
-    <place>
-        <name>Lot 13</name>
-        <latitude>42.3953090</latitude>
-        <longitude>-72.5131910</longitude>
     </place>
     <place>
         <name>Lot 25</name>
@@ -276,54 +426,9 @@
         <longitude>-72.5324710</longitude>
     </place>
     <place>
-        <name>North Amherst (In)</name>
-        <latitude>42.4091070</latitude>
-        <longitude>-72.5307390</longitude>
-    </place>
-    <place>
-        <name>North Amherst (Out)</name>
-        <latitude>42.4091720</latitude>
-        <longitude>-72.5306320</longitude>
-    </place>
-    <place>
-        <name>North Village</name>
-        <latitude>42.4031980</latitude>
-        <longitude>-72.5291600</longitude>
-    </place>
-    <place>
-        <name>Puffton Village 1</name>
-        <latitude>42.4058690</latitude>
-        <longitude>-72.5324860</longitude>
-    </place>
-    <place>
-        <name>Puffton Village 2</name>
-        <latitude>42.4049420</latitude>
-        <longitude>-72.5308840</longitude>
-    </place>
-    <place>
         <name>School of Education</name>
         <latitude>42.3976210</latitude>
         <longitude>-72.5279460</longitude>
-    </place>
-    <place>
-        <name>Sheerman Lane</name>
-        <latitude>42.4021300</latitude>
-        <longitude>-72.5153430</longitude>
-    </place>
-    <place>
-        <name>Southwest Shelter</name>
-        <latitude>42.3846860</latitude>
-        <longitude>-72.5284190</longitude>
-    </place>
-    <place>
-        <name>Southwest/University Drive (N)</name>
-        <latitude>42.3817790</latitude>
-        <longitude>-72.5317310</longitude>
-    </place>
-    <place>
-        <name>Southwest/University Drive (S)</name>
-        <latitude>42.3817370</latitude>
-        <longitude>-72.5318370</longitude>
     </place>
     <place>
         <name>Studio Arts Building</name>
@@ -361,16 +466,6 @@
         <longitude>-72.5252840</longitude>
     </place>
     <place>
-        <name>Triangle Street (In)</name>
-        <latitude>42.3818470</latitude>
-        <longitude>-72.5192720</longitude>
-    </place>
-    <place>
-        <name>Triangle Street (N)</name>
-        <latitude>42.3817790</latitude>
-        <longitude>-72.5193630</longitude>
-    </place>
-    <place>
         <name>UMASS / Amherst</name>
         <latitude>42.3868088</latitude>
         <longitude>-72.5254726</longitude>
@@ -379,11 +474,6 @@
         <name>UMass Bus Garage</name>
         <latitude>42.3937530</latitude>
         <longitude>-72.5330120</longitude>
-    </place>
-    <place>
-        <name>WFCR</name>
-        <latitude>42.3849530</latitude>
-        <longitude>-72.5282820</longitude>
     </place>
     <place>
         <name>Yellow Lot 12</name>
@@ -441,16 +531,6 @@
         <longitude>-72.5193530</longitude>
     </place>
     <place>
-        <name>UMASS-Amherst Hillel House</name>
-        <latitude>42.3839239</latitude>
-        <longitude>-72.5215566</longitude>
-    </place>
-    <place>
-        <name>Lincoln Apartments</name>
-        <latitude>42.3835520</latitude>
-        <longitude>-72.5253710</longitude>
-    </place>
-    <place>
         <name>Commonwealth Honors College</name>
         <latitude>42.3877770</latitude>
         <longitude>-72.5307420</longitude>
@@ -464,16 +544,6 @@
         <name>Hotel UMass</name>
         <latitude>42.3917042</latitude>
         <longitude>-72.5269779</longitude>
-    </place>
-    <place>
-        <name>Bank of America</name>
-        <latitude>42.3816927</latitude>
-        <longitude>-72.5188727</longitude>
-    </place>
-    <place>
-        <name>Primo Pizza</name>
-        <latitude>42.3813027</latitude>
-        <longitude>-72.5185669</longitude>
     </place>
     <place>
         <name>Roots Cafe, UMass Amherst</name>
@@ -491,29 +561,9 @@
         <longitude>-72.5272700</longitude>
     </place>
     <place>
-        <name>Bike repair station, Student Union UMass Amherst</name>
+        <name>Bike repair station, Student Union  UMass Amherst</name>
         <latitude>42.3905075</latitude>
         <longitude>-72.5277957</longitude>
-    </place>
-    <place>
-        <name>Bike repair station, Student Union UMass Amherst</name>
-        <latitude>42.3905075</latitude>
-        <longitude>-72.5277957</longitude>
-    </place>
-    <place>
-        <name>Rolling Ridge Road</name>
-        <latitude>42.4059805</latitude>
-        <longitude>-72.5242251</longitude>
-    </place>
-    <place>
-        <name>Stadium Drive</name>
-        <latitude>42.3747890</latitude>
-        <longitude>-72.5374740</longitude>
-    </place>
-    <place>
-        <name>Stadium Drive</name>
-        <latitude>42.3835017</latitude>
-        <longitude>-72.5358492</longitude>
     </place>
     <place>
         <name>North Pleasant Street</name>
@@ -526,39 +576,9 @@
         <longitude>-72.5359160</longitude>
     </place>
     <place>
-        <name>North Hadley Road</name>
-        <latitude>42.3848050</latitude>
-        <longitude>-72.5480990</longitude>
-    </place>
-    <place>
-        <name>Knightly Road</name>
-        <latitude>42.3968000</latitude>
-        <longitude>-72.5647430</longitude>
-    </place>
-    <place>
         <name>Commonwealth Avenue</name>
         <latitude>42.3926610</latitude>
         <longitude>-72.5338390</longitude>
-    </place>
-    <place>
-        <name>Stadium Drive</name>
-        <latitude>42.3818350</latitude>
-        <longitude>-72.5338480</longitude>
-    </place>
-    <place>
-        <name>Roosevelt Road</name>
-        <latitude>42.3840380</latitude>
-        <longitude>-72.5481670</longitude>
-    </place>
-    <place>
-        <name>Stadium Drive</name>
-        <latitude>42.3807800</latitude>
-        <longitude>-72.5339380</longitude>
-    </place>
-    <place>
-        <name>Mill River Lane</name>
-        <latitude>42.3868080</latitude>
-        <longitude>-72.5502390</longitude>
     </place>
     <place>
         <name>Cold Storage Drive</name>
@@ -566,29 +586,9 @@
         <longitude>-72.5377600</longitude>
     </place>
     <place>
-        <name>Stockbridge Street</name>
-        <latitude>42.3968000</latitude>
-        <longitude>-72.5647430</longitude>
-    </place>
-    <place>
         <name>University Of Mass Field Road Branch</name>
         <latitude>42.3965010</latitude>
         <longitude>-72.5349810</longitude>
-    </place>
-    <place>
-        <name>Roosevelt Road</name>
-        <latitude>42.3888140</latitude>
-        <longitude>-72.5477330</longitude>
-    </place>
-    <place>
-        <name>Mill Site Road</name>
-        <latitude>42.3840380</latitude>
-        <longitude>-72.5481670</longitude>
-    </place>
-    <place>
-        <name>North Maple Street</name>
-        <latitude>42.3577990</latitude>
-        <longitude>-72.5506910</longitude>
     </place>
     <place>
         <name>North A</name>
@@ -641,36 +641,6 @@
         <longitude>-72.5268130</longitude>
     </place>
     <place>
-        <name>Crestview Apartments Drive</name>
-        <latitude>42.4034960</latitude>
-        <longitude>-72.5292640</longitude>
-    </place>
-    <place>
-        <name>Frost Lane</name>
-        <latitude>42.4037200</latitude>
-        <longitude>-72.5176040</longitude>
-    </place>
-    <place>
-        <name>Hobart Lane</name>
-        <latitude>42.4045370</latitude>
-        <longitude>-72.5296870</longitude>
-    </place>
-    <place>
-        <name>Olympia Drive</name>
-        <latitude>42.3951740</latitude>
-        <longitude>-72.5131780</longitude>
-    </place>
-    <place>
-        <name>Tillson Farm Road</name>
-        <latitude>42.3992120</latitude>
-        <longitude>-72.5097310</longitude>
-    </place>
-    <place>
-        <name>Village Park Drive</name>
-        <latitude>42.3944750</latitude>
-        <longitude>-72.5126600</longitude>
-    </place>
-    <place>
         <name>Holdsworth Way</name>
         <latitude>42.3926610</latitude>
         <longitude>-72.5338390</longitude>
@@ -681,49 +651,14 @@
         <longitude>-72.5154680</longitude>
     </place>
     <place>
-        <name>Northeast Terrace</name>
-        <latitude>42.3843100</latitude>
-        <longitude>-72.4999644</longitude>
-    </place>
-    <place>
-        <name>Shutesbury Road</name>
-        <latitude>42.4032889</latitude>
-        <longitude>-72.4961113</longitude>
-    </place>
-    <place>
-        <name>Maplewood Circle</name>
-        <latitude>42.3854840</latitude>
-        <longitude>-72.5043790</longitude>
-    </place>
-    <place>
-        <name>Beston Street</name>
-        <latitude>42.3800910</latitude>
-        <longitude>-72.5225000</longitude>
-    </place>
-    <place>
-        <name>Puffton Village Drive</name>
-        <latitude>42.4049330</latitude>
-        <longitude>-72.5322830</longitude>
-    </place>
-    <place>
         <name>Commonwealth Avenue</name>
         <latitude>42.3851630</latitude>
         <longitude>-72.5309620</longitude>
     </place>
     <place>
-        <name>High Street</name>
-        <latitude>42.3758050</latitude>
-        <longitude>-72.5097760</longitude>
-    </place>
-    <place>
         <name>Mather Drive</name>
         <latitude>42.3956890</latitude>
         <longitude>-72.5154680</longitude>
-    </place>
-    <place>
-        <name>Hills Road</name>
-        <latitude>42.3858630</latitude>
-        <longitude>-72.5084170</longitude>
     </place>
     <place>
         <name>Strong Street</name>
@@ -734,21 +669,6 @@
         <name>Commonwealth Avenue</name>
         <latitude>42.3851565</latitude>
         <longitude>-72.5307939</longitude>
-    </place>
-    <place>
-        <name>Maplewood Drive</name>
-        <latitude>42.3850960</latitude>
-        <longitude>-72.5070800</longitude>
-    </place>
-    <place>
-        <name>Oakwood Circle</name>
-        <latitude>42.4063890</latitude>
-        <longitude>-72.5216860</longitude>
-    </place>
-    <place>
-        <name>Puffton Village Drive</name>
-        <latitude>42.4049330</latitude>
-        <longitude>-72.5322830</longitude>
     </place>
     <place>
         <name>Valley Lane</name>
@@ -766,19 +686,9 @@
         <longitude>-72.5240445</longitude>
     </place>
     <place>
-        <name>Eames Avenue</name>
-        <latitude>42.3842540</latitude>
-        <longitude>-72.5161100</longitude>
-    </place>
-    <place>
         <name>Berkshire Terrace</name>
         <latitude>42.3982520</latitude>
         <longitude>-72.5311280</longitude>
-    </place>
-    <place>
-        <name>East Pleasant Street</name>
-        <latitude>42.4023420</latitude>
-        <longitude>-72.5153460</longitude>
     </place>
     <place>
         <name>Park Lane</name>
@@ -791,34 +701,9 @@
         <longitude>-72.5192560</longitude>
     </place>
     <place>
-        <name>Regional High School Drive</name>
-        <latitude>42.3784230</latitude>
-        <longitude>-72.5132080</longitude>
-    </place>
-    <place>
         <name>Pokeberry Ridge</name>
         <latitude>42.3860520</latitude>
         <longitude>-72.5188830</longitude>
-    </place>
-    <place>
-        <name>Fearing Street</name>
-        <latitude>42.3807344</latitude>
-        <longitude>-72.5319033</longitude>
-    </place>
-    <place>
-        <name>Red Gate Lane</name>
-        <latitude>42.3823580</latitude>
-        <longitude>-72.5074390</longitude>
-    </place>
-    <place>
-        <name>Puffton Village Drive</name>
-        <latitude>42.4057700</latitude>
-        <longitude>-72.5350160</longitude>
-    </place>
-    <place>
-        <name>Puffton Village Drive</name>
-        <latitude>42.4043490</latitude>
-        <longitude>-72.5343390</longitude>
     </place>
     <place>
         <name>Eames Avenue</name>
@@ -826,44 +711,14 @@
         <longitude>-72.5179970</longitude>
     </place>
     <place>
-        <name>Strong Street</name>
-        <latitude>42.3882490</latitude>
-        <longitude>-72.5106520</longitude>
-    </place>
-    <place>
-        <name>North Cemetery Road</name>
-        <latitude>42.4086080</latitude>
-        <longitude>-72.5141980</longitude>
-    </place>
-    <place>
         <name>Commonwealth Avenue</name>
         <latitude>42.3946934</latitude>
         <longitude>-72.5318245</longitude>
     </place>
     <place>
-        <name>Chestnut Court</name>
-        <latitude>42.3830620</latitude>
-        <longitude>-72.5189220</longitude>
-    </place>
-    <place>
-        <name>Presidential Apartments Drive</name>
-        <latitude>42.4019950</latitude>
-        <longitude>-72.5311695</longitude>
-    </place>
-    <place>
-        <name>Henry Street</name>
-        <latitude>42.4032889</latitude>
-        <longitude>-72.4961113</longitude>
-    </place>
-    <place>
         <name>Nutting Avenue</name>
         <latitude>42.3826370</latitude>
         <longitude>-72.5231830</longitude>
-    </place>
-    <place>
-        <name>Pleasant Court</name>
-        <latitude>42.3832220</latitude>
-        <longitude>-72.5194980</longitude>
     </place>
     <place>
         <name>Governors Drive</name>
@@ -881,84 +736,14 @@
         <longitude>-72.5228290</longitude>
     </place>
     <place>
-        <name>Puffton Village Drive</name>
-        <latitude>42.4063000</latitude>
-        <longitude>-72.5305620</longitude>
-    </place>
-    <place>
-        <name>Stadium Access Road North</name>
-        <latitude>42.3821610</latitude>
-        <longitude>-72.5338150</longitude>
-    </place>
-    <place>
         <name>North Pleasant Street</name>
         <latitude>42.3853640</latitude>
         <longitude>-72.5218150</longitude>
     </place>
     <place>
-        <name>Blackberry Lane</name>
-        <latitude>42.4058398</latitude>
-        <longitude>-72.5071229</longitude>
-    </place>
-    <place>
-        <name>Sheerman Lane</name>
-        <latitude>42.4023420</latitude>
-        <longitude>-72.5153460</longitude>
-    </place>
-    <place>
-        <name>Van Meter Drive</name>
-        <latitude>42.4026450</latitude>
-        <longitude>-72.5206850</longitude>
-    </place>
-    <place>
-        <name>Puffton Village Drive</name>
-        <latitude>42.4050000</latitude>
-        <longitude>-72.5306750</longitude>
-    </place>
-    <place>
-        <name>Harlow Drive</name>
-        <latitude>42.4045420</latitude>
-        <longitude>-72.5216490</longitude>
-    </place>
-    <place>
-        <name>Grantwood Drive</name>
-        <latitude>42.4085720</latitude>
-        <longitude>-72.5098630</longitude>
-    </place>
-    <place>
-        <name>Flat Hills Road</name>
-        <latitude>42.4034173</latitude>
-        <longitude>-72.4958666</longitude>
-    </place>
-    <place>
-        <name>Goldenrod Circle</name>
-        <latitude>42.4077320</latitude>
-        <longitude>-72.5160150</longitude>
-    </place>
-    <place>
         <name>Cottage Street</name>
         <latitude>42.3804480</latitude>
         <longitude>-72.5177640</longitude>
-    </place>
-    <place>
-        <name>Allen Street</name>
-        <latitude>42.3829130</latitude>
-        <longitude>-72.5221480</longitude>
-    </place>
-    <place>
-        <name>Cherry Lane</name>
-        <latitude>42.4007660</latitude>
-        <longitude>-72.5091390</longitude>
-    </place>
-    <place>
-        <name>North Whitney Street</name>
-        <latitude>42.3787360</latitude>
-        <longitude>-72.5080140</longitude>
-    </place>
-    <place>
-        <name>Cherry Lane</name>
-        <latitude>42.4027740</latitude>
-        <longitude>-72.5117660</longitude>
     </place>
     <place>
         <name>Sunset Avenue</name>
@@ -971,34 +756,9 @@
         <longitude>-72.5309620</longitude>
     </place>
     <place>
-        <name>Nelson Circle</name>
-        <latitude>42.4071099</latitude>
-        <longitude>-72.5174441</longitude>
-    </place>
-    <place>
-        <name>Colonial Court</name>
-        <latitude>42.4063930</latitude>
-        <longitude>-72.5131910</longitude>
-    </place>
-    <place>
-        <name>Nelson Circle</name>
-        <latitude>42.4069727</latitude>
-        <longitude>-72.5174725</longitude>
-    </place>
-    <place>
-        <name>Teawaddle Lane</name>
-        <latitude>42.4070460</latitude>
-        <longitude>-72.5185950</longitude>
-    </place>
-    <place>
         <name>Old Town Road</name>
         <latitude>42.3968010</latitude>
         <longitude>-72.5276850</longitude>
-    </place>
-    <place>
-        <name>Arbor Way</name>
-        <latitude>42.3814536</latitude>
-        <longitude>-72.4994083</longitude>
     </place>
     <place>
         <name>Commonwealth Avenue</name>
@@ -1006,44 +766,14 @@
         <longitude>-72.5312760</longitude>
     </place>
     <place>
-        <name>North Hadley Road</name>
-        <latitude>42.3843432</latitude>
-        <longitude>-72.5286904</longitude>
-    </place>
-    <place>
         <name>Thatcher Road</name>
         <latitude>42.3869220</latitude>
         <longitude>-72.5226540</longitude>
     </place>
     <place>
-        <name>Bellview Circle</name>
-        <latitude>42.4076500</latitude>
-        <longitude>-72.5172010</longitude>
-    </place>
-    <place>
-        <name>Chestnut Street</name>
-        <latitude>42.3837870</latitude>
-        <longitude>-72.5184390</longitude>
-    </place>
-    <place>
-        <name>Fisher Street</name>
-        <latitude>42.4078490</latitude>
-        <longitude>-72.5302630</longitude>
-    </place>
-    <place>
         <name>Chancellors Drive</name>
         <latitude>42.3911760</latitude>
         <longitude>-72.5227130</longitude>
-    </place>
-    <place>
-        <name>Puffton Village Drive</name>
-        <latitude>42.4049330</latitude>
-        <longitude>-72.5322830</longitude>
-    </place>
-    <place>
-        <name>Puffton Village Drive</name>
-        <latitude>42.4056080</latitude>
-        <longitude>-72.5366280</longitude>
     </place>
     <place>
         <name>North Pleasant Street</name>
@@ -1056,44 +786,9 @@
         <longitude>-72.5323711</longitude>
     </place>
     <place>
-        <name>Cherry Lane</name>
-        <latitude>42.4029390</latitude>
-        <longitude>-72.5131470</longitude>
-    </place>
-    <place>
-        <name>Gray Street</name>
-        <latitude>42.3758680</latitude>
-        <longitude>-72.5114440</longitude>
-    </place>
-    <place>
-        <name>Blackberry Lane</name>
-        <latitude>42.4065220</latitude>
-        <longitude>-72.5121760</longitude>
-    </place>
-    <place>
-        <name>Strong Street</name>
-        <latitude>42.3879680</latitude>
-        <longitude>-72.5079110</longitude>
-    </place>
-    <place>
-        <name>East Pleasant Street</name>
-        <latitude>42.4065640</latitude>
-        <longitude>-72.5145400</longitude>
-    </place>
-    <place>
         <name>Power Plant Road</name>
         <latitude>42.3903498</latitude>
         <longitude>-72.5323994</longitude>
-    </place>
-    <place>
-        <name>North Village Drive</name>
-        <latitude>42.4015070</latitude>
-        <longitude>-72.5357010</longitude>
-    </place>
-    <place>
-        <name>Town House Apartments Drive</name>
-        <latitude>42.4096610</latitude>
-        <longitude>-72.5332350</longitude>
     </place>
     <place>
         <name>Wildwood Lane</name>
@@ -1106,79 +801,14 @@
         <longitude>-72.5156570</longitude>
     </place>
     <place>
-        <name>Hartman Road</name>
-        <latitude>42.4032540</latitude>
-        <longitude>-72.5189460</longitude>
-    </place>
-    <place>
-        <name>Eames Place</name>
-        <latitude>42.3832710</latitude>
-        <longitude>-72.5136770</longitude>
-    </place>
-    <place>
-        <name>North Village Drive</name>
-        <latitude>42.4011210</latitude>
-        <longitude>-72.5356530</longitude>
-    </place>
-    <place>
-        <name>Forestedge Road</name>
-        <latitude>42.4061456</latitude>
-        <longitude>-72.5100959</longitude>
-    </place>
-    <place>
-        <name>Kingman Road</name>
-        <latitude>42.4081890</latitude>
-        <longitude>-72.5090040</longitude>
-    </place>
-    <place>
         <name>Butterfield Terrace</name>
         <latitude>42.3850860</latitude>
         <longitude>-72.5216860</longitude>
     </place>
     <place>
-        <name>Sunset Court</name>
-        <latitude>42.3826280</latitude>
-        <longitude>-72.5282530</longitude>
-    </place>
-    <place>
-        <name>Puffton Village Drive</name>
-        <latitude>42.4060330</latitude>
-        <longitude>-72.5324670</longitude>
-    </place>
-    <place>
-        <name>Ridgecrest Road</name>
-        <latitude>42.4027830</latitude>
-        <longitude>-72.5202860</longitude>
-    </place>
-    <place>
-        <name>Beech Street</name>
-        <latitude>42.4055880</latitude>
-        <longitude>-72.5225540</longitude>
-    </place>
-    <place>
-        <name>Harris Street</name>
-        <latitude>42.4082130</latitude>
-        <longitude>-72.5281440</longitude>
-    </place>
-    <place>
         <name>Massachusetts Avenue</name>
         <latitude>42.3845479</latitude>
         <longitude>-72.5334510</longitude>
-    </place>
-    <place>
-        <name>Mcclure Street</name>
-        <latitude>42.3816360</latitude>
-        <longitude>-72.5269210</longitude>
-    </place>
-    <place>
-        <name>Rifle Range Road</name>
-        <latitude>42.3945100</latitude>
-        <longitude>-72.4968460</longitude>
-    </place>
-    <place>
-        <name>Fairfield Street</name>
-        <latitude>42.3980440</latitude>
-        <longitude>-72.5280700</longitude>
     </place>
     <place>
         <name>Mooreland Street</name>
@@ -1191,24 +821,9 @@
         <longitude>-72.5158480</longitude>
     </place>
     <place>
-        <name>North East Street</name>
-        <latitude>42.3764436</latitude>
-        <longitude>-72.5005254</longitude>
-    </place>
-    <place>
         <name>Mount Pleasant Street</name>
         <latitude>42.3841910</latitude>
         <longitude>-72.5181680</longitude>
-    </place>
-    <place>
-        <name>Emily Lane</name>
-        <latitude>42.4016540</latitude>
-        <longitude>-72.5116750</longitude>
-    </place>
-    <place>
-        <name>Weaver Circle</name>
-        <latitude>42.4027740</latitude>
-        <longitude>-72.5117660</longitude>
     </place>
     <place>
         <name>Orchard Hill Drive</name>
@@ -1216,29 +831,9 @@
         <longitude>-72.5187950</longitude>
     </place>
     <place>
-        <name>Phillips Street</name>
-        <latitude>42.3836730</latitude>
-        <longitude>-72.5237400</longitude>
-    </place>
-    <place>
-        <name>Arnold House</name>
-        <latitude>42.3946524</latitude>
-        <longitude>-72.5262704</longitude>
-    </place>
-    <place>
-        <name>Pratt Corner Road</name>
-        <latitude>42.4088526</latitude>
-        <longitude>-72.4838941</longitude>
-    </place>
-    <place>
         <name>Amherst Fire Department</name>
         <latitude>42.3987595</latitude>
         <longitude>-72.5153259</longitude>
-    </place>
-    <place>
-        <name>University of Massachusetts Police Department</name>
-        <latitude>42.3981216</latitude>
-        <longitude>-72.5151425</longitude>
     </place>
     <place>
         <name>East Experiment Station</name>
@@ -1251,219 +846,99 @@
         <longitude>-72.5226073</longitude>
     </place>
     <place>
+        <name>Van Meter Hall</name>
+        <latitude>42.3899338</latitude>
+        <longitude>-72.5183022</longitude>
+    </place>
+    <place>
+        <name>Chadbourne Hall</name>
+        <latitude>42.3894329</latitude>
+        <longitude>-72.5190326</longitude>
+    </place>
+    <place>
+        <name>Chancellor's House</name>
+        <latitude>42.3916955</latitude>
+        <longitude>-72.5211629</longitude>
+    </place>
+    <place>
+        <name>Research Administration</name>
+        <latitude>42.3869080</latitude>
+        <longitude>-72.5210305</longitude>
+    </place>
+    <place>
+        <name>Wheeler Hall</name>
+        <latitude>42.3890963</latitude>
+        <longitude>-72.5212711</longitude>
+    </place>
+    <place>
+        <name>French Hall Greenhouses</name>
+        <latitude>42.3900710</latitude>
+        <longitude>-72.5221887</longitude>
+    </place>
+    <place>
+        <name>French Hall</name>
+        <latitude>42.3900507</latitude>
+        <longitude>-72.5228231</longitude>
+    </place>
+    <place>
+        <name>Robsham Visitors Center</name>
+        <latitude>42.3851060</latitude>
+        <longitude>-72.5252288</longitude>
+    </place>
+    <place>
+        <name>Gorman Hall</name>
+        <latitude>42.3879285</latitude>
+        <longitude>-72.5209783</longitude>
+    </place>
+    <place>
+        <name>Blaisdel Hall</name>
+        <latitude>42.3900722</latitude>
+        <longitude>-72.5306140</longitude>
+    </place>
+    <place>
+        <name>Clark Hall</name>
+        <latitude>42.3890635</latitude>
+        <longitude>-72.5235657</longitude>
+    </place>
+    <place>
+        <name>Hills Hall</name>
+        <latitude>42.3880640</latitude>
+        <longitude>-72.5212325</longitude>
+    </place>
+    <place>
+        <name>Shade Tree Lab</name>
+        <latitude>42.3899019</latitude>
+        <longitude>-72.5236438</longitude>
+    </place>
+    <place>
+        <name>Skinner Hall</name>
+        <latitude>42.3913762</latitude>
+        <longitude>-72.5246464</longitude>
+    </place>
+    <place>
+        <name>Wilder Hall</name>
+        <latitude>42.3902188</latitude>
+        <longitude>-72.5238043</longitude>
+    </place>
+    <place>
+        <name>Integrated Sciences Building</name>
+        <latitude>42.3928241</latitude>
+        <longitude>-72.5243258</longitude>
+    </place>
+    <place>
+        <name>Life Science Laboratories</name>
+        <latitude>42.3923830</latitude>
+        <longitude>-72.5238465</longitude>
+    </place>
+    <place>
+        <name>Franklin Dining Commons</name>
+        <latitude>42.3894704</latitude>
+        <longitude>-72.5228521</longitude>
+    </place>
+    <place>
         <name>Worcester Dining Commons</name>
         <latitude>42.3932707</latitude>
         <longitude>-72.5245641</longitude>
-    </place>
-    <place>
-        <name>Matuszko</name>
-        <latitude>42.3891500</latitude>
-        <longitude>-72.5451622</longitude>
-    </place>
-    <place>
-        <name>Devine Farms</name>
-        <latitude>42.3961675</latitude>
-        <longitude>-72.5401841</longitude>
-    </place>
-    <place>
-        <name>Devine Farms</name>
-        <latitude>42.4015264</latitude>
-        <longitude>-72.5466391</longitude>
-    </place>
-    <place>
-        <name>Banfield</name>
-        <latitude>42.4085320</latitude>
-        <longitude>-72.4751582</longitude>
-    </place>
-    <place>
-        <name>Devine Farms</name>
-        <latitude>42.4015264</latitude>
-        <longitude>-72.5466391</longitude>
-    </place>
-    <place>
-        <name>Wysocki Farm</name>
-        <latitude>42.3975403</latitude>
-        <longitude>-72.4888574</longitude>
-    </place>
-    <place>
-        <name>Wysocki Farm</name>
-        <latitude>42.3948604</latitude>
-        <longitude>-72.4811958</longitude>
-    </place>
-    <place>
-        <name>Wysocki Farm</name>
-        <latitude>42.4017743</latitude>
-        <longitude>-72.4989651</longitude>
-    </place>
-    <place>
-        <name>Wysocki Farm</name>
-        <latitude>42.4014118</latitude>
-        <longitude>-72.4952631</longitude>
-    </place>
-    <place>
-        <name>Waskiewicz</name>
-        <latitude>42.4066483</latitude>
-        <longitude>-72.5443699</longitude>
-    </place>
-    <place>
-        <name>Gawle</name>
-        <latitude>42.3954860</latitude>
-        <longitude>-72.5459915</longitude>
-    </place>
-    <place>
-        <name>Paul Et Al</name>
-        <latitude>42.3987064</latitude>
-        <longitude>-72.5491313</longitude>
-    </place>
-    <place>
-        <name>Waskiewicz</name>
-        <latitude>42.4016548</latitude>
-        <longitude>-72.5440160</longitude>
-    </place>
-    <place>
-        <name>Banfield</name>
-        <latitude>42.4078932</latitude>
-        <longitude>-72.4802349</longitude>
-    </place>
-    <place>
-        <name>Wysocki Farm</name>
-        <latitude>42.3948598</latitude>
-        <longitude>-72.4811168</longitude>
-    </place>
-    <place>
-        <name>Wildwood Elementary School</name>
-        <latitude>42.3864184</latitude>
-        <longitude>-72.5137250</longitude>
-    </place>
-    <place>
-        <name>Amherst Regional High School</name>
-        <latitude>42.3784591</latitude>
-        <longitude>-72.5130554</longitude>
-    </place>
-    <place>
-        <name>Mitchell/Wagner</name>
-        <latitude>42.3928087</latitude>
-        <longitude>-72.4973272</longitude>
-    </place>
-    <place>
-        <name>Wagner</name>
-        <latitude>42.3852221</latitude>
-        <longitude>-72.4822528</longitude>
-    </place>
-    <place>
-        <name>Ziomek</name>
-        <latitude>42.4007285</latitude>
-        <longitude>-72.5390173</longitude>
-    </place>
-    <place>
-        <name>Hess</name>
-        <latitude>42.3792927</latitude>
-        <longitude>-72.4807939</longitude>
-    </place>
-    <place>
-        <name>Gulliver Meadow Conservation Area</name>
-        <latitude>42.3894126</latitude>
-        <longitude>-72.5048443</longitude>
-    </place>
-    <place>
-        <name>Wildwood Conservation Area</name>
-        <latitude>42.3958519</latitude>
-        <longitude>-72.5050170</longitude>
-    </place>
-    <place>
-        <name>Wagner</name>
-        <latitude>42.3866513</latitude>
-        <longitude>-72.4819441</longitude>
-    </place>
-    <place>
-        <name>North Amherst Community Farm</name>
-        <latitude>42.4064524</latitude>
-        <longitude>-72.5282776</longitude>
-    </place>
-    <place>
-        <name>Conservation Land</name>
-        <latitude>42.3818169</latitude>
-        <longitude>-72.5483178</longitude>
-    </place>
-    <place>
-        <name>Wildwood Cemetery</name>
-        <latitude>42.3896795</latitude>
-        <longitude>-72.5038599</longitude>
-    </place>
-    <place>
-        <name>Swartz</name>
-        <latitude>42.3926980</latitude>
-        <longitude>-72.5486801</longitude>
-    </place>
-    <place>
-        <name>Conservation Land</name>
-        <latitude>42.3862875</latitude>
-        <longitude>-72.5480351</longitude>
-    </place>
-    <place>
-        <name>Jenanowski</name>
-        <latitude>42.3989451</latitude>
-        <longitude>-72.5400632</longitude>
-    </place>
-    <place>
-        <name>Matuszko</name>
-        <latitude>42.4045021</latitude>
-        <longitude>-72.5430540</longitude>
-    </place>
-    <place>
-        <name>Kelley Farm</name>
-        <latitude>42.3889025</latitude>
-        <longitude>-72.5478309</longitude>
-    </place>
-    <place>
-        <name>North Amherst Community Farm</name>
-        <latitude>42.4088043</latitude>
-        <longitude>-72.5240670</longitude>
-    </place>
-    <place>
-        <name>Drozdal</name>
-        <latitude>42.4068821</latitude>
-        <longitude>-72.5418084</longitude>
-    </place>
-    <place>
-        <name>Kokoski</name>
-        <latitude>42.4084030</latitude>
-        <longitude>-72.5491705</longitude>
-    </place>
-    <place>
-        <name>Waskiewicz</name>
-        <latitude>42.4075971</latitude>
-        <longitude>-72.5460613</longitude>
-    </place>
-    <place>
-        <name>Koloski</name>
-        <latitude>42.3958909</latitude>
-        <longitude>-72.5018383</longitude>
-    </place>
-    <place>
-        <name>Drozdal</name>
-        <latitude>42.4081132</latitude>
-        <longitude>-72.5397491</longitude>
-    </place>
-    <place>
-        <name>Kelley Farm</name>
-        <latitude>42.3856845</latitude>
-        <longitude>-72.5446978</longitude>
-    </place>
-    <place>
-        <name>Wysocki Farm</name>
-        <latitude>42.4001778</latitude>
-        <longitude>-72.4961164</longitude>
-    </place>
-    <place>
-        <name>Mizwa</name>
-        <latitude>42.3975676</latitude>
-        <longitude>-72.5513044</longitude>
-    </place>
-    <place>
-        <name>Cowls</name>
-        <latitude>42.4118404</latitude>
-        <longitude>-72.5385272</longitude>
     </place>
     <place>
         <name>University of Massachusetts Amherst</name>
@@ -1501,34 +976,9 @@
         <longitude>-72.5339608</longitude>
     </place>
     <place>
-        <name>North Hadley Road</name>
-        <latitude>42.3843310</latitude>
-        <longitude>-72.5410690</longitude>
-    </place>
-    <place>
-        <name>North Hadley Road</name>
-        <latitude>42.3846540</latitude>
-        <longitude>-72.5458730</longitude>
-    </place>
-    <place>
-        <name>North Hadley Road</name>
-        <latitude>42.3842989</latitude>
-        <longitude>-72.5406048</longitude>
-    </place>
-    <place>
-        <name>Rudd Field</name>
-        <latitude>42.3830426</latitude>
-        <longitude>-72.5363434</longitude>
-    </place>
-    <place>
         <name>Lower Tennis Court</name>
         <latitude>42.3894234</latitude>
         <longitude>-72.5361444</longitude>
-    </place>
-    <place>
-        <name>Lorden Field</name>
-        <latitude>42.3897812</latitude>
-        <longitude>-72.5357258</longitude>
     </place>
     <place>
         <name>W.E.B. Du Bois</name>
@@ -1539,11 +989,6 @@
         <name>Newman Center</name>
         <latitude>42.3867536</latitude>
         <longitude>-72.5235272</longitude>
-    </place>
-    <place>
-        <name>Russellville Road</name>
-        <latitude>42.4101390</latitude>
-        <longitude>-72.5458190</longitude>
     </place>
     <place>
         <name>Farview Way</name>
@@ -1559,11 +1004,6 @@
         <name>Campus Center Parking Garage</name>
         <latitude>42.3910716</latitude>
         <longitude>-72.5285397</longitude>
-    </place>
-    <place>
-        <name>Southwest Circle "The Horseshoe"</name>
-        <latitude>42.3823660</latitude>
-        <longitude>-72.5317800</longitude>
     </place>
     <place>
         <name>Trail from Orchard Hill to Sylvan Parking lot</name>
@@ -1604,11 +1044,6 @@
         <name>East Pleasant Street</name>
         <latitude>42.3886860</latitude>
         <longitude>-72.5168840</longitude>
-    </place>
-    <place>
-        <name>East Pleasant Street</name>
-        <latitude>42.3818817</latitude>
-        <longitude>-72.5192151</longitude>
     </place>
     <place>
         <name>Hicks Hall</name>
@@ -1676,26 +1111,6 @@
         <longitude>-72.5278834</longitude>
     </place>
     <place>
-        <name>Amherst-Pelham Regional Middle School</name>
-        <latitude>42.3864184</latitude>
-        <longitude>-72.5137250</longitude>
-    </place>
-    <place>
-        <name>Hart Farm</name>
-        <latitude>42.3896795</latitude>
-        <longitude>-72.5038599</longitude>
-    </place>
-    <place>
-        <name>Mitchell Farm</name>
-        <latitude>42.3906163</latitude>
-        <longitude>-72.4801795</longitude>
-    </place>
-    <place>
-        <name>Mitchell</name>
-        <latitude>42.3877322</latitude>
-        <longitude>-72.4807892</longitude>
-    </place>
-    <place>
         <name>Forestry Way</name>
         <latitude>42.3963700</latitude>
         <longitude>-72.5326770</longitude>
@@ -1709,11 +1124,6 @@
         <name>Garber Field</name>
         <latitude>42.3869376</latitude>
         <longitude>-72.5298708</longitude>
-    </place>
-    <place>
-        <name>Fine Arts Center</name>
-        <latitude>42.3880039</latitude>
-        <longitude>-72.5270164</longitude>
     </place>
     <place>
         <name>Lot 42 red permit</name>
@@ -1739,6 +1149,46 @@
         <name>Stockbridge Road</name>
         <latitude>42.3926886</latitude>
         <longitude>-72.5243126</longitude>
+    </place>
+    <place>
+        <name>Lot 25 Green Permit</name>
+        <latitude>42.3923373</latitude>
+        <longitude>-72.5348788</longitude>
+    </place>
+    <place>
+        <name>Lot 41 Green Permit</name>
+        <latitude>42.3928978</latitude>
+        <longitude>-72.5327379</longitude>
+    </place>
+    <place>
+        <name>Lot 45 Red Permit</name>
+        <latitude>42.3951487</latitude>
+        <longitude>-72.5330796</longitude>
+    </place>
+    <place>
+        <name>Lot 65 Red Permit</name>
+        <latitude>42.3933309</latitude>
+        <longitude>-72.5320502</longitude>
+    </place>
+    <place>
+        <name>Linden</name>
+        <latitude>42.3871880</latitude>
+        <longitude>-72.5313357</longitude>
+    </place>
+    <place>
+        <name>Oak</name>
+        <latitude>42.3869970</latitude>
+        <longitude>-72.5304687</longitude>
+    </place>
+    <place>
+        <name>Birch</name>
+        <latitude>42.3882040</latitude>
+        <longitude>-72.5312959</longitude>
+    </place>
+    <place>
+        <name>Maple</name>
+        <latitude>42.3876840</latitude>
+        <longitude>-72.5313534</longitude>
     </place>
     <place>
         <name>Army ROTC</name>
@@ -1801,79 +1251,34 @@
         <longitude>-72.5301799</longitude>
     </place>
     <place>
-        <name>New England Central Railroad</name>
-        <latitude>42.4167559</latitude>
-        <longitude>-72.5096210</longitude>
-    </place>
-    <place>
         <name>Campus Center Way</name>
         <latitude>42.3902324</latitude>
         <longitude>-72.5328524</longitude>
     </place>
     <place>
-        <name>Hampshire Dining Hall</name>
-        <latitude>42.3841285</latitude>
-        <longitude>-72.5302730</longitude>
+        <name>University Drive</name>
+        <latitude>42.3848460</latitude>
+        <longitude>-72.5326670</longitude>
     </place>
     <place>
-        <name>Adams Dorm</name>
-        <latitude>42.3819385</latitude>
-        <longitude>-72.5290005</longitude>
+        <name>Gordon Hall</name>
+        <latitude>42.3848098</latitude>
+        <longitude>-72.5219581</longitude>
     </place>
     <place>
-        <name>Washington Hall</name>
-        <latitude>42.3816772</latitude>
-        <longitude>-72.5291545</longitude>
+        <name>Infirmary way</name>
+        <latitude>42.3900879</latitude>
+        <longitude>-72.5220381</longitude>
     </place>
     <place>
-        <name>Kendrick Park</name>
-        <latitude>42.3821452</latitude>
-        <longitude>-72.5202165</longitude>
+        <name>Clark Hill Road</name>
+        <latitude>42.3883660</latitude>
+        <longitude>-72.5219000</longitude>
     </place>
     <place>
-        <name>Cance Dorm</name>
-        <latitude>42.3809811</latitude>
-        <longitude>-72.5302388</longitude>
-    </place>
-    <place>
-        <name>Jason Court</name>
-        <latitude>42.4065150</latitude>
-        <longitude>-72.5080370</longitude>
-    </place>
-    <place>
-        <name>Owen Drive</name>
-        <latitude>42.4092738</latitude>
-        <longitude>-72.5176275</longitude>
-    </place>
-    <place>
-        <name>Tuckerman Lane</name>
-        <latitude>42.4067975</latitude>
-        <longitude>-72.5059869</longitude>
-    </place>
-    <place>
-        <name>Grantwood Drive</name>
-        <latitude>42.4065640</latitude>
-        <longitude>-72.5145400</longitude>
-    </place>
-    <place>
-        <name>North Amherst Cemetery</name>
-        <latitude>42.4092601</latitude>
-        <longitude>-72.5139863</longitude>
-    </place>
-    <place>
-        <name>Meadow Street</name>
-        <latitude>42.4089150</latitude>
-        <longitude>-72.5379110</longitude>
-    </place>
-    <place>
-        <name>Meadow Street</name>
-        <latitude>42.4001670</latitude>
-        <longitude>-72.5459060</longitude>
-    </place>
-    <place>
-        <name>Sacco Drive</name>
-        <latitude>42.4057449</latitude>
-        <longitude>-72.5062334</longitude>
+        <name>Brett Hall</name>
+        <latitude>42.3899165</latitude>
+        <longitude>-72.5215750</longitude>
     </place>
     <place>
         <name>Paige</name>
@@ -1921,64 +1326,49 @@
         <longitude>-72.5317890</longitude>
     </place>
     <place>
-        <name>Berkshire Dining Hall</name>
-        <latitude>42.3821095</latitude>
-        <longitude>-72.5294526</longitude>
+        <name>Amherst UMass Extension</name>
+        <latitude>42.3723050</latitude>
+        <longitude>-72.5328776</longitude>
     </place>
     <place>
-        <name>Coolidge Dorm</name>
-        <latitude>42.3837572</latitude>
-        <longitude>-72.5296892</longitude>
+        <name>Lot 43</name>
+        <latitude>42.3941493</latitude>
+        <longitude>-72.5253430</longitude>
     </place>
     <place>
-        <name>Emerson Dorm</name>
-        <latitude>42.3835067</latitude>
-        <longitude>-72.5308761</longitude>
+        <name>Isle of View</name>
+        <latitude>42.3884870</latitude>
+        <longitude>-72.5265203</longitude>
     </place>
     <place>
-        <name>Hampden Dining Hall</name>
-        <latitude>42.3832743</latitude>
-        <longitude>-72.5295105</longitude>
+        <name>Butterfield Hall</name>
+        <latitude>42.3882984</latitude>
+        <longitude>-72.5182383</longitude>
     </place>
     <place>
-        <name>J. Q. Adams Dorm</name>
-        <latitude>42.3823877</latitude>
-        <longitude>-72.5292540</longitude>
+        <name>Baker Hall</name>
+        <latitude>42.3896694</latitude>
+        <longitude>-72.5197669</longitude>
     </place>
     <place>
-        <name>James Dorm</name>
-        <latitude>42.3842305</latitude>
-        <longitude>-72.5307807</longitude>
+        <name>Brooks Hall</name>
+        <latitude>42.3899772</latitude>
+        <longitude>-72.5209567</longitude>
     </place>
     <place>
-        <name>Kennedy Dorm</name>
-        <latitude>42.3841893</latitude>
-        <longitude>-72.5294484</longitude>
+        <name>New Africa House</name>
+        <latitude>42.3889944</latitude>
+        <longitude>-72.5206078</longitude>
     </place>
     <place>
-        <name>MacKimmie Dorm</name>
-        <latitude>42.3832322</latitude>
-        <longitude>-72.5286764</longitude>
+        <name>Greenough Hall</name>
+        <latitude>42.3900888</latitude>
+        <longitude>-72.5192333</longitude>
     </place>
     <place>
         <name>Melville Dorm</name>
         <latitude>42.3847049</latitude>
         <longitude>-72.5302366</longitude>
-    </place>
-    <place>
-        <name>Moore Dorm</name>
-        <latitude>42.3822875</latitude>
-        <longitude>-72.5309278</longitude>
-    </place>
-    <place>
-        <name>Patterson Dorm</name>
-        <latitude>42.3821272</latitude>
-        <longitude>-72.5286091</longitude>
-    </place>
-    <place>
-        <name>Pierpont Dorm</name>
-        <latitude>42.3817240</latitude>
-        <longitude>-72.5311513</longitude>
     </place>
     <place>
         <name>Prince Dorm</name>
@@ -2066,6 +1456,16 @@
         <longitude>-72.5267092</longitude>
     </place>
     <place>
+        <name>Morrill I</name>
+        <latitude>42.3909012</latitude>
+        <longitude>-72.5244771</longitude>
+    </place>
+    <place>
+        <name>Morrill III</name>
+        <latitude>42.3897232</latitude>
+        <longitude>-72.5243660</longitude>
+    </place>
+    <place>
         <name>North Pleasant Street</name>
         <latitude>42.3950963</latitude>
         <longitude>-72.5270121</longitude>
@@ -2081,6 +1481,51 @@
         <longitude>-72.5268130</longitude>
     </place>
     <place>
+        <name>"Frat Row"</name>
+        <latitude>42.3839259</latitude>
+        <longitude>-72.5229862</longitude>
+    </place>
+    <place>
+        <name>North Pleasant Street</name>
+        <latitude>42.3867830</latitude>
+        <longitude>-72.5225200</longitude>
+    </place>
+    <place>
+        <name>North Pleasant Street</name>
+        <latitude>42.3853640</latitude>
+        <longitude>-72.5218150</longitude>
+    </place>
+    <place>
+        <name>Mill River</name>
+        <latitude>42.4142771</latitude>
+        <longitude>-72.5383593</longitude>
+    </place>
+    <place>
+        <name>Integrated Learning Center</name>
+        <latitude>42.3911466</latitude>
+        <longitude>-72.5254718</longitude>
+    </place>
+    <place>
+        <name>Emily E. Dickinson House</name>
+        <latitude>42.3922207</latitude>
+        <longitude>-72.5192373</longitude>
+    </place>
+    <place>
+        <name>Noah Webster House</name>
+        <latitude>42.3915434</latitude>
+        <longitude>-72.5190270</longitude>
+    </place>
+    <place>
+        <name>Textbook Annex</name>
+        <latitude>42.3914613</latitude>
+        <longitude>-72.5317634</longitude>
+    </place>
+    <place>
+        <name>Agricultural Engineering North</name>
+        <latitude>42.3923089</latitude>
+        <longitude>-72.5312516</longitude>
+    </place>
+    <place>
         <name>Berkshire House</name>
         <latitude>42.3857509</latitude>
         <longitude>-72.5289553</longitude>
@@ -2094,6 +1539,16 @@
         <name>Hampshire House</name>
         <latitude>42.3853541</latitude>
         <longitude>-72.5286308</longitude>
+    </place>
+    <place>
+        <name>Elm</name>
+        <latitude>42.3878754</latitude>
+        <longitude>-72.5305858</longitude>
+    </place>
+    <place>
+        <name>Grinnell</name>
+        <latitude>42.3896794</latitude>
+        <longitude>-72.5310061</longitude>
     </place>
     <place>
         <name>Dickinson Hall</name>
@@ -2119,6 +1574,31 @@
         <name>Photo Laboratory/UMOC</name>
         <latitude>42.3904347</latitude>
         <longitude>-72.5305832</longitude>
+    </place>
+    <place>
+        <name>Sycamore</name>
+        <latitude>42.3881240</latitude>
+        <longitude>-72.5306937</longitude>
+    </place>
+    <place>
+        <name>Agricultural Engineering Center</name>
+        <latitude>42.3920157</latitude>
+        <longitude>-72.5312516</longitude>
+    </place>
+    <place>
+        <name>Agricultural Engineering South</name>
+        <latitude>42.3914670</latitude>
+        <longitude>-72.5306119</longitude>
+    </place>
+    <place>
+        <name>Chenoweth Lab</name>
+        <latitude>42.3915053</latitude>
+        <longitude>-72.5303331</longitude>
+    </place>
+    <place>
+        <name>Chenoweth Lab Addition</name>
+        <latitude>42.3917764</latitude>
+        <longitude>-72.5301861</longitude>
     </place>
     <place>
         <name>Thompson Hall</name>
@@ -2161,11 +1641,6 @@
         <longitude>-72.5339915</longitude>
     </place>
     <place>
-        <name>Draper Hall</name>
-        <latitude>42.3924769</latitude>
-        <longitude>-72.5285828</longitude>
-    </place>
-    <place>
         <name>Draper Hall Annex</name>
         <latitude>42.3926199</latitude>
         <longitude>-72.5285654</longitude>
@@ -2179,346 +1654,6 @@
         <name>Auxilliary Services Warehouse</name>
         <latitude>42.3941855</latitude>
         <longitude>-72.5354558</longitude>
-    </place>
-    <place>
-        <name>East Pleasant Street</name>
-        <latitude>42.3792390</latitude>
-        <longitude>-72.5197710</longitude>
-    </place>
-    <place>
-        <name>Wysocki Farm</name>
-        <latitude>42.3971181</latitude>
-        <longitude>-72.4966390</longitude>
-    </place>
-    <place>
-        <name>Triangle Street</name>
-        <latitude>42.3759060</latitude>
-        <longitude>-72.5128620</longitude>
-    </place>
-    <place>
-        <name>Van Meter Hall</name>
-        <latitude>42.3899338</latitude>
-        <longitude>-72.5183022</longitude>
-    </place>
-    <place>
-        <name>Butterfield Hall</name>
-        <latitude>42.3882984</latitude>
-        <longitude>-72.5182383</longitude>
-    </place>
-    <place>
-        <name>Chadbourne Hall</name>
-        <latitude>42.3894329</latitude>
-        <longitude>-72.5190326</longitude>
-    </place>
-    <place>
-        <name>Chancellor's House</name>
-        <latitude>42.3916955</latitude>
-        <longitude>-72.5211629</longitude>
-    </place>
-    <place>
-        <name>Research Administration</name>
-        <latitude>42.3869080</latitude>
-        <longitude>-72.5210305</longitude>
-    </place>
-    <place>
-        <name>Wheeler Hall</name>
-        <latitude>42.3890963</latitude>
-        <longitude>-72.5212711</longitude>
-    </place>
-    <place>
-        <name>University Health Services</name>
-        <latitude>42.3902635</latitude>
-        <longitude>-72.5211455</longitude>
-    </place>
-    <place>
-        <name>French Hall Greenhouses</name>
-        <latitude>42.3900710</latitude>
-        <longitude>-72.5221887</longitude>
-    </place>
-    <place>
-        <name>French Hall</name>
-        <latitude>42.3900507</latitude>
-        <longitude>-72.5228231</longitude>
-    </place>
-    <place>
-        <name>Robsham Visitors Center</name>
-        <latitude>42.3851060</latitude>
-        <longitude>-72.5252288</longitude>
-    </place>
-    <place>
-        <name>Gorman Hall</name>
-        <latitude>42.3879285</latitude>
-        <longitude>-72.5209783</longitude>
-    </place>
-    <place>
-        <name>Blaisdel Hall</name>
-        <latitude>42.3900722</latitude>
-        <longitude>-72.5306140</longitude>
-    </place>
-    <place>
-        <name>Clark Hall</name>
-        <latitude>42.3890635</latitude>
-        <longitude>-72.5235657</longitude>
-    </place>
-    <place>
-        <name>Hills Hall</name>
-        <latitude>42.3880640</latitude>
-        <longitude>-72.5212325</longitude>
-    </place>
-    <place>
-        <name>Shade Tree Lab</name>
-        <latitude>42.3899019</latitude>
-        <longitude>-72.5236438</longitude>
-    </place>
-    <place>
-        <name>Skinner Hall</name>
-        <latitude>42.3913762</latitude>
-        <longitude>-72.5246464</longitude>
-    </place>
-    <place>
-        <name>Wilder Hall</name>
-        <latitude>42.3902188</latitude>
-        <longitude>-72.5238043</longitude>
-    </place>
-    <place>
-        <name>Integrated Sciences Building</name>
-        <latitude>42.3928241</latitude>
-        <longitude>-72.5243258</longitude>
-    </place>
-    <place>
-        <name>Life Science Laboratories</name>
-        <latitude>42.3923830</latitude>
-        <longitude>-72.5238465</longitude>
-    </place>
-    <place>
-        <name>Franklin Dining Commons</name>
-        <latitude>42.3894704</latitude>
-        <longitude>-72.5228521</longitude>
-    </place>
-    <place>
-        <name>Lot 25 Green Permit</name>
-        <latitude>42.3923373</latitude>
-        <longitude>-72.5348788</longitude>
-    </place>
-    <place>
-        <name>Lot 41 Green Permit</name>
-        <latitude>42.3928978</latitude>
-        <longitude>-72.5327379</longitude>
-    </place>
-    <place>
-        <name>Lot 45 Red Permit</name>
-        <latitude>42.3951487</latitude>
-        <longitude>-72.5330796</longitude>
-    </place>
-    <place>
-        <name>Lot 50 blue permit</name>
-        <latitude>42.3821900</latitude>
-        <longitude>-72.5310900</longitude>
-    </place>
-    <place>
-        <name>Lot 65 Red Permit</name>
-        <latitude>42.3933309</latitude>
-        <longitude>-72.5320502</longitude>
-    </place>
-    <place>
-        <name>Linden</name>
-        <latitude>42.3871880</latitude>
-        <longitude>-72.5313357</longitude>
-    </place>
-    <place>
-        <name>Oak</name>
-        <latitude>42.3869970</latitude>
-        <longitude>-72.5304687</longitude>
-    </place>
-    <place>
-        <name>Birch</name>
-        <latitude>42.3882040</latitude>
-        <longitude>-72.5312959</longitude>
-    </place>
-    <place>
-        <name>Maple</name>
-        <latitude>42.3876840</latitude>
-        <longitude>-72.5313534</longitude>
-    </place>
-    <place>
-        <name>University Drive</name>
-        <latitude>42.3680730</latitude>
-        <longitude>-72.5335100</longitude>
-    </place>
-    <place>
-        <name>University Drive</name>
-        <latitude>42.3848460</latitude>
-        <longitude>-72.5326670</longitude>
-    </place>
-    <place>
-        <name>Gordon Hall</name>
-        <latitude>42.3848098</latitude>
-        <longitude>-72.5219581</longitude>
-    </place>
-    <place>
-        <name>Infirmary way</name>
-        <latitude>42.3900879</latitude>
-        <longitude>-72.5220381</longitude>
-    </place>
-    <place>
-        <name>Clark Hill Road</name>
-        <latitude>42.3883660</latitude>
-        <longitude>-72.5219000</longitude>
-    </place>
-    <place>
-        <name>Brett Hall</name>
-        <latitude>42.3899165</latitude>
-        <longitude>-72.5215750</longitude>
-    </place>
-    <place>
-        <name>Amherst UMass Extension</name>
-        <latitude>42.3723050</latitude>
-        <longitude>-72.5328776</longitude>
-    </place>
-    <place>
-        <name>Lot 43</name>
-        <latitude>42.3941493</latitude>
-        <longitude>-72.5253430</longitude>
-    </place>
-    <place>
-        <name>Isle of View</name>
-        <latitude>42.3884870</latitude>
-        <longitude>-72.5265203</longitude>
-    </place>
-    <place>
-        <name>Baker Hall</name>
-        <latitude>42.3896694</latitude>
-        <longitude>-72.5197669</longitude>
-    </place>
-    <place>
-        <name>Brooks Hall</name>
-        <latitude>42.3899772</latitude>
-        <longitude>-72.5209567</longitude>
-    </place>
-    <place>
-        <name>New Africa House</name>
-        <latitude>42.3889944</latitude>
-        <longitude>-72.5206078</longitude>
-    </place>
-    <place>
-        <name>Greenough Hall</name>
-        <latitude>42.3900888</latitude>
-        <longitude>-72.5192333</longitude>
-    </place>
-    <place>
-        <name>Crampton Dorm</name>
-        <latitude>42.3836700</latitude>
-        <longitude>-72.5290040</longitude>
-    </place>
-    <place>
-        <name>Morrill I</name>
-        <latitude>42.3909012</latitude>
-        <longitude>-72.5244771</longitude>
-    </place>
-    <place>
-        <name>Morrill III</name>
-        <latitude>42.3897232</latitude>
-        <longitude>-72.5243660</longitude>
-    </place>
-    <place>
-        <name>Mercy House</name>
-        <latitude>42.3833687</latitude>
-        <longitude>-72.5202841</longitude>
-    </place>
-    <place>
-        <name>"Frat Row"</name>
-        <latitude>42.3839259</latitude>
-        <longitude>-72.5229862</longitude>
-    </place>
-    <place>
-        <name>Puffton Apartments</name>
-        <latitude>42.4063268</latitude>
-        <longitude>-72.5367973</longitude>
-    </place>
-    <place>
-        <name>North Pleasant Street</name>
-        <latitude>42.3867830</latitude>
-        <longitude>-72.5225200</longitude>
-    </place>
-    <place>
-        <name>North Pleasant Street</name>
-        <latitude>42.3853640</latitude>
-        <longitude>-72.5218150</longitude>
-    </place>
-    <place>
-        <name>Mill River</name>
-        <latitude>42.4142771</latitude>
-        <longitude>-72.5383593</longitude>
-    </place>
-    <place>
-        <name>Mill river</name>
-        <latitude>42.3862072</latitude>
-        <longitude>-72.5496166</longitude>
-    </place>
-    <place>
-        <name>Integrated Learning Center</name>
-        <latitude>42.3911466</latitude>
-        <longitude>-72.5254718</longitude>
-    </place>
-    <place>
-        <name>Emily E. Dickinson House</name>
-        <latitude>42.3922207</latitude>
-        <longitude>-72.5192373</longitude>
-    </place>
-    <place>
-        <name>Noah Webster House</name>
-        <latitude>42.3915434</latitude>
-        <longitude>-72.5190270</longitude>
-    </place>
-    <place>
-        <name>Textbook Annex</name>
-        <latitude>42.3914613</latitude>
-        <longitude>-72.5317634</longitude>
-    </place>
-    <place>
-        <name>Agricultural Engineering North</name>
-        <latitude>42.3923089</latitude>
-        <longitude>-72.5312516</longitude>
-    </place>
-    <place>
-        <name>Elm</name>
-        <latitude>42.3878754</latitude>
-        <longitude>-72.5305858</longitude>
-    </place>
-    <place>
-        <name>Grinnell</name>
-        <latitude>42.3896794</latitude>
-        <longitude>-72.5310061</longitude>
-    </place>
-    <place>
-        <name>Sycamore</name>
-        <latitude>42.3881240</latitude>
-        <longitude>-72.5306937</longitude>
-    </place>
-    <place>
-        <name>Agricultural Engineering Center</name>
-        <latitude>42.3920157</latitude>
-        <longitude>-72.5312516</longitude>
-    </place>
-    <place>
-        <name>Agricultural Engineering South</name>
-        <latitude>42.3914670</latitude>
-        <longitude>-72.5306119</longitude>
-    </place>
-    <place>
-        <name>Chenoweth Lab</name>
-        <latitude>42.3915053</latitude>
-        <longitude>-72.5303331</longitude>
-    </place>
-    <place>
-        <name>Chenoweth Lab Addition</name>
-        <latitude>42.3917764</latitude>
-        <longitude>-72.5301861</longitude>
-    </place>
-    <place>
-        <name>Studio Arts Building</name>
-        <latitude>42.3876985</latitude>
-        <longitude>-72.5224679</longitude>
     </place>
     <place>
         <name>Fernald Hall</name>
@@ -2536,23 +1671,218 @@
         <longitude>-72.5187309</longitude>
     </place>
     <place>
-        <name>Puffton Village Apartments</name>
-        <latitude>42.4063418</latitude>
-        <longitude>-72.5308432</longitude>
+        <name>Morrow Lane</name>
+        <latitude>42.3850940</latitude>
+        <longitude>-72.5142532</longitude>
+    </place>
+    <place>
+        <name>Amity Place (In)</name>
+        <latitude>42.3739550</latitude>
+        <longitude>-72.5316700</longitude>
+    </place>
+    <place>
+        <name>Amity Place (Out)</name>
+        <latitude>42.3740200</latitude>
+        <longitude>-72.5315550</longitude>
+    </place>
+    <place>
+        <name>Dallas Mall (E)</name>
+        <latitude>42.3775410</latitude>
+        <longitude>-72.5328980</longitude>
+    </place>
+    <place>
+        <name>Dallas Mall (W)</name>
+        <latitude>42.3775830</latitude>
+        <longitude>-72.5327300</longitude>
+    </place>
+    <place>
+        <name>Day School (N)</name>
+        <latitude>42.3814810</latitude>
+        <longitude>-72.5338440</longitude>
+    </place>
+    <place>
+        <name>Day School (S)</name>
+        <latitude>42.3815310</latitude>
+        <longitude>-72.5339130</longitude>
+    </place>
+    <place>
+        <name>Lot 33 (E)</name>
+        <latitude>42.3822780</latitude>
+        <longitude>-72.5322110</longitude>
+    </place>
+    <place>
+        <name>Lot 33 (W)</name>
+        <latitude>42.3823360</latitude>
+        <longitude>-72.5321730</longitude>
+    </place>
+    <place>
+        <name>Stadium (N)</name>
+        <latitude>42.3799550</latitude>
+        <longitude>-72.5339810</longitude>
+    </place>
+    <place>
+        <name>Stadium (S)</name>
+        <latitude>42.3798480</latitude>
+        <longitude>-72.5340730</longitude>
+    </place>
+    <place>
+        <name>Stadium Drive</name>
+        <latitude>42.3747890</latitude>
+        <longitude>-72.5374740</longitude>
+    </place>
+    <place>
+        <name>Stadium Drive</name>
+        <latitude>42.3835017</latitude>
+        <longitude>-72.5358492</longitude>
+    </place>
+    <place>
+        <name>Disposal Plant Road</name>
+        <latitude>42.3840370</latitude>
+        <longitude>-72.5359160</longitude>
+    </place>
+    <place>
+        <name>Stadium Drive</name>
+        <latitude>42.3747890</latitude>
+        <longitude>-72.5374740</longitude>
+    </place>
+    <place>
+        <name>Stadium Drive</name>
+        <latitude>42.3818350</latitude>
+        <longitude>-72.5338480</longitude>
+    </place>
+    <place>
+        <name>Stadium Drive</name>
+        <latitude>42.3807800</latitude>
+        <longitude>-72.5339380</longitude>
+    </place>
+    <place>
+        <name>Stadium Drive</name>
+        <latitude>42.3735840</latitude>
+        <longitude>-72.5375870</longitude>
+    </place>
+    <place>
+        <name>Fearing Street</name>
+        <latitude>42.3807344</latitude>
+        <longitude>-72.5319033</longitude>
+    </place>
+    <place>
+        <name>Stadium Access Road North</name>
+        <latitude>42.3821610</latitude>
+        <longitude>-72.5338150</longitude>
+    </place>
+    <place>
+        <name>Amity Street</name>
+        <latitude>42.3735890</latitude>
+        <longitude>-72.5345730</longitude>
+    </place>
+    <place>
+        <name>University Drive</name>
+        <latitude>42.3843993</latitude>
+        <longitude>-72.5323711</longitude>
+    </place>
+    <place>
+        <name>Massachusetts Avenue</name>
+        <latitude>42.3845479</latitude>
+        <longitude>-72.5334510</longitude>
+    </place>
+    <place>
+        <name>University of Massachusetts Amherst</name>
+        <latitude>42.3738712</latitude>
+        <longitude>-72.5394075</longitude>
+    </place>
+    <place>
+        <name>Massachusetts Avenue</name>
+        <latitude>42.3858780</latitude>
+        <longitude>-72.5222860</longitude>
+    </place>
+    <place>
+        <name>Rocky Hill Road</name>
+        <latitude>42.3736170</latitude>
+        <longitude>-72.5419590</longitude>
+    </place>
+    <place>
+        <name>North Hadley Road</name>
+        <latitude>42.3843310</latitude>
+        <longitude>-72.5410690</longitude>
+    </place>
+    <place>
+        <name>North Hadley Road</name>
+        <latitude>42.3846540</latitude>
+        <longitude>-72.5458730</longitude>
+    </place>
+    <place>
+        <name>North Hadley Road</name>
+        <latitude>42.3842989</latitude>
+        <longitude>-72.5406048</longitude>
+    </place>
+    <place>
+        <name>Rudd Field</name>
+        <latitude>42.3830426</latitude>
+        <longitude>-72.5363434</longitude>
+    </place>
+    <place>
+        <name>Stadium Access Road South</name>
+        <latitude>42.3768440</latitude>
+        <longitude>-72.5343230</longitude>
+    </place>
+    <place>
+        <name>Stadium Access Road Middle</name>
+        <latitude>42.3775640</latitude>
+        <longitude>-72.5342560</longitude>
+    </place>
+    <place>
+        <name>North Hadley Road</name>
+        <latitude>42.3841080</latitude>
+        <longitude>-72.5352150</longitude>
+    </place>
+    <place>
+        <name>Southwest Circle "The Horseshoe"</name>
+        <latitude>42.3823660</latitude>
+        <longitude>-72.5317800</longitude>
+    </place>
+    <place>
+        <name>Warren McGuirk Alumni Stadium</name>
+        <latitude>42.3778748</latitude>
+        <longitude>-72.5357291</longitude>
+    </place>
+    <place>
+        <name>University Drive</name>
+        <latitude>42.3680730</latitude>
+        <longitude>-72.5335100</longitude>
+    </place>
+    <place>
+        <name>University Drive</name>
+        <latitude>42.3848460</latitude>
+        <longitude>-72.5326670</longitude>
+    </place>
+    <place>
+        <name>Amherst UMass Extension</name>
+        <latitude>42.3723050</latitude>
+        <longitude>-72.5328776</longitude>
+    </place>
+    <place>
+        <name>Emerson Dorm</name>
+        <latitude>42.3835067</latitude>
+        <longitude>-72.5308761</longitude>
+    </place>
+    <place>
+        <name>James Dorm</name>
+        <latitude>42.3842305</latitude>
+        <longitude>-72.5307807</longitude>
+    </place>
+    <place>
+        <name>Amherst UMass Extension</name>
+        <latitude>42.3767999</latitude>
+        <longitude>-72.5344046</longitude>
+    </place>
+    <place>
+        <name>Amherst UMass Extension</name>
+        <latitude>42.3776166</latitude>
+        <longitude>-72.5343242</longitude>
     </place>
     <place>
         <name>Amherst UMass Extension</name>
         <latitude>42.3823371</latitude>
         <longitude>-72.5317157</longitude>
-    </place>
-    <place>
-        <name>Morrow Lane</name>
-        <latitude>42.3852260</latitude>
-        <longitude>-72.5142506</longitude>
-    </place>
-    <place>
-        <name>Morrow Lane</name>
-        <latitude>42.3850940</latitude>
-        <longitude>-72.5142532</longitude>
     </place>
 </places>
