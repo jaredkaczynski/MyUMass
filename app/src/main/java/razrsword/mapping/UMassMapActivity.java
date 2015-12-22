@@ -75,7 +75,7 @@ public class UMassMapActivity extends AppCompatActivity {
         map.setBuiltInZoomControls(true);
         map.setMultiTouchControls(true);
         IMapController mapController = map.getController();
-        mapController.animateTo(startPoint);
+        mapController.setCenter(startPoint);
         mapController.setZoom(14);
         map.setTilesScaledToDpi(true);
 

@@ -48,16 +48,16 @@
 
             <AutoCompleteTextView
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/autoCompleteTextView"
                 android:layout_column="1"
                 android:enabled="true"
                 android:hint="Search UMass"
-                android:singleLine="false"
+                android:singleLine="true"
                 android:background="@android:color/transparent"
                 android:gravity="center_vertical"
-                android:elegantTextHeight="false"
-                android:layout_weight=".85" />
+                android:layout_weight=".85"
+                android:layout_gravity="center_vertical" />
 
         </TableRow>
 
