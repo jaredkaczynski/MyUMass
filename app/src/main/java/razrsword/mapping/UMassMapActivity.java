@@ -4,14 +4,11 @@ import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.graphics.ColorFilter;
-import android.graphics.LightingColorFilter;
 import android.graphics.Rect;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -25,7 +22,6 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 
@@ -62,6 +58,8 @@ public class UMassMapActivity extends AppCompatActivity {
     public static final int progress_bar_type = 0;
     private double[] userLocation = new double[2];
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,32 +95,18 @@ public class UMassMapActivity extends AppCompatActivity {
         }
 
         final ImageButton backButton = (ImageButton) findViewById(R.id.hideKeyboard);
+        final ImageButton clearButton = (ImageButton) findViewById(R.id.clearText);
         final AutoCompleteTextView edittext = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
-        final FloatingActionButton locateMyself = (FloatingActionButton) findViewById(R.id.fab);
+        final FloatingActionButton locateButton = (FloatingActionButton) findViewById(R.id.locateFab);
         final List<Place> listOfPlace = getPlaces();
 
 
         //ColorFilter filter = new LightingColorFilter( 0x881C1C,0x881C1C);
         //backButton.setColorFilter(filter);
 
-        backButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                hideKeyboard(getCurrentFocus().getWindowToken());
-                edittext.clearFocus();
-            }
-        });
-
-        locateMyself.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                locateMyself.setBackgroundColor(0x881C1C);
-                userLocation = getGPS();
-                Marker userMarker = new Marker(map);
-                userMarker.setPosition(new GeoPoint(userLocation[0], userLocation[1]));
-                userMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
-                map.getOverlays().add(userMarker);
-                map.getController().animateTo(new GeoPoint(userLocation[0], userLocation[1]));
-            }
-        });
+        initializeClearButton(clearButton,edittext);
+        initializeBackButton(backButton,edittext);
+        initializeLocateButton(locateButton);
 
 
         //Create Array Adapter
@@ -177,6 +161,38 @@ public class UMassMapActivity extends AppCompatActivity {
 
 
     }
+
+    private void initializeLocateButton(final FloatingActionButton locateMyself){
+        locateMyself.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                locateMyself.setBackgroundColor(0x881C1C);
+                userLocation = getGPS();
+                Marker userMarker = new Marker(map);
+                userMarker.setPosition(new GeoPoint(userLocation[0], userLocation[1]));
+                userMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
+                map.getOverlays().add(userMarker);
+                map.getController().animateTo(new GeoPoint(userLocation[0], userLocation[1]));
+            }
+        });
+    }
+
+
+    private void initializeClearButton(ImageButton clearButton, final AutoCompleteTextView edittext){
+        clearButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                edittext.setText("");
+            }
+        });
+    }
+
+    private void initializeBackButton(ImageButton backButton, final AutoCompleteTextView edittext){
+        backButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                hideKeyboard(getCurrentFocus().getWindowToken());
+                edittext.clearFocus();
+            }
+        });
+    }
     private void hideKeyboard(IBinder window){
         InputMethodManager inputManager = (InputMethodManager)
                 getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -196,6 +212,7 @@ public class UMassMapActivity extends AppCompatActivity {
                 listPosition = i;
                 break;
             } else {
+                Log.v("GetTopMatch", name + " " + editTextContent);
                 if((topValue = editDistance(name, editTextContent))>topPosition){
                     listPosition = i;
                     topPosition = topValue;
@@ -205,6 +222,7 @@ public class UMassMapActivity extends AppCompatActivity {
         }
         return listPosition;
     }
+
 
     public void addMarker(MapView map, String locationName, GeoPoint goalLocation){
         startMarker = new Marker(map);
@@ -235,8 +253,12 @@ public class UMassMapActivity extends AppCompatActivity {
         // Tokenize the string and put the tokens/words into an array
         String[] words = str.split("\\s");
         // For each word
+        if(words[words.length-1].isEmpty()){
+            words[words.length-1] = "Z";
+        }
         for (int w=0; w < words.length; w++) {
             // Find the pairs of characters
+            Log.v("wordLetterPairs",words[w] + " String");
             String[] pairsInWord = letterPairs(words[w]);
             for (int p=0; p < pairsInWord.length; p++) {
                 allPairs.add(pairsInWord[p]);
