@@ -145,18 +145,22 @@ public class DiningActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return 5;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "SECTION 1";
+                    return "Dining Commons";
                 case 1:
-                    return "SECTION 2";
+                    return "Campus Center";
                 case 2:
-                    return "SECTION 3";
+                    return "Around Campus";
+                case 3:
+                    return "University Club";
+                case 4:
+                    return "Express";
             }
             return null;
         }
