@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import razrsword.main.R;
@@ -16,7 +17,7 @@ import razrsword.main.R;
  */
 
 public class DiningViewAdapter extends RecyclerView.Adapter<DiningViewAdapter.PersonViewHolder>{
-    List<DiningLocation> persons;
+    List<DiningLocation> diningLocations = new ArrayList<>();
 
     @Override
     public PersonViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -25,7 +26,7 @@ public class DiningViewAdapter extends RecyclerView.Adapter<DiningViewAdapter.Pe
 
     @Override
     public void onBindViewHolder(PersonViewHolder personViewHolder, int i) {
-        personViewHolder.personName.setText(persons.get(i).locationName);
+        personViewHolder.personName.setText(diningLocations.get(i).locationName);
     }
 
     @Override
