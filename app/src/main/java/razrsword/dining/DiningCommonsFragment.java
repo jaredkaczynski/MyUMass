@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -12,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import razrsword.main.R;
-import razrsword.mapping.UMassMapActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -68,16 +68,19 @@ public class DiningCommonsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        DiningViewAdapter adapter = new DiningViewAdapter();
+        adapter.diningLocations.add(new DiningLocation("Worcester"));
+        adapter.diningLocations.add(new DiningLocation("Berkshire"));
         // Inflate the layout for this fragment
+        LinearLayoutManager llm = new LinearLayoutManager(this.getContext());
         View v=inflater.inflate(R.layout.fragment_dining_commons, container, false);
         RecyclerView rv = (RecyclerView)v.findViewById(R.id.recyclerview_dining);
-        if(rv == null)
-            Log.v("RV Null", "Rv was null");
-        rv.setAdapter(new DiningViewAdapter());
-        rv.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        assert rv != null;
+        rv.setAdapter(adapter);
+        rv.setItemAnimator(new DefaultItemAnimator());
+        rv.setLayoutManager(llm);
         //setupRecyclerView(rv);
         return v;
-        //return inflater.inflate(R.layout.fragment_dining_commons, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
