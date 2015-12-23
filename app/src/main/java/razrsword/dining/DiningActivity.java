@@ -1,5 +1,6 @@
 package razrsword.dining;
 
+import android.net.Uri;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -21,7 +22,7 @@ import android.widget.TextView;
 
 import razrsword.main.R;
 
-public class DiningActivity extends AppCompatActivity {
+public class DiningActivity extends AppCompatActivity implements DiningCommonsFragment.OnFragmentInteractionListener {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -90,6 +91,11 @@ public class DiningActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
+
     /**
      * A placeholder fragment containing a simple view.
      */
@@ -139,7 +145,14 @@ public class DiningActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+
+            //Here is where I run a switch on what fragment I add to the pages
+            switch (position) {
+                case 0:
+                    return DiningCommonsFragment.newInstance("Dining","Commons");
+                default:
+                    return PlaceholderFragment.newInstance(position + 1);
+            }
         }
 
         @Override
