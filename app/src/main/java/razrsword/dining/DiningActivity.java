@@ -146,6 +146,8 @@ public class DiningActivity extends AppCompatActivity implements DiningCommonsFr
             switch (position) {
                 case 0:
                     return DiningCommonsFragment.newInstance("Dining", "Commons");
+                case 1:
+                    return CampusCenterFragment.newInstance("Dining", "Commons");
                 default:
                     return PlaceholderFragment.newInstance(position + 1);
             }
