@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -91,11 +92,6 @@ public class DiningActivity extends AppCompatActivity implements DiningCommonsFr
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
-    }
-
     /**
      * A placeholder fragment containing a simple view.
      */
@@ -149,7 +145,7 @@ public class DiningActivity extends AppCompatActivity implements DiningCommonsFr
             //Here is where I run a switch on what fragment I add to the pages
             switch (position) {
                 case 0:
-                    return DiningCommonsFragment.newInstance("Dining","Commons");
+                    return DiningCommonsFragment.newInstance("Dining", "Commons");
                 default:
                     return PlaceholderFragment.newInstance(position + 1);
             }
@@ -177,5 +173,8 @@ public class DiningActivity extends AppCompatActivity implements DiningCommonsFr
             }
             return null;
         }
+    }
+    public void OnDiningCommonInteractionListener(Uri uri){
+        Log.v("Interaction", "Logging interaction with fragment");
     }
 }
