@@ -4,10 +4,12 @@ import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.ColorFilter;
 import android.graphics.LightingColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -31,6 +33,8 @@ import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapsInitializer;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -85,33 +89,34 @@ public class UMassMapActivity extends AppCompatActivity {
         final List<Place> listOfPlace = getPlaces();
         final FloatingActionButton locateButton = (FloatingActionButton) findViewById(R.id.locateFab);
 
+        final com.google.android.gms.maps.model.Marker[] placeMarker = new com.google.android.gms.maps.model.Marker[1];
+
         initializeClearButton(clearButton, edittext);
         initializeBackButton(backButton, edittext);
 
         IMapController mapController = initializeOSMDroidMaps(savedInstanceState);
 
 
-
-        if(GoogleMaps){
+        if (GoogleMaps) {
             initializeLocateButtonGoogleMaps(locateButton);
             initializeGoogleMaps(savedInstanceState);
             mapView.setVisibility(View.VISIBLE);
             map.setVisibility(View.GONE);
-        }else{
+        } else {
             initializeLocateButtonOSM(locateButton);
             map.setVisibility(View.VISIBLE);
             mapView.setVisibility(View.GONE);
         }
 
         if (savedInstanceState != null) {
-            if(GoogleMaps){
+            if (GoogleMaps) {
                 CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(savedInstanceState.getDouble("viewLat"), savedInstanceState.getDouble("viewLon"))
                         , savedInstanceState.getInt("Zoom"));
                 googleMap.moveCamera(cameraUpdate);
                 if (savedInstanceState.getDouble("Latitude") != 0) {
                     addMarkerGoogleMaps(mapView, "name", new LatLng(savedInstanceState.getDouble("Latitude"), savedInstanceState.getDouble("Longitude")));
                 }
-            }else{
+            } else {
                 mapController.setCenter(new GeoPoint(savedInstanceState.getDouble("viewLat"), savedInstanceState.getDouble("viewLon")));
                 mapController.setZoom(savedInstanceState.getInt("Zoom"));
                 if (savedInstanceState.getDouble("Latitude") != 0) {
@@ -127,9 +132,6 @@ public class UMassMapActivity extends AppCompatActivity {
             mapController.setCenter(new GeoPoint(42.38955, -72.52817));
             mapController.setZoom(zoomLevel);
         }
-
-
-
 
 
         //Create Array Adapter
@@ -152,9 +154,12 @@ public class UMassMapActivity extends AppCompatActivity {
                 hideKeyboard(getCurrentFocus().getWindowToken());
                 Double latitude = Double.valueOf(listOfPlace.get(listPosition).getLatitude());
                 Double longitude = Double.valueOf(listOfPlace.get(listPosition).getLongitude());
-                GeoPoint goalLocation = new GeoPoint(latitude,longitude);
-                if(GoogleMaps){
-                    addMarkerGoogleMaps(mapView, listOfPlace.get(listPosition).getName(), new LatLng(latitude,longitude));
+                GeoPoint goalLocation = new GeoPoint(latitude, longitude);
+                if (GoogleMaps) {
+                    if (placeMarker[0] != null) {
+                        placeMarker[0].remove();
+                    }
+                    placeMarker[0] = addMarkerGoogleMaps(mapView, listOfPlace.get(listPosition).getName(), new LatLng(latitude, longitude));
                 } else {
                     addMarkerOSM(map, listOfPlace.get(listPosition).getName(), goalLocation);
                 }
@@ -170,15 +175,18 @@ public class UMassMapActivity extends AppCompatActivity {
                 if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
                         (keyCode == KeyEvent.KEYCODE_ENTER)) {
 
-                    int listPosition = getTopMatch(edittext,listOfPlace);
+                    int listPosition = getTopMatch(edittext, listOfPlace);
                     Log.v("Top Location", " " + listPosition);
                     hideKeyboard(getCurrentFocus().getWindowToken());
 
                     Double latitude = Double.valueOf(listOfPlace.get(listPosition).getLatitude());
                     Double longitude = Double.valueOf(listOfPlace.get(listPosition).getLongitude());
-                    GeoPoint goalLocation = new GeoPoint(latitude,longitude);
-                    if(GoogleMaps){
-                        addMarkerGoogleMaps(mapView, listOfPlace.get(listPosition).getName(), new LatLng(latitude,longitude));
+                    GeoPoint goalLocation = new GeoPoint(latitude, longitude);
+                    if (GoogleMaps) {
+                        if (placeMarker[0] != null) {
+                            placeMarker[0].remove();
+                        }
+                        placeMarker[0] = addMarkerGoogleMaps(mapView, listOfPlace.get(listPosition).getName(), new LatLng(latitude, longitude));
                     } else {
                         addMarkerOSM(map, listOfPlace.get(listPosition).getName(), goalLocation);
                     }
@@ -189,10 +197,9 @@ public class UMassMapActivity extends AppCompatActivity {
         });
 
 
-
     }
 
-    private IMapController initializeOSMDroidMaps(Bundle savedInstanceState){
+    private IMapController initializeOSMDroidMaps(Bundle savedInstanceState) {
         OpenStreetMapTileProviderConstants.setUserAgentValue("Razrsword's UMass App V.1");
         map = (MapView) findViewById(R.id.osmmap);
         IMapController mapController = map.getController();
@@ -207,7 +214,7 @@ public class UMassMapActivity extends AppCompatActivity {
         return mapController;
     }
 
-    private void initializeGoogleMaps(Bundle savedInstanceState){
+    private void initializeGoogleMaps(Bundle savedInstanceState) {
         com.google.android.gms.maps.MapView test = new GoogleMapsFragment().getMapView();
         test = (com.google.android.gms.maps.MapView) findViewById(R.id.googlemap);
         test.getMap();
@@ -224,12 +231,12 @@ public class UMassMapActivity extends AppCompatActivity {
 
         // Updates the location and zoom of the MapView
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(42.38955, -72.52817)
-        , 15);
+                , 15);
         googleMap.moveCamera(cameraUpdate);
 
     }
 
-    private void initializeLocateButtonOSM(final FloatingActionButton locateMyself){
+    private void initializeLocateButtonOSM(final FloatingActionButton locateMyself) {
         locateMyself.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 locateMyself.setBackgroundColor(0x881C1C);
@@ -243,14 +250,60 @@ public class UMassMapActivity extends AppCompatActivity {
         });
     }
 
-    private void initializeLocateButtonGoogleMaps(final FloatingActionButton locateMyself){
+
+    private void initializeLocateButtonGoogleMaps(final FloatingActionButton locateMyself) {
         locateMyself.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                userLocation = getGPS();
-                googleMap.addMarker(new MarkerOptions()).setPosition(new LatLng(userLocation[0], userLocation[1]));
+                if ((ActivityCompat.checkSelfPermission(UMassMapActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) &&
+                        (ActivityCompat.checkSelfPermission(UMassMapActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    ActivityCompat.requestPermissions(UMassMapActivity.this,
+                            new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                            1);
+                    return;
+                }
+                mapView.getMap().setMyLocationEnabled(true);
+
+                // Enable MyLocation Layer of Google Map
+                googleMap.setMyLocationEnabled(true);
+
+                // Get LocationManager object from System Service LOCATION_SERVICE
+                LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
+                // Create a criteria object to retrieve provider
+                Criteria criteria = new Criteria();
+
+                // Get the name of the best provider
+                String provider = locationManager.getBestProvider(criteria, true);
+
+                // Get Current Location
+                Location myLocation = locationManager.getLastKnownLocation(provider);
+
+                // Get latitude of the current location
+                double latitude = myLocation.getLatitude();
+
+                // Get longitude of the current location
+                double longitude = myLocation.getLongitude();
+
+                // Create a LatLng object for the current location
+                LatLng latLng = new LatLng(latitude, longitude);
+
+                // Zoom in the Google Map
+                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,16));
+
+                /*userLocation = getGPS();
+                com.google.android.gms.maps.model.Marker userMarker =
+                        googleMap.addMarker(new MarkerOptions().position(new LatLng(userLocation[0], userLocation[1])));
+                userMarker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
                 CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(userLocation[0], userLocation[1])
                         , 14);
-                googleMap.animateCamera(cameraUpdate);
+                googleMap.animateCamera(cameraUpdate);*/
             }
         });
     }
@@ -319,11 +372,13 @@ public class UMassMapActivity extends AppCompatActivity {
         map.invalidate();
         map.getController().animateTo(goalLocation);
     }
-    public void addMarkerGoogleMaps(com.google.android.gms.maps.MapView map, String locationName, LatLng goalLocation){
+    public com.google.android.gms.maps.model.Marker addMarkerGoogleMaps(com.google.android.gms.maps.MapView map, String locationName, LatLng goalLocation){
         Log.v("AddMarker Google", goalLocation.latitude + " ");
-        googleMap.addMarker(new MarkerOptions().position(goalLocation).title(locationName));
+        com.google.android.gms.maps.model.Marker marker = googleMap.addMarker(new MarkerOptions().position(goalLocation).title(locationName));
+        marker.showInfoWindow();
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(goalLocation, 18);
         googleMap.animateCamera(cameraUpdate);
+        return marker;
     }
 
     /** @return an array of adjacent letter pairs contained in the input string */
@@ -469,12 +524,16 @@ public class UMassMapActivity extends AppCompatActivity {
         // Save UI state changes to the savedInstanceState.
         // This bundle will be passed to onCreate if the process is
         // killed and restarted.
-        if(this.startMarker != null) {
-            savedInstanceState.putDouble("Latitude", UMassMapActivity.this.startMarker.getPosition().getLatitude());
-            savedInstanceState.putDouble("Longitude", UMassMapActivity.this.startMarker.getPosition().getLongitude());
-        } else {
-            savedInstanceState.putDouble("Latitude", 0);
-            savedInstanceState.putDouble("Longitude", 0);
+        if(GoogleMaps){
+
+        }else {
+            if (this.startMarker != null) {
+                savedInstanceState.putDouble("Latitude", UMassMapActivity.this.startMarker.getPosition().getLatitude());
+                savedInstanceState.putDouble("Longitude", UMassMapActivity.this.startMarker.getPosition().getLongitude());
+            } else {
+                savedInstanceState.putDouble("Latitude", 0);
+                savedInstanceState.putDouble("Longitude", 0);
+            }
         }
         Log.v("onSaveInstanceState", " saving data between instances" + UMassMapActivity.this.map.getMapCenter().getLatitude() + " " + UMassMapActivity.this.map.getZoomLevel());
         savedInstanceState.putDouble("viewLat", UMassMapActivity.this.map.getMapCenter().getLatitude());
