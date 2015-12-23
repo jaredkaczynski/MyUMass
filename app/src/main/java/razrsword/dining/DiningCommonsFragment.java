@@ -3,6 +3,7 @@ package razrsword.dining;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -30,6 +31,8 @@ public class DiningCommonsFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static final String ARG_PARAM3 = "param2";
+
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -50,11 +53,12 @@ public class DiningCommonsFragment extends Fragment {
      * @return A new instance of fragment DiningCommonsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static DiningCommonsFragment newInstance(String param1, String param2) {
+    public static DiningCommonsFragment newInstance(String param1, String param2, List<DiningLocation> param3) {
         DiningCommonsFragment fragment = new DiningCommonsFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
+        args.putParcelableArrayList(ARG_PARAM3, (ArrayList<? extends Parcelable>) param3);
         fragment.setArguments(args);
         return fragment;
     }
@@ -71,12 +75,14 @@ public class DiningCommonsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        List<DiningLocation> locationNameList = null;
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+            locationNameList = getArguments().getParcelableArrayList(ARG_PARAM3);
+        }
 
-        List<DiningLocation> locationNameList;
-        locationNameList = new ArrayList<>();
-        locationNameList.add(new DiningLocation("Emma Wilson"));
-        locationNameList.add(new DiningLocation("Lavery Maiss"));
-        locationNameList.add(new DiningLocation("Lillie Watts"));
+
         DiningViewAdapter adapter = new DiningViewAdapter(locationNameList);
 
         //adapter.diningLocations.add(new DiningLocation("Worcester"));
