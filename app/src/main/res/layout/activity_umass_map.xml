@@ -12,11 +12,17 @@
         android:layout_width="0px"
         android:layout_height="0px">
     </LinearLayout>
-    <org.osmdroid.views.MapView
-        android:focusable="true"
-        android:id="@+id/map"
+
+    <com.google.android.gms.maps.MapView android:id="@+id/googlemap"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />
+
+    <org.osmdroid.views.MapView
+        android:focusable="true"
+        android:id="@+id/osmmap"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/locateFab"
         android:layout_width="wrap_content"
