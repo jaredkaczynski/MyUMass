@@ -3,6 +3,7 @@ package razrsword.mapping;
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.ColorFilter;
 import android.graphics.LightingColorFilter;
@@ -28,6 +29,7 @@ import android.widget.ImageButton;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 
+/*
 import org.osmdroid.api.IMapController;
 import org.osmdroid.bonuspack.overlays.Marker;
 import org.osmdroid.tileprovider.constants.OpenStreetMapTileProviderConstants;
@@ -36,7 +38,14 @@ import org.osmdroid.tileprovider.tilesource.OnlineTileSourceBase;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.tileprovider.tilesource.XYTileSource;
 import org.osmdroid.util.GeoPoint;
-import org.osmdroid.views.MapView;
+import org.osmdroid.views.MapView;*/
+
+import org.oscim.android.*;
+
+import org.oscim.core.GeoPoint;
+import org.oscim.core.MapPosition;
+import org.oscim.map.Map;
+import org.oscim.tiling.source.mapfile.MapFileTileSource;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -46,69 +55,76 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import microsoft.mappoint.TileSystem;
 import razrsword.main.R;
 
-public class UMassMapActivity extends AppCompatActivity {
+public class UMassMapActivity extends AppCompatActivity{
 
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
-    private Context context;
-    private ProgressDialog pDialog;
-    private Marker startMarker;
-    MapView map;
+    private static final String KEY_LATITUDE = "latitude";
+    private static final String KEY_LONGITUDE = "longitude";
+    private static final String KEY_MAP_SCALE = "map_scale";
+    private static final String PREFERENCES_FILE = "MapActivity";
+    private MapActivity mapActivity;
+    //private Marker startMarker;
+    /*MapView mapview;
+    Map map;*/
+    Context context;
+    protected Map mMap;
+    MapView mMapView;
+    MapFileTileSource mTileSource;
     private int zoomLevel = 14;
     // Progress dialog type (0 - for Horizontal progress bar)
     public static final int progress_bar_type = 0;
     private double[] userLocation = new double[2];
-    public static final OnlineTileSourceBase MAPNIKHD = new XYTileSource("Mapnik",
+    /*public static final OnlineTileSourceBase MAPNIKHD = new XYTileSource("Mapnik",
             0, 18, 512, ".png", new String[] {
             "http://a.tile.openstreetmap.org/",
             "http://b.tile.openstreetmap.org/",
-            "http://c.tile.openstreetmap.org/" });
+            "http://c.tile.openstreetmap.org/" });*/
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mapActivity = new MapActivity();
         context = this;
         setContentView(R.layout.activity_umass_map);
         overridePendingTransition(R.anim.enter_slide_in, R.anim.enter_slide_out);
+        mMapView = (MapView) findViewById(R.id.map);
+        mapActivity.registerMapView(mMapView);
+
+        /*
         OpenStreetMapTileProviderConstants.setUserAgentValue("Razrsword's UMass App V.1");
-        map = (MapView) findViewById(R.id.map);
         GeoPoint viewPoint = new GeoPoint(42.38955, -72.52817);
         GeoPoint markerPoint;
-        IMapController mapController = map.getController();
-        //map.setMaxZoomLevel(21);
+        IMapController mapController = mapview.getController();
+        //mapview.setMaxZoomLevel(21);
         //ITileSource test = TileSourceFactory.DEFAULT_TILE_SOURCE;
-        map.setTileSource(MAPNIKHD);
-        map.setBuiltInZoomControls(true);
-        map.setMultiTouchControls(true);
-        //map.setDPIScaleFactor(.5);
-        map.setTileSize(750);
-        //map.setTilesScaledToDpi(true);
+        mapview.setTileSource(MAPNIKHD);
+        mapview.setBuiltInZoomControls(true);
+        mapview.setMultiTouchControls(true);
+        //mapview.setDPIScaleFactor(.5);
+        mapview.setTileSize(750);
+        //mapview.setTilesScaledToDpi(true);*/
 
 
 
-        if (savedInstanceState != null) {
+
+        /*if (savedInstanceState != null) {
             viewPoint = new GeoPoint(savedInstanceState.getDouble("viewLat"), savedInstanceState.getDouble("viewLon"));
             zoomLevel = savedInstanceState.getInt("Zoom");
             if (savedInstanceState.getDouble("Latitude") != 0) {
                 markerPoint = new GeoPoint(savedInstanceState.getDouble("Latitude"), savedInstanceState.getDouble("Longitude"));
-                startMarker = new Marker(map);
+                startMarker = new Marker(mapview);
                 startMarker.setPosition(markerPoint);
                 startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
-                map.getOverlays().add(startMarker);
+                mapview.getOverlays().add(startMarker);
             }
             mapController.setCenter(viewPoint);
             mapController.setZoom(zoomLevel);
         } else {
             mapController.setCenter(viewPoint);
             mapController.setZoom(zoomLevel);
-        }
+        }*/
 
         final ImageButton backButton = (ImageButton) findViewById(R.id.hideKeyboard);
         final ImageButton clearButton = (ImageButton) findViewById(R.id.clearText);
@@ -146,7 +162,7 @@ public class UMassMapActivity extends AppCompatActivity {
                 }
                 hideKeyboard(getCurrentFocus().getWindowToken());
                 GeoPoint goalLocation = new GeoPoint(Double.valueOf(listOfPlace.get(listPosition).getLatitude()), Double.valueOf(listOfPlace.get(listPosition).getLongitude()));
-                addMarker(map,listOfPlace.get(listPosition).getName(),goalLocation);
+                addMarker(mMapView,listOfPlace.get(listPosition).getName(),goalLocation);
                 edittext.clearFocus();
 
                 Log.v("Map stuff", goalLocation.getLatitude() + " " + listOfPlace.get(listPosition).getLatitude());
@@ -165,7 +181,7 @@ public class UMassMapActivity extends AppCompatActivity {
                     Log.v("Top Location", " " + listPosition);
                     hideKeyboard(getCurrentFocus().getWindowToken());
                     GeoPoint goalLocation = new GeoPoint(Double.valueOf(listOfPlace.get(listPosition).getLatitude()), Double.valueOf(listOfPlace.get(listPosition).getLongitude()));
-                    addMarker(map,listOfPlace.get(listPosition).getName(),goalLocation);
+                    addMarker(mMapView,listOfPlace.get(listPosition).getName(),goalLocation);
                     //Toast toast = Toast.makeText(UMassMapActivity.this,listOfPlace.get(listPosition).getLatitude() + " ", Toast.LENGTH_LONG);
                     //toast.show();
                     return true;
@@ -183,16 +199,63 @@ public class UMassMapActivity extends AppCompatActivity {
             public void onClick(View v) {
                 locateMyself.setBackgroundColor(0x881C1C);
                 userLocation = getGPS();
-                Marker userMarker = new Marker(map);
+                /*
+                Marker userMarker = new Marker(mMapView);
                 userMarker.setPosition(new GeoPoint(userLocation[0], userLocation[1]));
                 userMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
-                map.getOverlays().add(userMarker);
-                map.getController().animateTo(new GeoPoint(userLocation[0], userLocation[1]));
+                mMapView.getOverlays().add(userMarker);
+                mMapView.getController().animateTo(new GeoPoint(userLocation[0], userLocation[1]));*/
             }
         });
     }
 
 
+    public void addMarker(MapView map, String locationName, GeoPoint goalLocation){
+        /*
+        startMarker = new Marker(map);
+        startMarker.setPosition(goalLocation);
+        startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
+        startMarker.setTitle(locationName);
+        ColorFilter filter = new LightingColorFilter(0x003B5C,0x003B5C);
+        Drawable markerImage = getResources().getDrawable(R.drawable.ic_place_black_48dp);
+        assert markerImage != null;
+        markerImage.setColorFilter(filter);
+        startMarker.setIcon(markerImage);
+        //mapview.getController().setCenter(goalLocation);
+        map.getOverlays().clear();
+        map.getController().setZoom(16);
+        map.getOverlays().add(startMarker);
+        map.invalidate();
+        map.getController().animateTo(goalLocation);*/
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        // Save UI state changes to the savedInstanceState.
+        // This bundle will be passed to onCreate if the process is
+        // killed and restarted.
+        /*
+        if(this.startMarker != null) {
+            savedInstanceState.putDouble("Latitude", UMassMapActivity.this.startMarker.getPosition().getLatitude());
+            savedInstanceState.putDouble("Longitude", UMassMapActivity.this.startMarker.getPosition().getLongitude());
+        } else {
+            savedInstanceState.putDouble("Latitude", 0);
+            savedInstanceState.putDouble("Longitude", 0);
+        }
+        Log.v("onSaveInstanceState", " saving data between instances" + UMassMapActivity.this.mMapView.getMapCenter().getLatitude() + " " + UMassMapActivity.this.mMapView.getZoomLevel());
+        savedInstanceState.putDouble("viewLat", UMassMapActivity.this.mMapView.getMapCenter().getLatitude());
+        savedInstanceState.putDouble("viewLon", UMassMapActivity.this.mMapView.getMapCenter().getLongitude());
+        savedInstanceState.putInt("Zoom", UMassMapActivity.this.mMapView.getZoomLevel());
+        // etc.*/
+    }
+
+
+    private static boolean containsViewport(SharedPreferences sharedPreferences) {
+        return sharedPreferences.contains(KEY_LATITUDE)
+                && sharedPreferences.contains(KEY_LONGITUDE)
+                && sharedPreferences.contains(KEY_MAP_SCALE);
+    }
     private void initializeClearButton(ImageButton clearButton, final AutoCompleteTextView edittext){
         clearButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -239,24 +302,6 @@ public class UMassMapActivity extends AppCompatActivity {
         return listPosition;
     }
 
-
-    public void addMarker(MapView map, String locationName, GeoPoint goalLocation){
-        startMarker = new Marker(map);
-        startMarker.setPosition(goalLocation);
-        startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
-        startMarker.setTitle(locationName);
-        ColorFilter filter = new LightingColorFilter(0x003B5C,0x003B5C);
-        Drawable markerImage = getResources().getDrawable(R.drawable.ic_place_black_48dp);
-        assert markerImage != null;
-        markerImage.setColorFilter(filter);
-        startMarker.setIcon(markerImage);
-        //map.getController().setCenter(goalLocation);
-        map.getOverlays().clear();
-        map.getController().setZoom(16);
-        map.getOverlays().add(startMarker);
-        map.invalidate();
-        map.getController().animateTo(goalLocation);
-    }
 
     /** @return an array of adjacent letter pairs contained in the input string */
     private static String[] letterPairs(String str) {
@@ -390,25 +435,7 @@ public class UMassMapActivity extends AppCompatActivity {
         return gps;
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle savedInstanceState) {
-        super.onSaveInstanceState(savedInstanceState);
-        // Save UI state changes to the savedInstanceState.
-        // This bundle will be passed to onCreate if the process is
-        // killed and restarted.
-        if(this.startMarker != null) {
-            savedInstanceState.putDouble("Latitude", UMassMapActivity.this.startMarker.getPosition().getLatitude());
-            savedInstanceState.putDouble("Longitude", UMassMapActivity.this.startMarker.getPosition().getLongitude());
-        } else {
-            savedInstanceState.putDouble("Latitude", 0);
-            savedInstanceState.putDouble("Longitude", 0);
-        }
-        Log.v("onSaveInstanceState", " saving data between instances" + UMassMapActivity.this.map.getMapCenter().getLatitude() + " " + UMassMapActivity.this.map.getZoomLevel());
-        savedInstanceState.putDouble("viewLat", UMassMapActivity.this.map.getMapCenter().getLatitude());
-        savedInstanceState.putDouble("viewLon", UMassMapActivity.this.map.getMapCenter().getLongitude());
-        savedInstanceState.putInt("Zoom", UMassMapActivity.this.map.getZoomLevel());
-        // etc.
-    }
+
 
     public List<String> placesToNames(List<Place> places) {
         List<String> placenames = new ArrayList<>();

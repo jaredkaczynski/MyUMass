@@ -12,7 +12,7 @@
         android:layout_width="0px"
         android:layout_height="0px">
     </LinearLayout>
-    <org.osmdroid.views.MapView
+    <org.oscim.android.MapView
         android:focusable="true"
         android:id="@+id/map"
         android:layout_width="fill_parent"
