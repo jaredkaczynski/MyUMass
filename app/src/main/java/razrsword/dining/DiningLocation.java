@@ -11,12 +11,4 @@ public class DiningLocation {
     public DiningLocation(String name){
         locationName = name;
     }
-    /*
-    List<DiningLocation> locationNameList;
-    public void initializeData(){
-        locationNameList = new ArrayList<>();
-        locationNameList.add(new DiningLocation("Emma Wilson"));
-        locationNameList.add(new DiningLocation("Lavery Maiss"));
-        locationNameList.add(new DiningLocation("Lillie Watts"));
-    }*/
 }

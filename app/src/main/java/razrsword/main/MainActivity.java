@@ -27,13 +27,14 @@ public class MainActivity extends NavigationActivity {
         gridview.setAdapter(new ButtonAdapter(this));
         gridview.setExpanded(true);
 
+        /*
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
                 Toast.makeText(MainActivity.this, "" + position,
                         Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
