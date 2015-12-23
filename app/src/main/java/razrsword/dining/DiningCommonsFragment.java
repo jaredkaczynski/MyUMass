@@ -12,6 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import razrsword.main.R;
 
 /**
@@ -68,9 +71,16 @@ public class DiningCommonsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        DiningViewAdapter adapter = new DiningViewAdapter();
-        adapter.diningLocations.add(new DiningLocation("Worcester"));
-        adapter.diningLocations.add(new DiningLocation("Berkshire"));
+
+        List<DiningLocation> locationNameList;
+        locationNameList = new ArrayList<>();
+        locationNameList.add(new DiningLocation("Emma Wilson"));
+        locationNameList.add(new DiningLocation("Lavery Maiss"));
+        locationNameList.add(new DiningLocation("Lillie Watts"));
+        DiningViewAdapter adapter = new DiningViewAdapter(locationNameList);
+
+        //adapter.diningLocations.add(new DiningLocation("Worcester"));
+        //adapter.diningLocations.add(new DiningLocation("Berkshire"));
         // Inflate the layout for this fragment
         LinearLayoutManager llm = new LinearLayoutManager(this.getContext());
         View v=inflater.inflate(R.layout.fragment_dining_commons, container, false);

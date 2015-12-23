@@ -5,10 +5,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import razrsword.main.R;
@@ -18,14 +16,23 @@ import razrsword.main.R;
  */
 
 public class DiningViewAdapter extends RecyclerView.Adapter<DiningViewAdapter.locationViewHolder>{
-    List<DiningLocation> diningLocations = new ArrayList<>();
+
+    List<DiningLocation> diningLocations;
 
     @Override
     public locationViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dining_card_layout,parent,false);
-        //view.setOnClickListener(DiningActivity.);
-        locationViewHolder locationViewHolder = new locationViewHolder(view);
-        return locationViewHolder;
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.dining_card_layout, parent, false);
+        locationViewHolder lvh = new locationViewHolder(v);
+        return lvh;
+    }
+
+    DiningViewAdapter(List<DiningLocation> diningLocations){
+        this.diningLocations = diningLocations;
+    }
+
+    @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
     }
 
     @Override
@@ -35,7 +42,7 @@ public class DiningViewAdapter extends RecyclerView.Adapter<DiningViewAdapter.lo
 
     @Override
     public int getItemCount() {
-        return 0;
+        return diningLocations.size();
     }
 
     public static class locationViewHolder extends RecyclerView.ViewHolder {
