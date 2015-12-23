@@ -73,6 +73,7 @@ public class UMassMapActivity extends AppCompatActivity {
     public static final int progress_bar_type = 0;
     private double[] userLocation = new double[2];
     private boolean GoogleMaps = true;
+    private final com.google.android.gms.maps.model.Marker[] placeMarker = new com.google.android.gms.maps.model.Marker[1];
 
 
     @Override
@@ -89,7 +90,6 @@ public class UMassMapActivity extends AppCompatActivity {
         final List<Place> listOfPlace = getPlaces();
         final FloatingActionButton locateButton = (FloatingActionButton) findViewById(R.id.locateFab);
 
-        final com.google.android.gms.maps.model.Marker[] placeMarker = new com.google.android.gms.maps.model.Marker[1];
 
         initializeClearButton(clearButton, edittext);
         initializeBackButton(backButton, edittext);
@@ -111,14 +111,14 @@ public class UMassMapActivity extends AppCompatActivity {
         if (savedInstanceState != null) {
             if (GoogleMaps) {
                 CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(savedInstanceState.getDouble("viewLat"), savedInstanceState.getDouble("viewLon"))
-                        , savedInstanceState.getInt("Zoom"));
+                        , savedInstanceState.getFloat("Zoom"));
                 googleMap.moveCamera(cameraUpdate);
                 if (savedInstanceState.getDouble("Latitude") != 0) {
-                    addMarkerGoogleMaps(mapView, "name", new LatLng(savedInstanceState.getDouble("Latitude"), savedInstanceState.getDouble("Longitude")));
+                    placeMarker[0] = addMarkerGoogleMaps(mapView, savedInstanceState.getString("Name"), new LatLng(savedInstanceState.getDouble("Latitude"), savedInstanceState.getDouble("Longitude")));
                 }
             } else {
                 mapController.setCenter(new GeoPoint(savedInstanceState.getDouble("viewLat"), savedInstanceState.getDouble("viewLon")));
-                mapController.setZoom(savedInstanceState.getInt("Zoom"));
+                mapController.setZoom((int) savedInstanceState.getFloat("Zoom"));
                 if (savedInstanceState.getDouble("Latitude") != 0) {
                     startMarker = new Marker(map);
                     startMarker.setPosition(new GeoPoint(savedInstanceState.getDouble("Latitude"), savedInstanceState.getDouble("Longitude")));
@@ -256,13 +256,6 @@ public class UMassMapActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if ((ActivityCompat.checkSelfPermission(UMassMapActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) &&
                         (ActivityCompat.checkSelfPermission(UMassMapActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
                     ActivityCompat.requestPermissions(UMassMapActivity.this,
                             new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                             1);
@@ -445,18 +438,6 @@ public class UMassMapActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.exit_slide_in, R.anim.exit_slide_out_down);
     }
 
-    /*private void setupWindowAnimations() {
-        Slide slide = null;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            slide = new Slide();
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            slide.setDuration(1000);
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setExitTransition(slide);
-        }
-    }*/
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
@@ -497,7 +478,8 @@ public class UMassMapActivity extends AppCompatActivity {
         Location l = null;
 
         for (int i = providers.size() - 1; i >= 0; i--) {
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                    && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 double[] gps = new double[2];
                 if (l != null) {
                     gps[0] = 42.38955;
@@ -524,8 +506,19 @@ public class UMassMapActivity extends AppCompatActivity {
         // Save UI state changes to the savedInstanceState.
         // This bundle will be passed to onCreate if the process is
         // killed and restarted.
+        Log.v("onSaveInstanceState", " saving data between instances");
         if(GoogleMaps){
-
+            if (placeMarker[0] != null) {
+                savedInstanceState.putDouble("Latitude", placeMarker[0].getPosition().latitude);
+                savedInstanceState.putDouble("Longitude", placeMarker[0].getPosition().longitude);
+                savedInstanceState.putString("Name",placeMarker[0].getTitle());
+            } else {
+                savedInstanceState.putDouble("Latitude", 0);
+                savedInstanceState.putDouble("Longitude", 0);
+            }
+            savedInstanceState.putDouble("viewLat", mapView.getMap().getCameraPosition().target.latitude);
+            savedInstanceState.putDouble("viewLon", mapView.getMap().getCameraPosition().target.longitude);
+            savedInstanceState.putFloat("Zoom", mapView.getMap().getCameraPosition().zoom);
         }else {
             if (this.startMarker != null) {
                 savedInstanceState.putDouble("Latitude", UMassMapActivity.this.startMarker.getPosition().getLatitude());
@@ -534,11 +527,12 @@ public class UMassMapActivity extends AppCompatActivity {
                 savedInstanceState.putDouble("Latitude", 0);
                 savedInstanceState.putDouble("Longitude", 0);
             }
+            savedInstanceState.putDouble("viewLat", UMassMapActivity.this.map.getMapCenter().getLatitude());
+            savedInstanceState.putDouble("viewLon", UMassMapActivity.this.map.getMapCenter().getLongitude());
+            savedInstanceState.putFloat("Zoom", UMassMapActivity.this.map.getZoomLevel());
+            savedInstanceState.putString("Name","");
         }
-        Log.v("onSaveInstanceState", " saving data between instances" + UMassMapActivity.this.map.getMapCenter().getLatitude() + " " + UMassMapActivity.this.map.getZoomLevel());
-        savedInstanceState.putDouble("viewLat", UMassMapActivity.this.map.getMapCenter().getLatitude());
-        savedInstanceState.putDouble("viewLon", UMassMapActivity.this.map.getMapCenter().getLongitude());
-        savedInstanceState.putInt("Zoom", UMassMapActivity.this.map.getZoomLevel());
+
         // etc.
     }
 
