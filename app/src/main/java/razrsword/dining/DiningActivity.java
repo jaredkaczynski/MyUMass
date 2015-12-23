@@ -21,6 +21,9 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import razrsword.main.R;
 
 public class DiningActivity extends AppCompatActivity implements DiningCommonsFragment.OnFragmentInteractionListener {
@@ -143,11 +146,20 @@ public class DiningActivity extends AppCompatActivity implements DiningCommonsFr
             // Return a PlaceholderFragment (defined as a static inner class below).
 
             //Here is where I run a switch on what fragment I add to the pages
+            List<DiningLocation> locationNameList;
             switch (position) {
                 case 0:
-                    return DiningCommonsFragment.newInstance("Dining", "Commons");
+                    locationNameList = new ArrayList<>();
+                    locationNameList.add(new DiningLocation("Emma Wilson"));
+                    locationNameList.add(new DiningLocation("Lavery Maiss"));
+                    locationNameList.add(new DiningLocation("Lillie Watts"));
+                    return DiningCommonsFragment.newInstance("Butts", "butts", locationNameList);
                 case 1:
-                    return CampusCenterFragment.newInstance("Dining", "Commons");
+                    locationNameList = new ArrayList<>();
+                    locationNameList.add(new DiningLocation("Emma Wattson"));
+                    locationNameList.add(new DiningLocation("Alberta Canada"));
+                    locationNameList.add(new DiningLocation("Albert Einstein"));
+                    return DiningCommonsFragment.newInstance("Butts", "butts", locationNameList);
                 default:
                     return PlaceholderFragment.newInstance(position + 1);
             }
