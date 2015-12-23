@@ -12,6 +12,7 @@ import android.widget.GridView;
 import android.widget.ImageButton;
 
 import razrsword.activities.NavigationActivity;
+import razrsword.dining.DiningActivity;
 import razrsword.mapping.UMassMapActivity;
 import razrsword.main.R;
 
@@ -75,6 +76,11 @@ public class ButtonAdapter extends BaseAdapter {
                         break;
                     case 1:
                         myIntent = new Intent(mContext, NavigationActivity.class);
+                        //myIntent.putExtra("key", value); //Optional parameters
+                        mContext.startActivity(myIntent);
+                        break;
+                    case 2:
+                        myIntent = new Intent(mContext, DiningActivity.class);
                         //myIntent.putExtra("key", value); //Optional parameters
                         mContext.startActivity(myIntent);
                         break;
