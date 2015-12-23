@@ -12,6 +12,7 @@ import android.graphics.drawable.Drawable;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.design.widget.FloatingActionButton;
@@ -75,21 +76,22 @@ public class UMassMapActivity extends AppCompatActivity implements OnMapReadyCal
     public static final int progress_bar_type = 0;
     private double[] userLocation = new double[2];
     private boolean GoogleMaps = true;
+    List<Place> listOfPlace;
     private final com.google.android.gms.maps.model.Marker[] placeMarker = new com.google.android.gms.maps.model.Marker[1];
-
+    Bundle globalSavedInstanceState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        context = this;
+        globalSavedInstanceState = savedInstanceState;
         setContentView(R.layout.activity_umass_map);
         overridePendingTransition(R.anim.enter_slide_in, R.anim.enter_slide_out);
-
+        context = this;
 
         final ImageButton backButton = (ImageButton) findViewById(R.id.hideKeyboard);
         final ImageButton clearButton = (ImageButton) findViewById(R.id.clearText);
         final AutoCompleteTextView edittext = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
-        final List<Place> listOfPlace = getPlaces();
+
         final FloatingActionButton locateButton = (FloatingActionButton) findViewById(R.id.locateFab);
 
 
@@ -97,7 +99,6 @@ public class UMassMapActivity extends AppCompatActivity implements OnMapReadyCal
         initializeBackButton(backButton, edittext);
 
         IMapController mapController = null;
-
         if (GoogleMaps) {
             initializeLocateButtonGoogleMaps(locateButton);
             initializeGoogleMaps(savedInstanceState);
@@ -108,15 +109,7 @@ public class UMassMapActivity extends AppCompatActivity implements OnMapReadyCal
         }
 
         if (savedInstanceState != null) {
-            if (GoogleMaps) {
-                //do this first as it tries to change zoom
-                if (savedInstanceState.getDouble("Latitude") != 0) {
-                    placeMarker[0] = addMarkerGoogleMaps(mapView, savedInstanceState.getString("Name"), new LatLng(savedInstanceState.getDouble("Latitude"), savedInstanceState.getDouble("Longitude")));
-                }
-                CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(savedInstanceState.getDouble("viewLat"), savedInstanceState.getDouble("viewLon"))
-                        , savedInstanceState.getFloat("Zoom"));
-                googleMap.moveCamera(cameraUpdate);
-            } else {
+            if (!GoogleMaps) {
                 mapController.setCenter(new GeoPoint(savedInstanceState.getDouble("viewLat"), savedInstanceState.getDouble("viewLon")));
                 mapController.setZoom((int) savedInstanceState.getFloat("Zoom"));
                 if (savedInstanceState.getDouble("Latitude") != 0) {
@@ -133,6 +126,7 @@ public class UMassMapActivity extends AppCompatActivity implements OnMapReadyCal
             mapController.setZoom(zoomLevel);
         }
 
+        listOfPlace = getPlaces();
 
         //Create Array Adapter
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.array_dropdown_layout, placesToNames(listOfPlace));
@@ -182,13 +176,13 @@ public class UMassMapActivity extends AppCompatActivity implements OnMapReadyCal
 
                     Double latitude = Double.valueOf(listOfPlace.get(listPosition).getLatitude());
                     Double longitude = Double.valueOf(listOfPlace.get(listPosition).getLongitude());
-                    GeoPoint goalLocation = new GeoPoint(latitude, longitude);
                     if (GoogleMaps) {
                         if (placeMarker[0] != null) {
                             placeMarker[0].remove();
                         }
                         placeMarker[0] = addMarkerGoogleMaps(mapView, listOfPlace.get(listPosition).getName(), new LatLng(latitude, longitude));
                     } else {
+                        GeoPoint goalLocation = new GeoPoint(latitude, longitude);
                         addMarkerOSM(map, listOfPlace.get(listPosition).getName(), goalLocation);
                     }
                     return true;
@@ -236,6 +230,18 @@ public class UMassMapActivity extends AppCompatActivity implements OnMapReadyCal
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(42.38955, -72.52817)
                 , 15);
         googleMap.moveCamera(cameraUpdate);
+        //do this first as it tries to change zoom
+        if(globalSavedInstanceState!=null) {
+            if (globalSavedInstanceState.getDouble("Latitude") != 0) {
+                placeMarker[0] = addMarkerGoogleMaps(mapView, globalSavedInstanceState.getString("Name"),
+                        new LatLng(globalSavedInstanceState.getDouble("Latitude"),
+                                globalSavedInstanceState.getDouble("Longitude")));
+            }
+            cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(globalSavedInstanceState.getDouble("viewLat"),
+                    globalSavedInstanceState.getDouble("viewLon"))
+                    , globalSavedInstanceState.getFloat("Zoom"));
+            googleMap.moveCamera(cameraUpdate);
+        }
     }
 
     private void initializeLocateButtonOSM(final FloatingActionButton locateMyself) {
@@ -550,5 +556,9 @@ public class UMassMapActivity extends AppCompatActivity implements OnMapReadyCal
         return context;
     }
 
+    protected Object doInBackground(String... test) {
+        listOfPlace = getPlaces();
+        return null;
+    }
 
 }
