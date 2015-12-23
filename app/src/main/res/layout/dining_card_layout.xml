@@ -5,20 +5,24 @@
     android:layout_height="fill_parent"
     android:gravity="center_horizontal"
     android:padding="5dp">
+
     <android.support.v7.widget.CardView
         android:layout_width="fill_parent"
-        android:layout_height="245dp"
+        android:layout_height="200dp"
         android:layout_gravity="center_horizontal"
-        android:id="@+id/location_card">
+        android:id="@+id/location_card"
+        android:padding="10dp">
         <TextView
             android:id="@+id/location_name"
             android:text="Basic CardView"
             android:layout_marginTop="0dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:padding="18dp"
+            android:gravity="left|bottom" />
     </android.support.v7.widget.CardView>
+
 </LinearLayout>
