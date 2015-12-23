@@ -15,13 +15,15 @@
 
     <com.google.android.gms.maps.MapView android:id="@+id/googlemap"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />
+        android:layout_height="fill_parent"
+        android:visibility="gone" />
 
     <org.osmdroid.views.MapView
         android:focusable="true"
         android:id="@+id/osmmap"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />
+        android:layout_height="fill_parent"
+        android:visibility="gone" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/locateFab"

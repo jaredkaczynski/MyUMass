@@ -33,6 +33,7 @@ import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapsInitializer;
+import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -55,7 +56,8 @@ import java.util.List;
 
 import razrsword.main.R;
 
-public class UMassMapActivity extends AppCompatActivity {
+public class UMassMapActivity extends AppCompatActivity implements OnMapReadyCallback{
+
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -94,28 +96,26 @@ public class UMassMapActivity extends AppCompatActivity {
         initializeClearButton(clearButton, edittext);
         initializeBackButton(backButton, edittext);
 
-        IMapController mapController = initializeOSMDroidMaps(savedInstanceState);
-
+        IMapController mapController = null;
 
         if (GoogleMaps) {
             initializeLocateButtonGoogleMaps(locateButton);
             initializeGoogleMaps(savedInstanceState);
-            mapView.setVisibility(View.VISIBLE);
-            map.setVisibility(View.GONE);
         } else {
             initializeLocateButtonOSM(locateButton);
             map.setVisibility(View.VISIBLE);
-            mapView.setVisibility(View.GONE);
+            mapController = initializeOSMDroidMaps(savedInstanceState);
         }
 
         if (savedInstanceState != null) {
             if (GoogleMaps) {
-                CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(savedInstanceState.getDouble("viewLat"), savedInstanceState.getDouble("viewLon"))
-                        , savedInstanceState.getFloat("Zoom"));
-                googleMap.moveCamera(cameraUpdate);
+                //do this first as it tries to change zoom
                 if (savedInstanceState.getDouble("Latitude") != 0) {
                     placeMarker[0] = addMarkerGoogleMaps(mapView, savedInstanceState.getString("Name"), new LatLng(savedInstanceState.getDouble("Latitude"), savedInstanceState.getDouble("Longitude")));
                 }
+                CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(savedInstanceState.getDouble("viewLat"), savedInstanceState.getDouble("viewLon"))
+                        , savedInstanceState.getFloat("Zoom"));
+                googleMap.moveCamera(cameraUpdate);
             } else {
                 mapController.setCenter(new GeoPoint(savedInstanceState.getDouble("viewLat"), savedInstanceState.getDouble("viewLon")));
                 mapController.setZoom((int) savedInstanceState.getFloat("Zoom"));
@@ -128,7 +128,7 @@ public class UMassMapActivity extends AppCompatActivity {
             }
 
 
-        } else {
+        } else if(!GoogleMaps){
             mapController.setCenter(new GeoPoint(42.38955, -72.52817));
             mapController.setZoom(zoomLevel);
         }
@@ -154,18 +154,19 @@ public class UMassMapActivity extends AppCompatActivity {
                 hideKeyboard(getCurrentFocus().getWindowToken());
                 Double latitude = Double.valueOf(listOfPlace.get(listPosition).getLatitude());
                 Double longitude = Double.valueOf(listOfPlace.get(listPosition).getLongitude());
-                GeoPoint goalLocation = new GeoPoint(latitude, longitude);
+
                 if (GoogleMaps) {
                     if (placeMarker[0] != null) {
                         placeMarker[0].remove();
                     }
                     placeMarker[0] = addMarkerGoogleMaps(mapView, listOfPlace.get(listPosition).getName(), new LatLng(latitude, longitude));
                 } else {
+                    GeoPoint goalLocation = new GeoPoint(latitude, longitude);
                     addMarkerOSM(map, listOfPlace.get(listPosition).getName(), goalLocation);
                 }
                 edittext.clearFocus();
 
-                Log.v("Map stuff", goalLocation.getLatitude() + " " + listOfPlace.get(listPosition).getLatitude());
+                Log.v("Map onItemClick", " " + listOfPlace.get(listPosition).getLatitude());
             }
         });
 
@@ -215,14 +216,16 @@ public class UMassMapActivity extends AppCompatActivity {
     }
 
     private void initializeGoogleMaps(Bundle savedInstanceState) {
-        com.google.android.gms.maps.MapView test = new GoogleMapsFragment().getMapView();
-        test = (com.google.android.gms.maps.MapView) findViewById(R.id.googlemap);
-        test.getMap();
         mapView = (com.google.android.gms.maps.MapView) this.findViewById(R.id.googlemap);
         mapView.onCreate(savedInstanceState);
-
         // Gets to GoogleMap from the MapView and does initialization stuff
-        googleMap = mapView.getMap();
+        mapView.getMapAsync(this);
+    }
+    @Override
+    public void onMapReady(GoogleMap map) {
+        mapView.setVisibility(View.VISIBLE);
+        mapView.onResume();
+        googleMap = map;
         googleMap.getUiSettings().setMyLocationButtonEnabled(false);
         //map.setMyLocationEnabled(true);
 
@@ -233,7 +236,6 @@ public class UMassMapActivity extends AppCompatActivity {
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(42.38955, -72.52817)
                 , 15);
         googleMap.moveCamera(cameraUpdate);
-
     }
 
     private void initializeLocateButtonOSM(final FloatingActionButton locateMyself) {
@@ -261,7 +263,7 @@ public class UMassMapActivity extends AppCompatActivity {
                             1);
                     return;
                 }
-                mapView.getMap().setMyLocationEnabled(true);
+                googleMap.setMyLocationEnabled(true);
 
                 // Enable MyLocation Layer of Google Map
                 googleMap.setMyLocationEnabled(true);
@@ -288,7 +290,7 @@ public class UMassMapActivity extends AppCompatActivity {
                 LatLng latLng = new LatLng(latitude, longitude);
 
                 // Zoom in the Google Map
-                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,16));
+                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
 
                 /*userLocation = getGPS();
                 com.google.android.gms.maps.model.Marker userMarker =
@@ -424,11 +426,7 @@ public class UMassMapActivity extends AppCompatActivity {
         return (2.0*intersection)/union;
     }
 
-    @Override
-    public void onResume() {
-        mapView.onResume();
-        super.onResume();
-    }
+
 
     @Override
     public void onBackPressed() {
