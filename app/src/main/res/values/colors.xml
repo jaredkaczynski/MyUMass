@@ -5,5 +5,6 @@
     <color name="colorAccent">#5d2a2c</color>
     <color name="statusBarColo">#881c1c</color>
     <color name="busy0">#27e833</color>
-    <color name="trafficColor">#E0E0E0</color>
+    <color name="trafficColor">#F5F5F5</color>
+    <color name="cardBackground">#aca39a</color>
 </resources>
