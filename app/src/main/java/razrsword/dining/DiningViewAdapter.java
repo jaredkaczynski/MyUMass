@@ -2,6 +2,7 @@ package razrsword.dining;
 
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -16,17 +17,20 @@ import razrsword.main.R;
  * Created by razrs on 23-Dec-15.
  */
 
-public class DiningViewAdapter extends RecyclerView.Adapter<DiningViewAdapter.PersonViewHolder>{
+public class DiningViewAdapter extends RecyclerView.Adapter<DiningViewAdapter.locationViewHolder>{
     List<DiningLocation> diningLocations = new ArrayList<>();
 
     @Override
-    public PersonViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return null;
+    public locationViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dining_card_layout,parent,false);
+        //view.setOnClickListener(DiningActivity.);
+        locationViewHolder locationViewHolder = new locationViewHolder(view);
+        return locationViewHolder;
     }
 
     @Override
-    public void onBindViewHolder(PersonViewHolder personViewHolder, int i) {
-        personViewHolder.personName.setText(diningLocations.get(i).locationName);
+    public void onBindViewHolder(locationViewHolder locationViewHolder, int i) {
+        locationViewHolder.locationName.setText(diningLocations.get(i).locationName);
     }
 
     @Override
@@ -34,18 +38,14 @@ public class DiningViewAdapter extends RecyclerView.Adapter<DiningViewAdapter.Pe
         return 0;
     }
 
-    public static class PersonViewHolder extends RecyclerView.ViewHolder {
+    public static class locationViewHolder extends RecyclerView.ViewHolder {
         CardView cv;
-        TextView personName;
-        TextView personAge;
-        ImageView personPhoto;
+        TextView locationName;
 
-        PersonViewHolder(View itemView) {
+        locationViewHolder(View itemView) {
             super(itemView);
-            cv = (CardView)itemView.findViewById(R.id.cv);
-            personName = (TextView)itemView.findViewById(R.id.person_name);
-            personAge = (TextView)itemView.findViewById(R.id.person_age);
-            personPhoto = (ImageView)itemView.findViewById(R.id.person_photo);
+            cv = (CardView)itemView.findViewById(R.id.location_card);
+            locationName = (TextView)itemView.findViewById(R.id.location_name);
         }
     }
 
