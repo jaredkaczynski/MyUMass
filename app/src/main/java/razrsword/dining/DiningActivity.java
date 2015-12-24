@@ -19,14 +19,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import razrsword.main.R;
 
-public class DiningActivity extends AppCompatActivity implements DiningCommonsFragment.OnFragmentInteractionListener {
+public class DiningActivity extends AppCompatActivity implements DiningViewFragment.OnFragmentInteractionListener {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -153,13 +151,13 @@ public class DiningActivity extends AppCompatActivity implements DiningCommonsFr
                     locationNameList.add(new DiningLocation("Emma Wilson"));
                     locationNameList.add(new DiningLocation("Lavery Maiss"));
                     locationNameList.add(new DiningLocation("Lillie Watts"));
-                    return DiningCommonsFragment.newInstance("Butts", "butts", locationNameList);
+                    return DiningViewFragment.newInstance("Butts", "butts", locationNameList);
                 case 1:
                     locationNameList = new ArrayList<>();
                     locationNameList.add(new DiningLocation("Emma Wattson"));
                     locationNameList.add(new DiningLocation("Alberta Canada"));
                     locationNameList.add(new DiningLocation("Albert Einstein"));
-                    return DiningCommonsFragment.newInstance("Butts", "butts", locationNameList);
+                    return DiningViewFragment.newInstance("Butts", "butts", locationNameList);
                 default:
                     return PlaceholderFragment.newInstance(position + 1);
             }

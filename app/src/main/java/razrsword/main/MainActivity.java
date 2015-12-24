@@ -4,11 +4,14 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.transition.Slide;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.GridView;
+import android.widget.ListAdapter;
 import android.widget.Toast;
 
 import razrsword.activities.NavigationActivity;
@@ -21,11 +24,15 @@ public class MainActivity extends NavigationActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        DisplayMetrics metrics = this.getResources().getDisplayMetrics();
+        int width = metrics.widthPixels > metrics.heightPixels ? metrics.heightPixels : metrics.widthPixels;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ExpandableHeightGridView gridview = (ExpandableHeightGridView) findViewById(R.id.gridview);
-        gridview.setAdapter(new ButtonAdapter(this));
+        ListAdapter adapter = new ButtonAdapter(this);
+        gridview.setAdapter(adapter);
         gridview.setExpanded(true);
+        gridview.setNumColumns(metrics.widthPixels/(width/3));
 
         /*
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
