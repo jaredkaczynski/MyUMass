@@ -2,10 +2,13 @@ package razrsword.main;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 
 import razrsword.activities.BusTrackerActivity;
@@ -27,6 +30,8 @@ public class MainActivity extends BusTrackerActivity {
         gridview.setAdapter(adapter);
         gridview.setExpanded(true);
         gridview.setNumColumns(metrics.widthPixels/(width/3));
+
+
 
         /*
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
