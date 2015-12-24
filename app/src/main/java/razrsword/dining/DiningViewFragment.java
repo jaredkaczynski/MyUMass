@@ -110,13 +110,13 @@ public class DiningViewFragment extends Fragment {
 
                         switch (position){
                             case 0:
-                                animateIntent(view,rv.findViewHolderForAdapterPosition(position).itemView,DetailedDiningInformation.class);
+                                animateIntent(view,rv.findViewHolderForAdapterPosition(position).itemView,DetailedDiningInformation.class,position);
                                 break;
                             case 1:
-                                animateIntent(view,rv.findViewHolderForAdapterPosition(position).itemView,DetailedDiningInformation.class);
+                                animateIntent(view,rv.findViewHolderForAdapterPosition(position).itemView,DetailedDiningInformation.class,position);
                                 break;
                             case 2:
-                                animateIntent(view,rv.findViewHolderForAdapterPosition(position).itemView,DetailedDiningInformation.class);
+                                animateIntent(view,rv.findViewHolderForAdapterPosition(position).itemView,DetailedDiningInformation.class,position);
                                 break;
                         }
                     }
@@ -127,10 +127,11 @@ public class DiningViewFragment extends Fragment {
     }
 
 
-    public void animateIntent(View view,View sourceView, Class<?> cls) {
+    public void animateIntent(View view,View sourceView, Class<?> cls,int position) {
 
         // Ordinary Intent for launching a new activity
         Intent intent = new Intent(getContext(), cls);
+        intent.putExtra("locationName", locationNameList.get(position).locationName);
 
         // Get the transition name from the string
         String transitionName = getString(R.string.transition_string);

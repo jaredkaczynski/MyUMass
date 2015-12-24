@@ -11,6 +11,9 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 import razrsword.main.R;
 
@@ -28,6 +31,15 @@ public class DetailedDiningInformation extends AppCompatActivity {
         test.setScaleType(ImageView.ScaleType.CENTER_CROP);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setVisibility(View.INVISIBLE);
+
+        Bundle extras = getIntent().getExtras();
+        String location = "error";
+        if (extras != null) {
+            location = extras.getString("locationName");
+        }
+
+        TextView locationName = (TextView) this.findViewById(R.id.location_name);
+        locationName.setText(location);
     }
     int getStatusBarHeight(){
         Rect rectangle = new Rect();
