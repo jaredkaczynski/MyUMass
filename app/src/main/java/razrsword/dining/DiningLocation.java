@@ -13,6 +13,7 @@ public class DiningLocation implements Parcelable{
     String locationName;
     int imageID;
 
+
     public DiningLocation(String name, int id){
         locationName = name;
         imageID = id;

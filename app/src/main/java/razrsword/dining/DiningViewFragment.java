@@ -17,6 +17,7 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -40,6 +41,7 @@ public class DiningViewFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     private static final String ARG_PARAM3 = "param2";
 
+    RecyclerView rv;
     List<DiningLocation> locationNameList = null;
 
 
@@ -85,14 +87,14 @@ public class DiningViewFragment extends Fragment {
         }
 
 
-        DiningViewAdapter adapter = new DiningViewAdapter(locationNameList);
+        final DiningViewAdapter adapter = new DiningViewAdapter(locationNameList);
 
         //adapter.diningLocations.add(new DiningLocation("Worcester"));
         //adapter.diningLocations.add(new DiningLocation("Berkshire"));
         // Inflate the layout for this fragment
         LinearLayoutManager llm = new LinearLayoutManager(this.getContext());
         View v = inflater.inflate(R.layout.fragment_dining_commons, container, false);
-        RecyclerView rv = (RecyclerView) v.findViewById(R.id.recyclerview_dining);
+        rv = (RecyclerView) v.findViewById(R.id.recyclerview_dining);
         assert rv != null;
         rv.setAdapter(adapter);
         rv.setItemAnimator(new DefaultItemAnimator());
@@ -105,15 +107,24 @@ public class DiningViewFragment extends Fragment {
                 new RecyclerItemClickListener(this.getContext(), new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
                         //// TODO: 23-Dec-15 add activity swap that's pretty
+
                         if(locationNameList.get(position).locationName.contains("Worcester")){
 
                             Toast toast = Toast.makeText(getContext()," ", Toast.LENGTH_LONG);
                             toast.show();
 
                         }
+
                         switch (position){
                             case 0:
-                                animateIntent(view,DetailedDiningInformation.class);
+                                animateIntent(view,rv.findViewHolderForAdapterPosition(position).itemView,DetailedDiningInformation.class);
+                                break;
+                            case 1:
+                                animateIntent(view,rv.findViewHolderForAdapterPosition(position).itemView,DetailedDiningInformation.class);
+                                break;
+                            case 2:
+                                animateIntent(view,rv.findViewHolderForAdapterPosition(position).itemView,DetailedDiningInformation.class);
+                                break;
                         }
                     }
                 })
@@ -122,7 +133,8 @@ public class DiningViewFragment extends Fragment {
         return v;
     }
 
-    public void animateIntent(View view, Class<?> cls) {
+
+    public void animateIntent(View view,View sourceView, Class<?> cls) {
 
         // Ordinary Intent for launching a new activity
         Intent intent = new Intent(getContext(), cls);
@@ -131,7 +143,7 @@ public class DiningViewFragment extends Fragment {
         String transitionName = getString(R.string.transition_string);
 
         // Define the view that the animation will start from
-        View viewStart = getView().findViewById(R.id.dining_location_image);
+        View viewStart = sourceView;
 
         ActivityOptionsCompat options =
 
