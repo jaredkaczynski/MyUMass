@@ -12,6 +12,7 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,8 @@ public class DiningViewFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private static final String ARG_PARAM3 = "param2";
+
+    List<DiningLocation> locationNameList = null;
 
 
     // TODO: Rename and change types of parameters
@@ -75,7 +78,7 @@ public class DiningViewFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        List<DiningLocation> locationNameList = null;
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -99,6 +102,16 @@ public class DiningViewFragment extends Fragment {
                 new SimpleItemTouchHelperCallback(adapter);
         ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
         touchHelper.attachToRecyclerView(rv);
+        rv.addOnItemTouchListener(
+                new RecyclerItemClickListener(this.getContext(), new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        if(locationNameList.get(position).locationName.contains("Worcester")){
+                            Toast toast = Toast.makeText(getContext()," ", Toast.LENGTH_LONG);
+                            toast.show();
+                        }
+                    }
+                })
+        );
         //setupRecyclerView(rv);
         return v;
     }
