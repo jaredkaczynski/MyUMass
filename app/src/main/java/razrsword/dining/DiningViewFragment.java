@@ -111,23 +111,9 @@ public class DiningViewFragment extends Fragment {
                             toast.show();
 
                         }
-                        Intent myIntent;
                         switch (position){
                             case 0:
-                                /*
-                                myIntent = new Intent(getContext(), LocationDetailedInformation.class);
-                                ActivityOptions options = null;
-                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                                    options = ActivityOptions
-                                            .makeSceneTransitionAnimation(getActivity(), view, "dining_location_image");
-                                }
-                                // start the new activity
-
-                                //myIntent.putExtra("key", value); //Optional parameters
-                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                                    getContext().startActivity(myIntent, options.toBundle());
-                                }*/
-                                animateIntent(view);
+                                animateIntent(view,DetailedDiningInformation.class);
                         }
                     }
                 })
@@ -136,10 +122,10 @@ public class DiningViewFragment extends Fragment {
         return v;
     }
 
-    public void animateIntent(View view) {
+    public void animateIntent(View view, Class<?> cls) {
 
         // Ordinary Intent for launching a new activity
-        Intent intent = new Intent(getContext(), LocationDetailedInformation.class);
+        Intent intent = new Intent(getContext(), cls);
 
         // Get the transition name from the string
         String transitionName = getString(R.string.transition_string);
