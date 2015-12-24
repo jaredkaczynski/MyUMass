@@ -7,6 +7,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -112,6 +114,7 @@ public class DiningViewFragment extends Fragment {
                         Intent myIntent;
                         switch (position){
                             case 0:
+                                /*
                                 myIntent = new Intent(getContext(), LocationDetailedInformation.class);
                                 ActivityOptions options = null;
                                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -123,13 +126,36 @@ public class DiningViewFragment extends Fragment {
                                 //myIntent.putExtra("key", value); //Optional parameters
                                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                     getContext().startActivity(myIntent, options.toBundle());
-                                }
+                                }*/
+                                animateIntent(view);
                         }
                     }
                 })
         );
         //setupRecyclerView(rv);
         return v;
+    }
+
+    public void animateIntent(View view) {
+
+        // Ordinary Intent for launching a new activity
+        Intent intent = new Intent(getContext(), LocationDetailedInformation.class);
+
+        // Get the transition name from the string
+        String transitionName = getString(R.string.transition_string);
+
+        // Define the view that the animation will start from
+        View viewStart = getView().findViewById(R.id.dining_location_image);
+
+        ActivityOptionsCompat options =
+
+                ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),
+                        viewStart,   // Starting view
+                        transitionName    // The String
+                );
+        //Start the Intent
+        ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
