@@ -8,7 +8,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,10 +22,10 @@ import razrsword.main.R;
  * Activities that contain this fragment must implement the
  * {@link OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link DiningCommonsFragment#newInstance} factory method to
+ * Use the {@link DiningViewFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class DiningCommonsFragment extends Fragment {
+public class DiningViewFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -40,7 +39,7 @@ public class DiningCommonsFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public DiningCommonsFragment() {
+    public DiningViewFragment() {
         // Required empty public constructor
     }
 
@@ -50,11 +49,11 @@ public class DiningCommonsFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment DiningCommonsFragment.
+     * @return A new instance of fragment DiningViewFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static DiningCommonsFragment newInstance(String param1, String param2, List<DiningLocation> param3) {
-        DiningCommonsFragment fragment = new DiningCommonsFragment();
+    public static DiningViewFragment newInstance(String param1, String param2, List<DiningLocation> param3) {
+        DiningViewFragment fragment = new DiningViewFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -89,8 +88,8 @@ public class DiningCommonsFragment extends Fragment {
         //adapter.diningLocations.add(new DiningLocation("Berkshire"));
         // Inflate the layout for this fragment
         LinearLayoutManager llm = new LinearLayoutManager(this.getContext());
-        View v=inflater.inflate(R.layout.fragment_dining_commons, container, false);
-        RecyclerView rv = (RecyclerView)v.findViewById(R.id.recyclerview_dining);
+        View v = inflater.inflate(R.layout.fragment_dining_commons, container, false);
+        RecyclerView rv = (RecyclerView) v.findViewById(R.id.recyclerview_dining);
         assert rv != null;
         rv.setAdapter(adapter);
         rv.setItemAnimator(new DefaultItemAnimator());
