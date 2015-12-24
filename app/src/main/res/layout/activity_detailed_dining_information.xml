@@ -5,14 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="razrsword.main.MainActivity">
+    tools:context="razrsword.dining.DetailedDiningInformation">
 
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/dining_location_image"
+        android:id="@+id/id"
+        android:background="@android:color/transparent"
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_bar_height"
         android:fitsSystemWindows="true"
         android:theme="@style/AppTheme.AppBarOverlay">
+        <ImageView
+            android:transitionName="@string/transition_string"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/dining_location_image"
+            android:src="@drawable/berkshire"
+            android:layout_alignParentTop="true"/>
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/toolbar_layout"
@@ -32,16 +40,15 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_main" />
+    <include layout="@layout/content_detailed_dining_information" />
 
-    <!--
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
         android:src="@android:drawable/ic_dialog_email"
-        app:layout_anchor="@id/app_bar"
+        app:layout_anchor="@id/dining_location_image"
         app:layout_anchorGravity="bottom|end" />
-       -->
+
 </android.support.design.widget.CoordinatorLayout>

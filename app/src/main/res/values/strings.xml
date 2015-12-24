@@ -102,4 +102,6 @@
     <string name="title_activity_dining">DiningActivity</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="transition_string">cardTransition</string>
+    <string name="title_activity_diningtest">Diningtest</string>
+    <string name="title_activity_detailed_dining_information">DetailedDiningInformation</string>
 </resources>
