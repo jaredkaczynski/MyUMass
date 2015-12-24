@@ -148,9 +148,10 @@ public class DiningActivity extends AppCompatActivity implements DiningViewFragm
             switch (position) {
                 case 0:
                     locationNameList = new ArrayList<>();
-                    locationNameList.add(new DiningLocation("Emma Wilson"));
-                    locationNameList.add(new DiningLocation("Lavery Maiss"));
-                    locationNameList.add(new DiningLocation("Lillie Watts"));
+                    locationNameList.add(new DiningLocation("Berkshire Dining Commons"));
+                    locationNameList.add(new DiningLocation("Worcester Dining Commons"));
+                    locationNameList.add(new DiningLocation("Hampshire Dining Commons"));
+                    locationNameList.add(new DiningLocation("Franklin Dining Commons"));
                     return DiningViewFragment.newInstance("Butts", "butts", locationNameList);
                 case 1:
                     locationNameList = new ArrayList<>();
