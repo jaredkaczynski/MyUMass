@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="razrsword.main.MainActivity"
-    tools:showIn="@layout/activity_main">
+    tools:showIn="@layout/activity_main"
+    android:background="@color/cardBackground">
 
     <razrsword.maingrid.ExpandableHeightGridView
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -14,7 +15,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:isScrollContainer="false"
-        android:background="@color/cardBackground"
         android:stretchMode="columnWidth"
         android:gravity="center" />
 
