@@ -221,7 +221,10 @@ public class UMassMapActivity extends AppCompatActivity implements OnMapReadyCal
         mapView.setVisibility(View.VISIBLE);
         mapView.onResume();
         googleMap = map;
+        //googleMap.setPadding(0,0,0,200);
+        //googleMap.getUiSettings().setZoomControlsEnabled(true);
         googleMap.getUiSettings().setMyLocationButtonEnabled(false);
+
         //map.setMyLocationEnabled(true);
 
         // Needs to call MapsInitializer before doing any CameraUpdateFactory calls
