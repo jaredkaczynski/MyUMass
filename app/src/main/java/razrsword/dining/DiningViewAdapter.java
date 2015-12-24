@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.Collections;
@@ -40,6 +41,7 @@ public class DiningViewAdapter extends RecyclerView.Adapter<DiningViewAdapter.lo
     @Override
     public void onBindViewHolder(locationViewHolder locationViewHolder, int i) {
         locationViewHolder.locationName.setText(diningLocations.get(i).locationName);
+        locationViewHolder.locationImage.setImageResource(diningLocations.get(i).imageID);
     }
 
     @Override
@@ -70,11 +72,13 @@ public class DiningViewAdapter extends RecyclerView.Adapter<DiningViewAdapter.lo
     public static class locationViewHolder extends RecyclerView.ViewHolder {
         CardView cv;
         TextView locationName;
+        ImageView locationImage;
 
         locationViewHolder(View itemView) {
             super(itemView);
             cv = (CardView) itemView.findViewById(R.id.location_card);
             locationName = (TextView) itemView.findViewById(R.id.location_name);
+            locationImage = (ImageView) itemView.findViewById(R.id.dining_location_image);
         }
     }
 

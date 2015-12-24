@@ -41,9 +41,6 @@ public class DiningViewFragment extends Fragment {
     List<DiningLocation> locationNameList = null;
 
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     private OnFragmentInteractionListener mListener;
 
@@ -74,8 +71,6 @@ public class DiningViewFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -84,8 +79,6 @@ public class DiningViewFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
             locationNameList = getArguments().getParcelableArrayList(ARG_PARAM3);
         }
 
@@ -123,7 +116,7 @@ public class DiningViewFragment extends Fragment {
                                 ActivityOptions options = null;
                                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                                     options = ActivityOptions
-                                            .makeSceneTransitionAnimation(getActivity(), view, "robot");
+                                            .makeSceneTransitionAnimation(getActivity(), view, "dining_location_image");
                                 }
                                 // start the new activity
 
