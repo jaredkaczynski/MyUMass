@@ -108,13 +108,6 @@ public class DiningViewFragment extends Fragment {
                     @Override public void onItemClick(View view, int position) {
                         //// TODO: 23-Dec-15 add activity swap that's pretty
 
-                        if(locationNameList.get(position).locationName.contains("Worcester")){
-
-                            Toast toast = Toast.makeText(getContext()," ", Toast.LENGTH_LONG);
-                            toast.show();
-
-                        }
-
                         switch (position){
                             case 0:
                                 animateIntent(view,rv.findViewHolderForAdapterPosition(position).itemView,DetailedDiningInformation.class);
