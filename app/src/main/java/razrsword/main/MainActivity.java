@@ -30,6 +30,7 @@ public class MainActivity extends BusTrackerActivity {
         gridview.setAdapter(adapter);
         gridview.setExpanded(true);
         gridview.setNumColumns(metrics.widthPixels/(width/3));
+        gridview.setMinimumHeight(1920);
 
 
 

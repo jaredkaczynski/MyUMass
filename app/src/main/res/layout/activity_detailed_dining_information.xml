@@ -31,7 +31,7 @@
         <TextView
             android:id="@+id/location_name"
             android:text="Basic CardView"
-            android:textColor="@color/trafficColor"
+            android:textColor="@color/foregroundCardColor"
             android:layout_marginTop="0dp"
             android:layout_width="match_parent"
             android:layout_height="0dp"

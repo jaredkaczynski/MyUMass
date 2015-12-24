@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.ColorFilter;
 import android.graphics.LightingColorFilter;
+import android.graphics.drawable.ColorDrawable;
+import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,6 +68,8 @@ public class ButtonAdapter extends BaseAdapter {
             button = (ImageButton) convertView;
         }
         button.setImageResource(mThumbIds[position]);
+        button.setBackgroundColor(ContextCompat.getColor(getContext(),R.color.foregroundCardColor));
+
         if(buttonColorFilter[position] != null){
             button.setColorFilter(buttonColorFilter[position]);
         }
