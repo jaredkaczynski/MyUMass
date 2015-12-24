@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.Collections;
 import java.util.List;
 
 import razrsword.main.R;
@@ -15,7 +16,8 @@ import razrsword.main.R;
  * Created by razrs on 23-Dec-15.
  */
 
-public class DiningViewAdapter extends RecyclerView.Adapter<DiningViewAdapter.locationViewHolder>{
+public class DiningViewAdapter extends RecyclerView.Adapter<DiningViewAdapter.locationViewHolder>
+        implements ItemTouchHelperAdapter {
 
     List<DiningLocation> diningLocations;
 
@@ -26,7 +28,7 @@ public class DiningViewAdapter extends RecyclerView.Adapter<DiningViewAdapter.lo
         return lvh;
     }
 
-    DiningViewAdapter(List<DiningLocation> diningLocations){
+    DiningViewAdapter(List<DiningLocation> diningLocations) {
         this.diningLocations = diningLocations;
     }
 
@@ -45,14 +47,34 @@ public class DiningViewAdapter extends RecyclerView.Adapter<DiningViewAdapter.lo
         return diningLocations.size();
     }
 
+    @Override
+    public boolean onItemMove(int fromPosition, int toPosition) {
+        if (fromPosition < toPosition) {
+            for (int i = fromPosition; i < toPosition; i++) {
+                Collections.swap(diningLocations, i, i + 1);
+            }
+        } else {
+            for (int i = fromPosition; i > toPosition; i--) {
+                Collections.swap(diningLocations, i, i - 1);
+            }
+        }
+        notifyItemMoved(fromPosition, toPosition);
+        return true;
+    }
+
+    @Override
+    public void onItemDismiss(int position) {
+
+    }
+
     public static class locationViewHolder extends RecyclerView.ViewHolder {
         CardView cv;
         TextView locationName;
 
         locationViewHolder(View itemView) {
             super(itemView);
-            cv = (CardView)itemView.findViewById(R.id.location_card);
-            locationName = (TextView)itemView.findViewById(R.id.location_name);
+            cv = (CardView) itemView.findViewById(R.id.location_card);
+            locationName = (TextView) itemView.findViewById(R.id.location_name);
         }
     }
 

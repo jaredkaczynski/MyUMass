@@ -15,7 +15,7 @@ import android.view.MenuItem;
 
 import razrsword.main.R;
 
-public class NavigationActivity extends AppCompatActivity
+public class BusTrackerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override

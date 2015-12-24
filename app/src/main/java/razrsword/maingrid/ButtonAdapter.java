@@ -1,6 +1,5 @@
 package razrsword.maingrid;
 
-import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.ColorFilter;
@@ -13,7 +12,7 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageButton;
 
-import razrsword.activities.NavigationActivity;
+import razrsword.activities.BusTrackerActivity;
 import razrsword.dining.DiningActivity;
 import razrsword.mapping.UMassMapActivity;
 import razrsword.main.R;
@@ -82,7 +81,7 @@ public class ButtonAdapter extends BaseAdapter {
                         mContext.startActivity(myIntent);
                         break;
                     case 1:
-                        myIntent = new Intent(mContext, NavigationActivity.class);
+                        myIntent = new Intent(mContext, BusTrackerActivity.class);
                         //myIntent.putExtra("key", value); //Optional parameters
                         mContext.startActivity(myIntent);
                         break;

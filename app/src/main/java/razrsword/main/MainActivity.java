@@ -1,25 +1,18 @@
 package razrsword.main;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.transition.Slide;
 import android.util.DisplayMetrics;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.GridView;
 import android.widget.ListAdapter;
-import android.widget.Toast;
 
-import razrsword.activities.NavigationActivity;
+import razrsword.activities.BusTrackerActivity;
 import razrsword.maingrid.ButtonAdapter;
 import razrsword.maingrid.ExpandableHeightGridView;
 
-public class MainActivity extends NavigationActivity {
+public class MainActivity extends BusTrackerActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
