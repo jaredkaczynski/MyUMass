@@ -11,8 +11,11 @@ import java.util.List;
  */
 public class DiningLocation implements Parcelable{
     String locationName;
-    public DiningLocation(String name){
+    int imageID;
+
+    public DiningLocation(String name, int id){
         locationName = name;
+        imageID = id;
     }
 
     protected DiningLocation(Parcel in) {
