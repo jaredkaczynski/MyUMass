@@ -1,7 +1,10 @@
 package razrsword.dining;
 
+import android.app.ActivityOptions;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
@@ -18,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import razrsword.main.R;
+import razrsword.mapping.UMassMapActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -105,9 +109,28 @@ public class DiningViewFragment extends Fragment {
         rv.addOnItemTouchListener(
                 new RecyclerItemClickListener(this.getContext(), new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
+                        //// TODO: 23-Dec-15 add activity swap that's pretty
                         if(locationNameList.get(position).locationName.contains("Worcester")){
+
                             Toast toast = Toast.makeText(getContext()," ", Toast.LENGTH_LONG);
                             toast.show();
+
+                        }
+                        Intent myIntent;
+                        switch (position){
+                            case 0:
+                                myIntent = new Intent(getContext(), LocationDetailedInformation.class);
+                                ActivityOptions options = null;
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                                    options = ActivityOptions
+                                            .makeSceneTransitionAnimation(getActivity(), view, "robot");
+                                }
+                                // start the new activity
+
+                                //myIntent.putExtra("key", value); //Optional parameters
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                                    getContext().startActivity(myIntent, options.toBundle());
+                                }
                         }
                     }
                 })
