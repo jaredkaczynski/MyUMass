@@ -9,6 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="razrsword.dining.LocationDetailedInformation">
     <ImageView
+        android:transitionName="@string/transition_string"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/dining_location_image"

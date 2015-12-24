@@ -101,4 +101,5 @@
     <string name="search_umass">Search UMass</string>
     <string name="title_activity_dining">DiningActivity</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="transition_string">cardTransition</string>
 </resources>
