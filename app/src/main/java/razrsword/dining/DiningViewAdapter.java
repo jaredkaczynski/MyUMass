@@ -42,6 +42,7 @@ public class DiningViewAdapter extends RecyclerView.Adapter<DiningViewAdapter.lo
     public void onBindViewHolder(locationViewHolder locationViewHolder, int i) {
         locationViewHolder.locationName.setText(diningLocations.get(i).locationName);
         locationViewHolder.locationImage.setImageResource(diningLocations.get(i).imageID);
+        locationViewHolder.locationImage.setScaleType(ImageView.ScaleType.FIT_XY);
     }
 
     @Override
