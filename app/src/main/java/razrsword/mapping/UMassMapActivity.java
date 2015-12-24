@@ -75,7 +75,7 @@ public class UMassMapActivity extends AppCompatActivity implements OnMapReadyCal
     // Progress dialog type (0 - for Horizontal progress bar)
     public static final int progress_bar_type = 0;
     private double[] userLocation = new double[2];
-    private boolean GoogleMaps = false;
+    private boolean GoogleMaps = true;
     List<Place> listOfPlace;
     private final com.google.android.gms.maps.model.Marker[] placeMarker = new com.google.android.gms.maps.model.Marker[1];
     Bundle globalSavedInstanceState;
