@@ -75,7 +75,7 @@ public class UMassMapActivity extends AppCompatActivity implements OnMapReadyCal
     // Progress dialog type (0 - for Horizontal progress bar)
     public static final int progress_bar_type = 0;
     private double[] userLocation = new double[2];
-    private boolean GoogleMaps = true;
+    private boolean GoogleMaps = false;
     List<Place> listOfPlace;
     private final com.google.android.gms.maps.model.Marker[] placeMarker = new com.google.android.gms.maps.model.Marker[1];
     Bundle globalSavedInstanceState;
@@ -103,9 +103,10 @@ public class UMassMapActivity extends AppCompatActivity implements OnMapReadyCal
             initializeLocateButtonGoogleMaps(locateButton);
             initializeGoogleMaps(savedInstanceState);
         } else {
+            mapController = initializeOSMDroidMaps(savedInstanceState);
             initializeLocateButtonOSM(locateButton);
             map.setVisibility(View.VISIBLE);
-            mapController = initializeOSMDroidMaps(savedInstanceState);
+
         }
 
         if (savedInstanceState != null) {
