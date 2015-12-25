@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center_horizontal"
+    android:padding="5dp">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/location_card"
+        android:paddingBottom="10dp"
+        android:transitionName="@string/transition_string">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:transitionName="@string/transition_string"
+            android:id="@+id/dining_image_block">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".8"
+                android:id="@+id/dining_location_image" />
+
+            <TextView
+                android:id="@+id/location_name"
+                android:text="Basic CardView"
+                android:textColor="@color/foregroundCardColor"
+                android:layout_marginTop="0dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".2"
+                android:background="@color/busy0"
+                android:gravity="left|bottom"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>
