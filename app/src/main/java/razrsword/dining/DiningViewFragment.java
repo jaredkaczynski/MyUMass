@@ -1,10 +1,8 @@
 package razrsword.dining;
 
-import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.app.ActivityCompat;
@@ -17,14 +15,11 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import razrsword.main.R;
-import razrsword.mapping.UMassMapActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -94,7 +89,7 @@ public class DiningViewFragment extends Fragment {
         // Inflate the layout for this fragment
         LinearLayoutManager llm = new LinearLayoutManager(this.getContext());
         View v = inflater.inflate(R.layout.fragment_dining_commons, container, false);
-        rv = (RecyclerView) v.findViewById(R.id.recyclerview_dining);
+        rv = (RecyclerView) v.findViewById(R.id.recyclerview_main);
         assert rv != null;
         rv.setAdapter(adapter);
         rv.setItemAnimator(new DefaultItemAnimator());
