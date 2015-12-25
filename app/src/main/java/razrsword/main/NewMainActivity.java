@@ -6,14 +6,22 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import razrsword.activities.BusTrackerActivity;
+import razrsword.dining.DiningActivity;
+import razrsword.dining.RecyclerItemClickListener;
+import razrsword.dining.SimpleItemTouchHelperCallback;
+import razrsword.mapping.UMassMapActivity;
 
 public class NewMainActivity extends AppCompatActivity {
     List<MainCard> locationNameList = null;
@@ -33,20 +41,21 @@ public class NewMainActivity extends AppCompatActivity {
         locationNameList.add(new MainCard("Worcester Dining Commons", R.drawable.berkshire));
         locationNameList.add(new MainCard("Hampshire Dining Commons", R.drawable.berkshire));
         locationNameList.add(new MainCard("Franklin Dining Commons", R.drawable.berkshire));
-
+        DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
+        float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
 
         adapter = new MainViewAdapter(locationNameList);
         //adapter.diningLocations.add(new DiningLocation("Worcester"));
         //adapter.diningLocations.add(new DiningLocation("Berkshire"));
         // Inflate the layout for this fragment
-        LinearLayoutManager llm = new LinearLayoutManager(this);
+        GridLayoutManager llm = new GridLayoutManager(this,(int) Math.floor(dpWidth / 120));
         rv = (RecyclerView) this.findViewById(R.id.recyclerview_main);
         assert rv != null;
         Log.v("RecyclerView", "Should be adding it");
         rv.setItemAnimator(new DefaultItemAnimator());
         rv.setLayoutManager(llm);
         rv.setAdapter(adapter);
-        /*
+
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(adapter);
         ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
         touchHelper.attachToRecyclerView(rv);
@@ -68,14 +77,14 @@ public class NewMainActivity extends AppCompatActivity {
                         }
                     }
                 })
-        );*/
+        );
 
     }
     public void animateIntent(View view,View sourceView, Class<?> cls,int position) {
 
         // Ordinary Intent for launching a new activity
         Intent intent = new Intent(this, cls);
-        intent.putExtra("locationName", locationNameList.get(position).locationName);
+        //intent.putExtra("locationName", locationNameList.get(position).locationName);
 
         // Get the transition name from the string
         String transitionName = getString(R.string.transition_string);
