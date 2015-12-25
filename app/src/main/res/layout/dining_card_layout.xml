@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:gravity="center_horizontal"
+    android:orientation="vertical"
     android:padding="5dp">
 
     <android.support.v7.widget.CardView
+        android:id="@+id/location_card"
         android:layout_width="fill_parent"
         android:layout_height="200dp"
         android:layout_gravity="center_horizontal"
-        android:id="@+id/location_card"
         android:paddingBottom="10dp">
+
         <LinearLayout
+            android:id="@+id/dining_image_block"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:orientation="vertical"
-            android:transitionName="@string/transition_string"
-            android:id="@+id/dining_image_block">
+            android:orientation="vertical">
+    <!--        android:transitionName="@string/transition_string"-->
+
 
             <ImageView
+                android:id="@+id/dining_location_image"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight=".8"
-                android:id="@+id/dining_location_image" />
+                android:layout_weight=".8" />
 
             <TextView
-            android:id="@+id/location_name"
-            android:text="Basic CardView"
-                android:textColor="@color/foregroundCardColor"
-            android:layout_marginTop="0dp"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight=".2"
-            android:background="@color/busy0"
-                android:gravity="left|bottom"
-                android:paddingBottom="10dp"
-                android:paddingLeft="10dp" />
+                android:id="@+id/location_name"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_weight=".2"
+                android:background="@color/busy0"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="10dp"
+                android:textColor="@color/foregroundCardColor" />
         </LinearLayout>
     </android.support.v7.widget.CardView>
 

@@ -38,10 +38,9 @@ public class NewMainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         List<MainCard> locationNameList = null;
         locationNameList = new ArrayList<>();
-        locationNameList.add(new MainCard("Berkshire Dining Commons",R.drawable.berkshire));
-        locationNameList.add(new MainCard("Worcester Dining Commons", R.drawable.berkshire));
-        locationNameList.add(new MainCard("Hampshire Dining Commons", R.drawable.berkshire));
-        locationNameList.add(new MainCard("Franklin Dining Commons", R.drawable.berkshire));
+        locationNameList.add(new MainCard("UMass Map",R.drawable.berkshire));
+        locationNameList.add(new MainCard("UMass Bus", R.drawable.berkshire));
+        locationNameList.add(new MainCard("Dining", R.drawable.berkshire));
         DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
         float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
 
