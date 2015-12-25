@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.ColorFilter;
 import android.graphics.LightingColorFilter;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -63,12 +64,11 @@ public class ButtonAdapter extends BaseAdapter {
             //This determines the size of the buttons/image
             button.setLayoutParams(gridView);
             //button.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            button.setPadding(8, 8, 8, 8);
+            button.setPadding(12, 12, 12, 12);
         } else {
             button = (ImageButton) convertView;
         }
         button.setImageResource(mThumbIds[position]);
-        button.setBackgroundColor(ContextCompat.getColor(getContext(),R.color.foregroundCardColor));
 
         if(buttonColorFilter[position] != null){
             button.setColorFilter(buttonColorFilter[position]);
@@ -97,6 +97,10 @@ public class ButtonAdapter extends BaseAdapter {
                 }
             }
         });
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            button.setElevation(10);
+        }
+        //button.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.foregroundCardColor));
         return button;
     }
 

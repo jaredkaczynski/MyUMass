@@ -47,6 +47,7 @@ public class DiningActivity extends AppCompatActivity implements DiningViewFragm
         setContentView(R.layout.activity_dining);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Dining at UMass");
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
