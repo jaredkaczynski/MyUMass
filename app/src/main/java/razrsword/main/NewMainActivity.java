@@ -17,6 +17,7 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
+import razrsword.ExtendedItemAnimator;
 import razrsword.activities.BusTrackerActivity;
 import razrsword.dining.DiningActivity;
 import razrsword.dining.RecyclerItemClickListener;
@@ -52,7 +53,7 @@ public class NewMainActivity extends AppCompatActivity {
         rv = (RecyclerView) this.findViewById(R.id.recyclerview_main);
         assert rv != null;
         Log.v("RecyclerView", "Should be adding it");
-        rv.setItemAnimator(new DefaultItemAnimator());
+        rv.setItemAnimator(new ExtendedItemAnimator());
         rv.setLayoutManager(llm);
         rv.setAdapter(adapter);
 
@@ -66,7 +67,9 @@ public class NewMainActivity extends AppCompatActivity {
 
                         switch (position){
                             case 0:
-                                animateIntent(view,rv.findViewHolderForAdapterPosition(position).itemView,UMassMapActivity.class,position);
+                                //animateIntent(view,rv.findViewHolderForAdapterPosition(position).itemView,UMassMapActivity.class,position);
+                                Intent intent = new Intent(view.getContext(), UMassMapActivity.class);
+                                startActivity(intent);
                                 break;
                             case 1:
                                 animateIntent(view,rv.findViewHolderForAdapterPosition(position).itemView,BusTrackerActivity.class,position);
