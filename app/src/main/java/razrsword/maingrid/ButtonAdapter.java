@@ -101,6 +101,8 @@ public class ButtonAdapter extends BaseAdapter {
             button.setElevation(10);
         }
         //button.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.foregroundCardColor));
+        //button.setBackgroundColor(ContextCompat.getColor(getContext(),android.R.color.holo_red_dark));
+        //button.setPadding(5,5,5,5);
         return button;
     }
 

@@ -104,4 +104,5 @@
     <string name="transition_string">cardTransition</string>
     <string name="title_activity_diningtest">Diningtest</string>
     <string name="title_activity_detailed_dining_information">DetailedDiningInformation</string>
+    <string name="title_activity_new_main">NewMainActivity</string>
 </resources>
