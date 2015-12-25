@@ -95,7 +95,7 @@ public class DiningViewFragment extends Fragment {
         rv.setItemAnimator(new DefaultItemAnimator());
         rv.setLayoutManager(llm);
         ItemTouchHelper.Callback callback =
-                new SimpleItemTouchHelperCallback(adapter);
+                new SimpleItemTouchHelperCallbackDining(adapter);
         ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
         touchHelper.attachToRecyclerView(rv);
         rv.addOnItemTouchListener(

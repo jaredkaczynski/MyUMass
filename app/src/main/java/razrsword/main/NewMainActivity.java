@@ -20,7 +20,7 @@ import java.util.List;
 import razrsword.activities.BusTrackerActivity;
 import razrsword.dining.DiningActivity;
 import razrsword.dining.RecyclerItemClickListener;
-import razrsword.dining.SimpleItemTouchHelperCallback;
+import razrsword.dining.SimpleItemTouchHelperCallbackDining;
 import razrsword.mapping.UMassMapActivity;
 
 public class NewMainActivity extends AppCompatActivity {
@@ -56,7 +56,7 @@ public class NewMainActivity extends AppCompatActivity {
         rv.setLayoutManager(llm);
         rv.setAdapter(adapter);
 
-        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(adapter);
+        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallbackMain(adapter);
         ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
         touchHelper.attachToRecyclerView(rv);
         rv.addOnItemTouchListener(

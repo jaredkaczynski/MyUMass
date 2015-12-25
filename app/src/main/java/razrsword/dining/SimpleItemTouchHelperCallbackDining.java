@@ -6,11 +6,11 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 /**
  * Created by razrs on 23-Dec-15.
  */
-public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
+public class SimpleItemTouchHelperCallbackDining extends ItemTouchHelper.Callback {
 
     private final ItemTouchHelperAdapter mAdapter;
 
-    public SimpleItemTouchHelperCallback(ItemTouchHelperAdapter adapter) {
+    public SimpleItemTouchHelperCallbackDining(ItemTouchHelperAdapter adapter) {
         mAdapter = adapter;
     }
 
