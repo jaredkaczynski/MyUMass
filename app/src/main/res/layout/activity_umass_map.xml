@@ -13,10 +13,11 @@
         android:layout_height="0px">
     </LinearLayout>
 
-    <com.google.android.gms.maps.MapView android:id="@+id/googlemap"
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/googlemap"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:visibility="gone" />
+        android:visibility="gone"/>
 
     <org.osmdroid.views.MapView
         android:focusable="true"
