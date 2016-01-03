@@ -12,7 +12,6 @@ import java.util.Collections;
 import java.util.List;
 
 import razrsword.dining.ItemTouchHelperAdapter;
-import razrsword.main.MainCard;
 import razrsword.main.R;
 
 /**
@@ -21,17 +20,17 @@ import razrsword.main.R;
 public class EventViewAdapter extends RecyclerView.Adapter<EventViewAdapter.mainButtonHolder>
         implements ItemTouchHelperAdapter {
 
-    List<EventCard> mainActivityCards;
+    List<EventCard> campusPulseCards;
 
     @Override
     public mainButtonHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_card_layout, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.event_card_layout, parent, false);
         mainButtonHolder lvh = new mainButtonHolder(v);
         return lvh;
     }
 
-    EventViewAdapter(List<EventCard> mainActivityCards) {
-        this.mainActivityCards = mainActivityCards;
+    EventViewAdapter(List<EventCard> campusPulseCards) {
+        this.campusPulseCards = campusPulseCards;
     }
 
     @Override
@@ -41,25 +40,25 @@ public class EventViewAdapter extends RecyclerView.Adapter<EventViewAdapter.main
 
     @Override
     public void onBindViewHolder(mainButtonHolder mainButtonHolder, int i) {
-        mainButtonHolder.locationName.setText(mainActivityCards.get(i).eventTitle);
-        mainButtonHolder.locationImage.setImageResource(mainActivityCards.get(i).imageID);
+        mainButtonHolder.locationName.setText(campusPulseCards.get(i).eventTitle);
+        mainButtonHolder.locationImage.setImageResource(campusPulseCards.get(i).imageID);
         mainButtonHolder.locationImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
     }
 
     @Override
     public int getItemCount() {
-        return mainActivityCards.size();
+        return campusPulseCards.size();
     }
 
     @Override
     public boolean onItemMove(int fromPosition, int toPosition) {
         if (fromPosition < toPosition) {
             for (int i = fromPosition; i < toPosition; i++) {
-                Collections.swap(mainActivityCards, i, i + 1);
+                Collections.swap(campusPulseCards, i, i + 1);
             }
         } else {
             for (int i = fromPosition; i > toPosition; i--) {
-                Collections.swap(mainActivityCards, i, i - 1);
+                Collections.swap(campusPulseCards, i, i - 1);
             }
         }
         notifyItemMoved(fromPosition, toPosition);

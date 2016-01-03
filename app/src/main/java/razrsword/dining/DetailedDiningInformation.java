@@ -27,7 +27,7 @@ import java.util.List;
 import razrsword.main.R;
 
 public class DetailedDiningInformation extends AppCompatActivity {
-    
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

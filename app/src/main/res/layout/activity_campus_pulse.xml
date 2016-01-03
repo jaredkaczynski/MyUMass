@@ -10,9 +10,8 @@
     tools:context="razrsword.campuspulse.CampusPulseActivity"
     android:baselineAligned="false">
 
-    <ListView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/listView"
-        android:layout_weight="1" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview_campus_pulse"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent" />
 </LinearLayout>
