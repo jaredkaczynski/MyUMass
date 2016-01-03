@@ -3,6 +3,7 @@ package razrsword.main;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -32,7 +33,9 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import razrsword.ExtendedItemAnimator;
 import razrsword.activities.BusTrackerActivity;
@@ -46,9 +49,10 @@ public class NewMainActivity extends AppCompatActivity {
     RecyclerView rv;
     MainViewAdapter adapter;
     String campusXmlUrl = "https://umassamherst.collegiatelink.net/EventRss/EventsRss";
-    String campusXmlLocalDirectory = Environment.getExternalStorageDirectory().getAbsolutePath() + "/MyUmass/CampusPulseXML.xml";
+    String campusXmlLocalDirectory = Environment.getExternalStorageDirectory().getAbsolutePath() + "/CampusPulseXML.xml";
     Context context;
     final int MY_PERMISSIONS_REQUEST_WRITE_STORAGE = 1;
+    List<Class<?>> locationClassList;
 
 
     @Override
@@ -59,11 +63,19 @@ public class NewMainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         List<MainCard> locationNameList = null;
+
         locationNameList = new ArrayList<>();
+        locationClassList = new ArrayList<>();
+        locationClassList.add(UMassMapActivity.class);
+        locationClassList.add(CampusPulseActivity.class);
+        locationClassList.add(DiningActivity.class);
+        locationClassList.add(BusTrackerActivity.class);
+
         locationNameList.add(new MainCard("UMass Map",R.drawable.berkshire));
         locationNameList.add(new MainCard("UMass Bus", R.drawable.berkshire));
         locationNameList.add(new MainCard("Dining", R.drawable.berkshire));
         locationNameList.add(new MainCard("Campus Events", R.drawable.berkshire));
+        locationNameList.add(new MainCard("DeleteXML", R.drawable.berkshire));
         DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
         float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
         adapter = new MainViewAdapter(locationNameList);
@@ -85,22 +97,25 @@ public class NewMainActivity extends AppCompatActivity {
                 new RecyclerItemClickListener(this, new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        //// TODO: 23-Dec-15 add activity swap that's pretty
-
                         switch (position) {
                             case 0:
                                 //animateIntent(view,rv.findViewHolderForAdapterPosition(position).itemView,UMassMapActivity.class,position);
-                                Intent intent = new Intent(view.getContext(), UMassMapActivity.class);
+                                Intent intent = new Intent(view.getContext(), locationClassList.get(position));
                                 startActivity(intent);
                                 break;
                             case 1:
-                                animateIntent(view, rv.findViewHolderForAdapterPosition(position).itemView, BusTrackerActivity.class, position);
+                                animateIntent(view, rv.findViewHolderForAdapterPosition(position).itemView, locationClassList.get(position), position);
                                 break;
                             case 2:
-                                animateIntent(view, rv.findViewHolderForAdapterPosition(position).itemView, DiningActivity.class, position);
+                                animateIntent(view, rv.findViewHolderForAdapterPosition(position).itemView, locationClassList.get(position), position);
                                 break;
                             case 3:
-                                animateIntent(view, rv.findViewHolderForAdapterPosition(position).itemView, CampusPulseActivity.class, position);
+                                animateIntent(view, rv.findViewHolderForAdapterPosition(position).itemView, locationClassList.get(position), position);
+                                break;
+                            case 4:
+                                File file = new File(campusXmlLocalDirectory);
+                                file.delete();
+                                Toast.makeText(context, "XML Deleted", Toast.LENGTH_LONG).show();
                                 break;
                         }
                     }
@@ -162,8 +177,27 @@ public class NewMainActivity extends AppCompatActivity {
                 // app-defined int constant. The callback method gets the
                 // result of the request.
             }
+        } else {
+            checkForUpdateData();
         }
     }
+    /*
+    private List<MainCard> getGridOrder(){
+        SharedPreferences prefs=this.getSharedPreferences("mainactivityprefs", Context.MODE_PRIVATE);
+        Set<MainCard> set = prefs.getStringSet("gridlist", null);
+        return null;
+    }
+
+    private void setGridOrder(List<MainCard> locationNameList){
+        SharedPreferences prefs=this.getSharedPreferences("mainactivityprefs", Context.MODE_PRIVATE);
+        //Set the values
+        Set<MainCard> set = new HashSet<MainCard>();
+        set.addAll(locationNameList);
+        prefs.putStringSet("gridlist", set);
+        scoreEditor.commit();
+        String value = prefs.getString("list", null);
+
+    }*/
 
     private void checkForUpdateData(){
         File file = new File(campusXmlLocalDirectory);
@@ -295,7 +329,7 @@ public class NewMainActivity extends AppCompatActivity {
             if (result != null)
                 Toast.makeText(context, "Download error: " + result, Toast.LENGTH_LONG).show();
             else
-                Toast.makeText(context,"File downloaded", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,"Data Downloaded", Toast.LENGTH_SHORT).show();
         }
     }
     @Override
@@ -311,8 +345,7 @@ public class NewMainActivity extends AppCompatActivity {
 
                 } else {
 
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
+                    Toast.makeText(context,"This app won't work right. :(", Toast.LENGTH_LONG).show();
                 }
                 return;
             }
