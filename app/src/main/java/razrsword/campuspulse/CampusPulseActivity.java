@@ -42,6 +42,7 @@ public class CampusPulseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_campus_pulse);
         List<EventCard> locationNameList;
+        setTitle("Campus Pulse Events");
         locationNameList = new ArrayList<>();
         locationClassList = new ArrayList<>();
         locationClassList.add(UMassMapActivity.class);
