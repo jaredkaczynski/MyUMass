@@ -15,6 +15,8 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -61,9 +63,41 @@ public class NewMainActivity extends AppCompatActivity {
         context = this.getApplicationContext();
         setContentView(R.layout.activity_new_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        List<MainCard> locationNameList = null;
+        DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(
+                this,
+                drawerLayout,
+                toolbar,
+                0,
+                0
+        )
 
+        {
+            public void onDrawerClosed(View view)
+            {
+                super.onDrawerClosed(view);
+                invalidateOptionsMenu();
+                syncState();
+            }
+
+            public void onDrawerOpened(View drawerView)
+            {
+                super.onDrawerOpened(drawerView);
+                invalidateOptionsMenu();
+                syncState();
+            }
+        };
+        drawerLayout.setDrawerListener(actionBarDrawerToggle);
+        //Set the custom toolbar
+        if (toolbar != null){
+            setSupportActionBar(toolbar);
+        }
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        actionBarDrawerToggle.syncState();
+
+        //toolbar.setNavigationIcon(R.drawable.ic_menu_share);
+        List<MainCard> locationNameList;
         locationNameList = new ArrayList<>();
         locationClassList = new ArrayList<>();
         locationClassList.add(UMassMapActivity.class);
