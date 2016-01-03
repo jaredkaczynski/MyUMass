@@ -19,6 +19,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -39,11 +40,14 @@ public class NewMainActivity extends AppCompatActivity {
     List<MainCard> locationNameList = null;
     RecyclerView rv;
     MainViewAdapter adapter;
+    final String campusXmlUrl = "https://umassamherst.collegiatelink.net/EventRss/EventsRss";
+    Context context;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        context = this.getApplicationContext();
         setContentView(R.layout.activity_new_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -66,6 +70,8 @@ public class NewMainActivity extends AppCompatActivity {
         rv.setItemAnimator(new ExtendedItemAnimator());
         rv.setLayoutManager(llm);
         rv.setAdapter(adapter);
+
+        checkForUpdateData();
 
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallbackMain(adapter);
         ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
@@ -92,6 +98,15 @@ public class NewMainActivity extends AppCompatActivity {
                 })
         );
 
+    }
+
+    private void checkForUpdateData(){
+        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/CampusPulseXML.xml");
+        // runs the downloader if the xml is over 24 hours old
+        if(file.lastModified() == 0 || file.lastModified() + 86400000 < System.currentTimeMillis()) {
+            DownloadTask downloadTask = new DownloadTask(context);
+            downloadTask.execute(campusXmlUrl);
+        }
     }
     public void animateIntent(View view,View sourceView, Class<?> cls,int position) {
 
