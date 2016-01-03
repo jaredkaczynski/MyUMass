@@ -25,6 +25,7 @@ public class MainViewAdapter extends RecyclerView.Adapter<MainViewAdapter.mainBu
         implements ItemTouchHelperAdapter {
 
     List<MainCard> mainActivityCards;
+    List<Class<?>> locationClassList;
 
     @Override
     public mainButtonHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -33,8 +34,9 @@ public class MainViewAdapter extends RecyclerView.Adapter<MainViewAdapter.mainBu
         return lvh;
     }
 
-    MainViewAdapter(List<MainCard> mainActivityCards) {
+    MainViewAdapter(List<MainCard> mainActivityCards, List<Class<?>> locationClassList) {
         this.mainActivityCards = mainActivityCards;
+        this.locationClassList = locationClassList;
     }
 
     @Override
@@ -59,10 +61,12 @@ public class MainViewAdapter extends RecyclerView.Adapter<MainViewAdapter.mainBu
         if (fromPosition < toPosition) {
             for (int i = fromPosition; i < toPosition; i++) {
                 Collections.swap(mainActivityCards, i, i + 1);
+                Collections.swap(locationClassList, i, i + 1);
             }
         } else {
             for (int i = fromPosition; i > toPosition; i--) {
                 Collections.swap(mainActivityCards, i, i - 1);
+                Collections.swap(locationClassList, i, i - 1);
             }
         }
         notifyItemMoved(fromPosition, toPosition);

@@ -14,7 +14,7 @@
         android:paddingBottom="10dp">
 
         <LinearLayout
-            android:id="@+id/dining_image_block"
+            android:id="@+id/dining_image_block1"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical">

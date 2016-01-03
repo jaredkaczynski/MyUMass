@@ -101,9 +101,9 @@ public class NewMainActivity extends AppCompatActivity {
         locationNameList = new ArrayList<>();
         locationClassList = new ArrayList<>();
         locationClassList.add(UMassMapActivity.class);
-        locationClassList.add(CampusPulseActivity.class);
-        locationClassList.add(DiningActivity.class);
         locationClassList.add(BusTrackerActivity.class);
+        locationClassList.add(DiningActivity.class);
+        locationClassList.add(CampusPulseActivity.class);
 
         locationNameList.add(new MainCard("UMass Map",R.drawable.berkshire));
         locationNameList.add(new MainCard("UMass Bus", R.drawable.berkshire));
@@ -112,7 +112,7 @@ public class NewMainActivity extends AppCompatActivity {
         locationNameList.add(new MainCard("DeleteXML", R.drawable.berkshire));
         DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
         float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
-        adapter = new MainViewAdapter(locationNameList);
+        adapter = new MainViewAdapter(locationNameList,locationClassList);
         //adapter.diningLocations.add(new DiningLocation("Worcester"));
         //adapter.diningLocations.add(new DiningLocation("Berkshire"));
         // Inflate the layout for this fragment
