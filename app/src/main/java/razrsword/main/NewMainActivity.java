@@ -1,15 +1,20 @@
 package razrsword.main;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.PowerManager;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -31,17 +36,19 @@ import java.util.List;
 
 import razrsword.ExtendedItemAnimator;
 import razrsword.activities.BusTrackerActivity;
+import razrsword.campuspulse.CampusPulseActivity;
 import razrsword.dining.DiningActivity;
 import razrsword.dining.RecyclerItemClickListener;
-import razrsword.dining.SimpleItemTouchHelperCallbackDining;
 import razrsword.mapping.UMassMapActivity;
 
 public class NewMainActivity extends AppCompatActivity {
     List<MainCard> locationNameList = null;
     RecyclerView rv;
     MainViewAdapter adapter;
-    final String campusXmlUrl = "https://umassamherst.collegiatelink.net/EventRss/EventsRss";
+    String campusXmlUrl = "https://umassamherst.collegiatelink.net/EventRss/EventsRss";
+    String campusXmlLocalDirectory = Environment.getExternalStorageDirectory().getAbsolutePath() + "/MyUmass/CampusPulseXML.xml";
     Context context;
+    final int MY_PERMISSIONS_REQUEST_WRITE_STORAGE = 1;
 
 
     @Override
@@ -56,9 +63,9 @@ public class NewMainActivity extends AppCompatActivity {
         locationNameList.add(new MainCard("UMass Map",R.drawable.berkshire));
         locationNameList.add(new MainCard("UMass Bus", R.drawable.berkshire));
         locationNameList.add(new MainCard("Dining", R.drawable.berkshire));
+        locationNameList.add(new MainCard("Campus Events", R.drawable.berkshire));
         DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
         float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
-
         adapter = new MainViewAdapter(locationNameList);
         //adapter.diningLocations.add(new DiningLocation("Worcester"));
         //adapter.diningLocations.add(new DiningLocation("Berkshire"));
@@ -71,41 +78,104 @@ public class NewMainActivity extends AppCompatActivity {
         rv.setLayoutManager(llm);
         rv.setAdapter(adapter);
 
-        checkForUpdateData();
-
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallbackMain(adapter);
         ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
         touchHelper.attachToRecyclerView(rv);
         rv.addOnItemTouchListener(
                 new RecyclerItemClickListener(this, new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override public void onItemClick(View view, int position) {
+                    @Override
+                    public void onItemClick(View view, int position) {
                         //// TODO: 23-Dec-15 add activity swap that's pretty
 
-                        switch (position){
+                        switch (position) {
                             case 0:
                                 //animateIntent(view,rv.findViewHolderForAdapterPosition(position).itemView,UMassMapActivity.class,position);
                                 Intent intent = new Intent(view.getContext(), UMassMapActivity.class);
                                 startActivity(intent);
                                 break;
                             case 1:
-                                animateIntent(view,rv.findViewHolderForAdapterPosition(position).itemView,BusTrackerActivity.class,position);
+                                animateIntent(view, rv.findViewHolderForAdapterPosition(position).itemView, BusTrackerActivity.class, position);
                                 break;
                             case 2:
-                                animateIntent(view,rv.findViewHolderForAdapterPosition(position).itemView,DiningActivity.class,position);
+                                animateIntent(view, rv.findViewHolderForAdapterPosition(position).itemView, DiningActivity.class, position);
+                                break;
+                            case 3:
+                                animateIntent(view, rv.findViewHolderForAdapterPosition(position).itemView, CampusPulseActivity.class, position);
                                 break;
                         }
                     }
                 })
         );
+        checkStoragePermission();
+    }
 
+    private boolean haveNetworkConnection() {
+        boolean haveConnectedWifi = false;
+        boolean haveConnectedMobile = false;
+
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo[] netInfo = cm.getAllNetworkInfo();
+        for (NetworkInfo ni : netInfo) {
+            if (ni.getTypeName().equalsIgnoreCase("WIFI"))
+                if (ni.isConnected())
+                    haveConnectedWifi = true;
+            if (ni.getTypeName().equalsIgnoreCase("MOBILE"))
+                if (ni.isConnected())
+                    haveConnectedMobile = true;
+        }
+        return haveConnectedWifi || haveConnectedMobile;
+    }
+
+    private void checkStoragePermission(){
+        if (ContextCompat.checkSelfPermission(context,
+                android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+
+                // Show an expanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+                final String[] permissions = {android.Manifest.permission.WRITE_EXTERNAL_STORAGE};
+                Snackbar.make(NewMainActivity.this.rv, "Storage access is required for events and dining.", Snackbar.LENGTH_INDEFINITE)
+                        .setAction("Ok", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                ActivityCompat
+                                        .requestPermissions(NewMainActivity.this, permissions,
+                                                MY_PERMISSIONS_REQUEST_WRITE_STORAGE);
+                            }
+                        })
+                        .show();
+
+            } else {
+
+                // No explanation needed, we can request the permission.
+
+                ActivityCompat.requestPermissions(this,
+                        new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        MY_PERMISSIONS_REQUEST_WRITE_STORAGE);
+
+                // MY_PERMISSIONS_REQUEST_WRITE_STORAGE is an
+                // app-defined int constant. The callback method gets the
+                // result of the request.
+            }
+        }
     }
 
     private void checkForUpdateData(){
-        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/CampusPulseXML.xml");
+        File file = new File(campusXmlLocalDirectory);
+        //Toast.makeText(context, "Deleted " + file.exists(), Toast.LENGTH_LONG).show();
         // runs the downloader if the xml is over 24 hours old
-        if(file.lastModified() == 0 || file.lastModified() + 86400000 < System.currentTimeMillis()) {
-            DownloadTask downloadTask = new DownloadTask(context);
-            downloadTask.execute(campusXmlUrl);
+        if(!file.exists() || file.lastModified() == 0 || file.lastModified() + 86400000 < System.currentTimeMillis()) {
+            if(haveNetworkConnection()) {
+                //Toast.makeText(context, " downloading ", Toast.LENGTH_LONG).show();
+                // Here, thisActivity is the current activity
+                DownloadTask downloadTask = new DownloadTask(context);
+                downloadTask.execute(campusXmlUrl);
+            }
         }
     }
     public void animateIntent(View view,View sourceView, Class<?> cls,int position) {
@@ -164,7 +234,7 @@ public class NewMainActivity extends AppCompatActivity {
 
                 // download the file
                 input = connection.getInputStream();
-                output = new FileOutputStream(Environment.getExternalStorageDirectory().getAbsolutePath() + "/CampusPulseXML.xml");
+                output = new FileOutputStream(campusXmlLocalDirectory);
 
                 byte data[] = new byte[4096];
                 long total = 0;
@@ -226,6 +296,29 @@ public class NewMainActivity extends AppCompatActivity {
                 Toast.makeText(context, "Download error: " + result, Toast.LENGTH_LONG).show();
             else
                 Toast.makeText(context,"File downloaded", Toast.LENGTH_SHORT).show();
+        }
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_WRITE_STORAGE: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    checkForUpdateData();
+
+                } else {
+
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                }
+                return;
+            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request
         }
     }
 }
