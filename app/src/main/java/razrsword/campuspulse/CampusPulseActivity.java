@@ -7,6 +7,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,10 +15,20 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import org.xmlpull.v1.XmlPullParserException;
+
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import razrsword.ExtendedItemAnimator;
@@ -49,13 +60,35 @@ public class CampusPulseActivity extends AppCompatActivity {
         locationClassList.add(BusTrackerActivity.class);
         locationClassList.add(DiningActivity.class);
         locationClassList.add(CampusPulseActivity.class);
-
+        File eventsXML = new File(campusXmlLocalDirectory);
+        if(eventsXML.exists()){
+            StackOverflowXmlParser test = new StackOverflowXmlParser();
+            FileInputStream eventsInStream = null;
+            List<StackOverflowXmlParser.Entry> eventList = null;
+            try {
+                eventsInStream = new FileInputStream(eventsXML);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            try {
+                eventList = test.parse(eventsInStream);
+            } catch (XmlPullParserException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Iterator<StackOverflowXmlParser.Entry> eventListIterator = eventList.iterator();
+            while (eventListIterator.hasNext()) {
+                StackOverflowXmlParser.Entry tempEntry = eventListIterator.next();
+                locationNameList.add(new EventCard(tempEntry.title,R.drawable.berkshire));
+            }
+        }else{
         locationNameList.add(new EventCard("UMass Map",R.drawable.berkshire));
         locationNameList.add(new EventCard("UMass Bus", R.drawable.berkshire));
         locationNameList.add(new EventCard("Dining", R.drawable.berkshire));
         locationNameList.add(new EventCard("Campus Events", R.drawable.berkshire));
         locationNameList.add(new EventCard("DeleteXML", R.drawable.berkshire));
-
+        }
         DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
         float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
         adapter = new EventViewAdapter(locationNameList);
@@ -79,12 +112,12 @@ public class CampusPulseActivity extends AppCompatActivity {
                     public void onItemClick(View view, int position) {
                         switch (position) {
                             case 0:
-                                //animateIntent(view,rv.findViewHolderForAdapterPosition(position).itemView,UMassMapActivity.class,position);
-                                Intent intent = new Intent(view.getContext(), locationClassList.get(position));
-                                startActivity(intent);
+                                CardView.LayoutParams lp = new CardView.LayoutParams(300, 1);
+                                rv.findViewHolderForAdapterPosition(position).itemView.setLayoutParams(lp);
                                 break;
                             case 1:
-                                animateIntent(view, rv.findViewHolderForAdapterPosition(position).itemView, locationClassList.get(position), position);
+                                lp = new CardView.LayoutParams(300, 1);
+                                rv.findViewHolderForAdapterPosition(position).itemView.setLayoutParams(lp);
                                 break;
                             case 2:
                                 animateIntent(view, rv.findViewHolderForAdapterPosition(position).itemView, locationClassList.get(position), position);
