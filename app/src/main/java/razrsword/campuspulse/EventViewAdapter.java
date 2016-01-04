@@ -63,6 +63,7 @@ public class EventViewAdapter extends RecyclerView.Adapter<EventViewAdapter.main
     public void onBindViewHolder(final mainButtonHolder mainButtonHolder, int i) {
         mainButtonHolder.eventName.setText(campusPulseCards.get(i).eventTitle);
         mainButtonHolder.eventDate.setText(campusPulseCards.get(i).eventDate);
+        final ImageView temp = mainButtonHolder.locationImage;
         if(campusPulseCards.get(i).eventImageURL != null){
             ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(mainButtonHolder.cv.getContext()).build();
             ImageLoader.getInstance().init(config);
@@ -70,19 +71,18 @@ public class EventViewAdapter extends RecyclerView.Adapter<EventViewAdapter.main
             // Load image, decode it to Bitmap and return Bitmap to callback
             ImageSize targetSize = new ImageSize(150, 100); // result Bitmap will be fit to this size
             imageLoader.loadImage(campusPulseCards.get(i).eventImageURL, targetSize, options, new SimpleImageLoadingListener() {
-                ImageView temp = mainButtonHolder.locationImage;
                 @Override
                 public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
                     temp.setImageBitmap(loadedImage);
                     Log.v("Set image", "Set image to event");
+                    temp.setScaleType(ImageView.ScaleType.CENTER_CROP);
                 }
             });
-            mainButtonHolder.locationImage.setImageDrawable(LoadImageFromWebOperations(campusPulseCards.get(i).eventImageURL));
-        mainButtonHolder.locationImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            //mainButtonHolder.locationImage.setImageDrawable(LoadImageFromWebOperations(campusPulseCards.get(i).eventImageURL));
         } else {
-            mainButtonHolder.locationImage.setImageResource(R.drawable.ic_event_black_48dp);
+            temp.setImageResource(R.drawable.ic_event_black_48dp);
             ColorFilter cf = new ColorFilter();
-            mainButtonHolder.locationImage.setColorFilter(R.color.colorAccent);
+            temp.setColorFilter(R.color.colorAccent);
         }
     }
 
