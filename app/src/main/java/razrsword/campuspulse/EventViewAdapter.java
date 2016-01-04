@@ -1,13 +1,17 @@
 package razrsword.campuspulse;
 
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.InputStream;
+import java.net.URL;
 import java.util.Collections;
 import java.util.List;
 
@@ -42,8 +46,14 @@ public class EventViewAdapter extends RecyclerView.Adapter<EventViewAdapter.main
     public void onBindViewHolder(mainButtonHolder mainButtonHolder, int i) {
         mainButtonHolder.eventName.setText(campusPulseCards.get(i).eventTitle);
         mainButtonHolder.eventDate.setText(campusPulseCards.get(i).eventDate);
-        mainButtonHolder.locationImage.setImageResource(campusPulseCards.get(i).imageID);
+        if(campusPulseCards.get(i).eventImageURL != null){
+        Log.v("EventImageURL", campusPulseCards.get(i).eventImageURL);
+        mainButtonHolder.locationImage.setImageDrawable(LoadImageFromWebOperations(campusPulseCards.get(i).eventImageURL));
         mainButtonHolder.locationImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        } else {
+            mainButtonHolder.locationImage.setImageResource(R.drawable.ic_close_black_24dp);
+            mainButtonHolder.locationImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        }
     }
 
     @Override
@@ -69,6 +79,16 @@ public class EventViewAdapter extends RecyclerView.Adapter<EventViewAdapter.main
     @Override
     public void onItemDismiss(int position) {
 
+    }
+
+    public static Drawable LoadImageFromWebOperations(String url) {
+        try {
+            InputStream is = (InputStream) new URL(url).getContent();
+            Drawable d = Drawable.createFromStream(is, "src name");
+            return d;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public static class mainButtonHolder extends RecyclerView.ViewHolder {

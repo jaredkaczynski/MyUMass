@@ -1,7 +1,10 @@
 package razrsword.campuspulse;
 
+import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import razrsword.main.R;
 
 /**
  * Created by razrs on 03-Jan-16.
@@ -10,14 +13,15 @@ public class EventCard implements Parcelable {
     String eventTitle;
     String eventDate;
     String eventDescription;
+    String eventImageURL;
 
-    int imageID;
 
 
-    public EventCard(String name, String date, String description){
+    public EventCard(String name, String date, String description, String event){
         eventTitle = name;
         eventDate = date;
         eventDescription = description;
+        eventImageURL = event;
     }
 
     protected EventCard(Parcel in) {

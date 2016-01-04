@@ -1,12 +1,9 @@
 package razrsword.campuspulse;
 
-import android.text.Html;
-import android.text.Spanned;
 import android.util.Log;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -58,12 +55,17 @@ public class StackOverflowXmlParser {
                         } else if (tagname.equalsIgnoreCase("title")) {
                             if (entry != null)
                                 entry.setTitle(text);
-                        } else if (tagname.equalsIgnoreCase("link")) {
+                        } else if (tagname.equalsIgnoreCase("eventLink")) {
                             if (entry != null)
-                                entry.setLink(text);
+                                entry.setEventLink(text);
                         } else if (tagname.equalsIgnoreCase("description")) {
                             if (entry != null)
                                 entry.setDescription(text);
+                        }else if (tagname.equalsIgnoreCase("enclosure")) {
+                            if (entry != null) {
+                                entry.setImageLink(parser.getAttributeValue(null, "url"));
+                                Log.v("enclosureTag", "Log before url is added");
+                            }
                         }
                         break;
 
@@ -91,7 +93,8 @@ public class StackOverflowXmlParser {
         public String description;
         public String dateStart;
         public String dateEnd;
-        public String link;
+        public String eventLink;
+        public String imageLink;
 
         public String getTitle() {
             return title;
@@ -109,13 +112,15 @@ public class StackOverflowXmlParser {
             this.description = description;
             extractDate(description);
         }
-
-        public String getLink() {
-            return link;
+        public void setImageLink(String imageLink1) {
+            this.imageLink = imageLink1;
         }
 
-        public void setLink(String link) {
-            this.link = link;
+        public String getEventLink() {
+            return eventLink;
+        }
+        public void setEventLink(String eventLink) {
+            this.eventLink = eventLink;
         }
         public String getDateStart() {
             return dateStart;

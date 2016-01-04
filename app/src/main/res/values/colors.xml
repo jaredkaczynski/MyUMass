@@ -6,5 +6,6 @@
     <color name="statusBarColo">#881c1c</color>
     <color name="busy0">#4CAF50</color>
     <color name="foregroundCardColor">#F5F5F5</color>
-    <color name="cardBackground">#E0E0E0</color>
+    <color name="cardBackground">#e5e5e5</color>
+    <color name="cardBlack">#212121</color>
 </resources>

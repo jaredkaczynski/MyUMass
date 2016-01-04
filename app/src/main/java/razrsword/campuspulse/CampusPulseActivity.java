@@ -8,25 +8,17 @@ import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.Toast;
-
-import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -35,8 +27,6 @@ import razrsword.ExtendedItemAnimator;
 import razrsword.activities.BusTrackerActivity;
 import razrsword.dining.DiningActivity;
 import razrsword.dining.RecyclerItemClickListener;
-import razrsword.main.MainCard;
-import razrsword.main.MainViewAdapter;
 import razrsword.main.R;
 import razrsword.main.SimpleItemTouchHelperCallbackMain;
 import razrsword.mapping.UMassMapActivity;
@@ -75,7 +65,7 @@ public class CampusPulseActivity extends AppCompatActivity {
             Iterator<StackOverflowXmlParser.Entry> eventListIterator = eventList.iterator();
             while (eventListIterator.hasNext()) {
                 StackOverflowXmlParser.Entry tempEntry = eventListIterator.next();
-                locationNameList.add(new EventCard(tempEntry.title,tempEntry.dateStart,tempEntry.description));
+                locationNameList.add(new EventCard(tempEntry.title,tempEntry.dateStart,tempEntry.description,tempEntry.imageLink));
             }
         }else{
         /*locationNameList.add(new EventCard("UMass Map",R.drawable.berkshire));
@@ -130,6 +120,9 @@ public class CampusPulseActivity extends AppCompatActivity {
                 })
         );
     }
+
+
+
     public void animateIntent(View view,View sourceView, Class<?> cls,int position) {
 
         // Ordinary Intent for launching a new activity
