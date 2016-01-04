@@ -2,6 +2,7 @@ package razrsword.campuspulse;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.ColorFilter;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.support.v7.widget.CardView;
@@ -67,7 +68,7 @@ public class EventViewAdapter extends RecyclerView.Adapter<EventViewAdapter.main
             ImageLoader.getInstance().init(config);
         Log.v("EventImageURL", campusPulseCards.get(i).eventImageURL);
             // Load image, decode it to Bitmap and return Bitmap to callback
-            ImageSize targetSize = new ImageSize(80, 50); // result Bitmap will be fit to this size
+            ImageSize targetSize = new ImageSize(150, 100); // result Bitmap will be fit to this size
             imageLoader.loadImage(campusPulseCards.get(i).eventImageURL, targetSize, options, new SimpleImageLoadingListener() {
                 ImageView temp = mainButtonHolder.locationImage;
                 @Override
@@ -79,8 +80,9 @@ public class EventViewAdapter extends RecyclerView.Adapter<EventViewAdapter.main
             mainButtonHolder.locationImage.setImageDrawable(LoadImageFromWebOperations(campusPulseCards.get(i).eventImageURL));
         mainButtonHolder.locationImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
         } else {
-            mainButtonHolder.locationImage.setImageResource(R.drawable.ic_close_black_24dp);
-            mainButtonHolder.locationImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            mainButtonHolder.locationImage.setImageResource(R.drawable.ic_event_black_48dp);
+            ColorFilter cf = new ColorFilter();
+            mainButtonHolder.locationImage.setColorFilter(R.color.colorAccent);
         }
     }
 
