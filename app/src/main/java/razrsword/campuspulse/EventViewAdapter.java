@@ -1,6 +1,9 @@
 package razrsword.campuspulse;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -48,11 +51,38 @@ public class EventViewAdapter extends RecyclerView.Adapter<EventViewAdapter.main
         mainButtonHolder.eventDate.setText(campusPulseCards.get(i).eventDate);
         if(campusPulseCards.get(i).eventImageURL != null){
         Log.v("EventImageURL", campusPulseCards.get(i).eventImageURL);
+            new DownloadImageTask((ImageView) mainButtonHolder.locationImage)
+                    .execute(campusPulseCards.get(i).eventImageURL);
         mainButtonHolder.locationImage.setImageDrawable(LoadImageFromWebOperations(campusPulseCards.get(i).eventImageURL));
         mainButtonHolder.locationImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
         } else {
             mainButtonHolder.locationImage.setImageResource(R.drawable.ic_close_black_24dp);
             mainButtonHolder.locationImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        }
+    }
+
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        ImageView bmImage;
+
+        public DownloadImageTask(ImageView bmImage) {
+            this.bmImage = bmImage;
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return mIcon11;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            bmImage.setImageBitmap(result);
         }
     }
 
