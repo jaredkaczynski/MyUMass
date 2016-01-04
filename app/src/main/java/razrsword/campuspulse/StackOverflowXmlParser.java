@@ -40,6 +40,11 @@ public class StackOverflowXmlParser {
                             // create a new instance of item entry
                             entry = new Entry();
                             Log.v("Creating entry", " Entry Created for storage");
+                        } else if (tagname.equalsIgnoreCase("enclosure")) {
+                            if (entry != null) {
+                                entry.setImageLink(parser.getAttributeValue(null, "url"));
+                                Log.v("enclosureTag", "Log before url is added" + parser.getAttributeValue(null, "url") );
+                            }
                         }
                         break;
 
@@ -61,11 +66,6 @@ public class StackOverflowXmlParser {
                         } else if (tagname.equalsIgnoreCase("description")) {
                             if (entry != null)
                                 entry.setDescription(text);
-                        }else if (tagname.equalsIgnoreCase("enclosure")) {
-                            if (entry != null) {
-                                entry.setImageLink(parser.getAttributeValue(null, "url"));
-                                Log.v("enclosureTag", "Log before url is added");
-                            }
                         }
                         break;
 
