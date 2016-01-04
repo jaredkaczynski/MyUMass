@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context="razrsword.dining.DetailedDiningInformation">
+    android:fitsSystemWindows="false"
+    tools:context="razrsword.dining.DetailedDiningInformation"
+    >
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/id"
@@ -43,11 +44,6 @@
         </LinearLayout>
 
     </android.support.design.widget.AppBarLayout>
-    <android.support.v4.view.ViewPager
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/dining_location_info"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
     <include layout="@layout/content_detailed_dining_information" />
 
     <android.support.design.widget.FloatingActionButton

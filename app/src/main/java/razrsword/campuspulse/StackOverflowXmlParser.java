@@ -34,6 +34,7 @@ public class StackOverflowXmlParser {
 
             parser.require(XmlPullParser.START_TAG, ns, "rss");
             while (parser.next() != XmlPullParser.END_TAG) {
+                Log.v("Reading Feed XML"," rss");
                 if (parser.getEventType() != XmlPullParser.START_TAG) {
                     continue;
                 }
@@ -55,6 +56,7 @@ public class StackOverflowXmlParser {
             String description = null;
             String link = null;
             while (parser.next() != XmlPullParser.END_TAG) {
+                Log.v("Reading Entry XML"," item");
                 if (parser.getEventType() != XmlPullParser.START_TAG) {
                     continue;
                 }
@@ -76,6 +78,7 @@ public class StackOverflowXmlParser {
         private String readTitle(XmlPullParser parser) throws IOException, XmlPullParserException {
             parser.require(XmlPullParser.START_TAG, ns, "title");
             String title = readText(parser);
+            Log.v("Reading Title XML", title);
             parser.require(XmlPullParser.END_TAG, ns, "title");
             return title;
         }
