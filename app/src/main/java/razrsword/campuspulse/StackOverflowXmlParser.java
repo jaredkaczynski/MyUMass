@@ -1,10 +1,10 @@
 package razrsword.campuspulse;
 
 import android.util.Log;
-import android.util.Xml;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,127 +15,99 @@ import java.util.List;
  * Created by razrs on 03-Jan-16.
  */
 public class StackOverflowXmlParser {
-        // We don't use namespaces???
-        private final String ns = null;
 
-        public List parse(InputStream in) throws XmlPullParserException, IOException {
-            try {
-                XmlPullParser parser = Xml.newPullParser();
-                parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
-                parser.setInput(in, null);
-                parser.nextTag();
-                return readFeed(parser);
-            } finally {
-                in.close();
-            }
-        }
-        private List readFeed(XmlPullParser parser) throws XmlPullParserException, IOException {
-            List entries = new ArrayList();
+    private List<Entry> entries = new ArrayList<Entry>();
+    private Entry entry;
+    private String text;
 
-            parser.require(XmlPullParser.START_TAG, ns, "rss");
-            while (parser.next() != XmlPullParser.END_TAG) {
-                Log.v("Reading Feed XML"," rss");
-                if (parser.getEventType() != XmlPullParser.START_TAG) {
-                    continue;
+    public List<Entry> parse(InputStream is) {
+        try {
+            XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+            factory.setNamespaceAware(true);
+            XmlPullParser parser = factory.newPullParser();
+
+            parser.setInput(is, null);
+
+            int eventType = parser.getEventType();
+            while (eventType != XmlPullParser.END_DOCUMENT) {
+                String tagname = parser.getName();
+                switch (eventType) {
+                    case XmlPullParser.START_TAG:
+                        if (tagname.equalsIgnoreCase("item")) {
+                            // create a new instance of item entry
+                            entry = new Entry();
+                            Log.v("Creating entry", " Entry Created for storage");
+                        }
+                        break;
+
+                    case XmlPullParser.TEXT:
+                        text = parser.getText();
+                        break;
+
+                    case XmlPullParser.END_TAG:
+                        if (tagname.equalsIgnoreCase("item")) {
+                            Log.v("Adding entry", " Entry Added to list");
+                            // add entry object to list
+                            entries.add(entry);
+                        } else if (tagname.equalsIgnoreCase("title")) {
+                            if (entry != null)
+                                entry.setTitle(text);
+                        } else if (tagname.equalsIgnoreCase("link")) {
+                            if (entry != null)
+                                entry.setLink(text);
+                        } else if (tagname.equalsIgnoreCase("description")) {
+                            if (entry != null)
+                                entry.setDescription(text);
+                        }
+                        break;
+
+                    default:
+                        break;
                 }
-                String name = parser.getName();
-                // Starts by looking for the entry tag
-                if (name.equals("item")) {
-                    Log.v("Reading Feed item"," item rss");
-                    entries.add(readEntry(parser));
-                } else {
-                    skip(parser);
-                }
+                eventType = parser.next();
             }
-            return entries;
-        }
-        // Parses the contents of an entry. If it encounters a title, summary, or link tag, hands them off
-        // to their respective "read" methods for processing. Otherwise, skips the tag.
-        private Entry readEntry(XmlPullParser parser) throws XmlPullParserException, IOException {
-            parser.require(XmlPullParser.START_TAG, ns, "item");
-            String title = null;
-            String description = null;
-            String link = null;
-            while (parser.next() != XmlPullParser.END_TAG) {
-                Log.v("Reading Entry XML"," item");
-                if (parser.getEventType() != XmlPullParser.START_TAG) {
-                    continue;
-                }
-                String name = parser.getName();
-                if (name.equals("title")) {
-                    title = readTitle(parser);
-                } else if (name.equals("description")) {
-                    description = readSummary(parser);
-                } else if (name.equals("link")) {
-                    link = readLink(parser);
-                } else {
-                    skip(parser);
-                }
-            }
-            return new Entry(title, description, link);
+
+        } catch (XmlPullParserException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
-        // Processes title tags in the feed.
-        private String readTitle(XmlPullParser parser) throws IOException, XmlPullParserException {
-            parser.require(XmlPullParser.START_TAG, ns, "title");
-            String title = readText(parser);
-            Log.v("Reading Title XML", title);
-            parser.require(XmlPullParser.END_TAG, ns, "title");
+        return entries;
+    }
+
+    public List<Entry> getEntries() {
+        return entries;
+    }
+
+    public class Entry {
+        public String title;
+        public String description;
+        public String link;
+
+        public String getTitle() {
             return title;
         }
 
-        // Processes link tags in the feed.
-        private String readLink(XmlPullParser parser) throws IOException, XmlPullParserException {
-            String link = "";
-            parser.require(XmlPullParser.START_TAG, ns, "link");
-            link = parser.getText();
-            //String relType = parser.getAttributeValue(null, "rel");
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public void setDescription(String description) {
+            this.description = description;
+        }
+
+        public String getLink() {
             return link;
         }
 
-        // Processes summary tags in the feed.
-        private String readSummary(XmlPullParser parser) throws IOException, XmlPullParserException {
-            parser.require(XmlPullParser.START_TAG, ns, "summary");
-            String summary = readText(parser);
-            parser.require(XmlPullParser.END_TAG, ns, "summary");
-            return summary;
-        }
-
-        // For the tags title and summary, extracts their text values.
-        private String readText(XmlPullParser parser) throws IOException, XmlPullParserException {
-            String result = "";
-            if (parser.next() == XmlPullParser.TEXT) {
-                result = parser.getText();
-                parser.nextTag();
-            }
-            return result;
-        }
-        private void skip(XmlPullParser parser) throws XmlPullParserException, IOException {
-            if (parser.getEventType() != XmlPullParser.START_TAG) {
-                throw new IllegalStateException();
-            }
-            int depth = 1;
-            while (depth != 0) {
-                switch (parser.next()) {
-                    case XmlPullParser.END_TAG:
-                        depth--;
-                        break;
-                    case XmlPullParser.START_TAG:
-                        depth++;
-                        break;
-                }
-            }
-        }
-
-    public static class Entry {
-        public final String title;
-        public final String description;
-        public final String link;
-
-        private Entry(String title, String description, String link) {
-            this.title = title;
-            this.description = description;
+        public void setLink(String link) {
             this.link = link;
         }
+
     }
 }

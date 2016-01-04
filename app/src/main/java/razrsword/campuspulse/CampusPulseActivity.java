@@ -70,13 +70,8 @@ public class CampusPulseActivity extends AppCompatActivity {
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
-            try {
                 eventList = test.parse(eventsInStream);
-            } catch (XmlPullParserException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+
             Iterator<StackOverflowXmlParser.Entry> eventListIterator = eventList.iterator();
             while (eventListIterator.hasNext()) {
                 StackOverflowXmlParser.Entry tempEntry = eventListIterator.next();
