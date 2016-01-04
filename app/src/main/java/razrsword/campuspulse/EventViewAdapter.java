@@ -13,6 +13,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.ImageSize;
+import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
+
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Collections;
@@ -28,6 +34,13 @@ public class EventViewAdapter extends RecyclerView.Adapter<EventViewAdapter.main
         implements ItemTouchHelperAdapter {
 
     List<EventCard> campusPulseCards;
+    ImageLoader imageLoader = ImageLoader.getInstance(); // Get singleton instance
+
+    DisplayImageOptions options = new DisplayImageOptions.Builder()
+            //.showImageOnFail(R.drawable.) // resource or drawable
+            .cacheInMemory(false) // default
+            .cacheOnDisk(false)
+            .build();
 
     @Override
     public mainButtonHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -46,43 +59,28 @@ public class EventViewAdapter extends RecyclerView.Adapter<EventViewAdapter.main
     }
 
     @Override
-    public void onBindViewHolder(mainButtonHolder mainButtonHolder, int i) {
+    public void onBindViewHolder(final mainButtonHolder mainButtonHolder, int i) {
         mainButtonHolder.eventName.setText(campusPulseCards.get(i).eventTitle);
         mainButtonHolder.eventDate.setText(campusPulseCards.get(i).eventDate);
         if(campusPulseCards.get(i).eventImageURL != null){
+            ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(mainButtonHolder.cv.getContext()).build();
+            ImageLoader.getInstance().init(config);
         Log.v("EventImageURL", campusPulseCards.get(i).eventImageURL);
-            new DownloadImageTask((ImageView) mainButtonHolder.locationImage)
-                    .execute(campusPulseCards.get(i).eventImageURL);
-        mainButtonHolder.locationImage.setImageDrawable(LoadImageFromWebOperations(campusPulseCards.get(i).eventImageURL));
+            // Load image, decode it to Bitmap and return Bitmap to callback
+            ImageSize targetSize = new ImageSize(80, 50); // result Bitmap will be fit to this size
+            imageLoader.loadImage(campusPulseCards.get(i).eventImageURL, targetSize, options, new SimpleImageLoadingListener() {
+                ImageView temp = mainButtonHolder.locationImage;
+                @Override
+                public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+                    temp.setImageBitmap(loadedImage);
+                    Log.v("Set image", "Set image to event");
+                }
+            });
+            mainButtonHolder.locationImage.setImageDrawable(LoadImageFromWebOperations(campusPulseCards.get(i).eventImageURL));
         mainButtonHolder.locationImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
         } else {
             mainButtonHolder.locationImage.setImageResource(R.drawable.ic_close_black_24dp);
             mainButtonHolder.locationImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        }
-    }
-
-    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-        ImageView bmImage;
-
-        public DownloadImageTask(ImageView bmImage) {
-            this.bmImage = bmImage;
-        }
-
-        protected Bitmap doInBackground(String... urls) {
-            String urldisplay = urls[0];
-            Bitmap mIcon11 = null;
-            try {
-                InputStream in = new java.net.URL(urldisplay).openStream();
-                mIcon11 = BitmapFactory.decodeStream(in);
-            } catch (Exception e) {
-                Log.e("Error", e.getMessage());
-                e.printStackTrace();
-            }
-            return mIcon11;
-        }
-
-        protected void onPostExecute(Bitmap result) {
-            bmImage.setImageBitmap(result);
         }
     }
 
