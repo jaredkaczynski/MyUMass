@@ -1,7 +1,13 @@
 package razrsword.campuspulse;
 
+import android.text.Html;
+import android.text.Spanned;
 import android.util.Log;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -16,7 +22,7 @@ import java.util.List;
  */
 public class StackOverflowXmlParser {
 
-    private List<Entry> entries = new ArrayList<Entry>();
+    private List<Entry> entries = new ArrayList<>();
     private Entry entry;
     private String text;
 
@@ -83,6 +89,8 @@ public class StackOverflowXmlParser {
     public class Entry {
         public String title;
         public String description;
+        public String dateStart;
+        public String dateEnd;
         public String link;
 
         public String getTitle() {
@@ -99,6 +107,7 @@ public class StackOverflowXmlParser {
 
         public void setDescription(String description) {
             this.description = description;
+            extractDate(description);
         }
 
         public String getLink() {
@@ -107,6 +116,24 @@ public class StackOverflowXmlParser {
 
         public void setLink(String link) {
             this.link = link;
+        }
+        public String getDateStart() {
+            return dateStart;
+        }
+        public String getDateEnd() {
+            return dateEnd;
+        }
+        public String extractDate(String description){
+            //Spanned ss = Html.fromHtml(Html.fromHtml(description).toString());
+            //String html = ss.toString();
+
+            Document doc = Jsoup.parse(description);
+            Elements dateStart = doc.select("span.dtstart");
+            Elements dateEnd = doc.select("span.dtend");
+            this.dateStart = dateStart.get(0).text();
+            this.dateEnd = dateEnd.get(0).text();
+            Log.v("HTML", this.dateStart);
+            return null;
         }
 
     }

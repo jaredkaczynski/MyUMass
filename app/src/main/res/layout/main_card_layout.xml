@@ -10,7 +10,7 @@
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_gravity="center_horizontal"
-        android:id="@+id/location_card"
+        android:id="@+id/event_card"
         android:paddingBottom="10dp">
         <LinearLayout
             android:layout_width="fill_parent"
@@ -26,7 +26,7 @@
                 android:id="@+id/dining_location_image" />
 
             <TextView
-                android:id="@+id/location_name"
+                android:id="@+id/event_name"
                 android:text="Basic CardView"
                 android:textColor="@color/foregroundCardColor"
                 android:layout_marginTop="0dp"

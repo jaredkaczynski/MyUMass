@@ -8,14 +8,16 @@ import android.os.Parcelable;
  */
 public class EventCard implements Parcelable {
     String eventTitle;
+    String eventDate;
     String eventDescription;
 
     int imageID;
 
 
-    public EventCard(String name, int id){
+    public EventCard(String name, String date, String description){
         eventTitle = name;
-        imageID = id;
+        eventDate = date;
+        eventDescription = description;
     }
 
     protected EventCard(Parcel in) {

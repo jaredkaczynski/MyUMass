@@ -40,7 +40,8 @@ public class EventViewAdapter extends RecyclerView.Adapter<EventViewAdapter.main
 
     @Override
     public void onBindViewHolder(mainButtonHolder mainButtonHolder, int i) {
-        mainButtonHolder.locationName.setText(campusPulseCards.get(i).eventTitle);
+        mainButtonHolder.eventName.setText(campusPulseCards.get(i).eventTitle);
+        mainButtonHolder.eventDate.setText(campusPulseCards.get(i).eventDate);
         mainButtonHolder.locationImage.setImageResource(campusPulseCards.get(i).imageID);
         mainButtonHolder.locationImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
     }
@@ -72,14 +73,16 @@ public class EventViewAdapter extends RecyclerView.Adapter<EventViewAdapter.main
 
     public static class mainButtonHolder extends RecyclerView.ViewHolder {
         CardView cv;
-        TextView locationName;
+        TextView eventName;
+        TextView eventDate;
         ImageView locationImage;
 
         mainButtonHolder(View itemView) {
             super(itemView);
-            cv = (CardView) itemView.findViewById(R.id.location_card);
-            locationName = (TextView) itemView.findViewById(R.id.location_name);
-            locationImage = (ImageView) itemView.findViewById(R.id.dining_location_image);
+            cv = (CardView) itemView.findViewById(R.id.event_card);
+            eventName = (TextView) itemView.findViewById(R.id.event_name);
+            eventDate = (TextView) itemView.findViewById(R.id.event_date);
+            locationImage = (ImageView) itemView.findViewById(R.id.event_location_image);
         }
     }
 

@@ -77,8 +77,8 @@ public class DiningViewAdapter extends RecyclerView.Adapter<DiningViewAdapter.lo
 
         locationViewHolder(View itemView) {
             super(itemView);
-            cv = (CardView) itemView.findViewById(R.id.location_card);
-            locationName = (TextView) itemView.findViewById(R.id.location_name);
+            cv = (CardView) itemView.findViewById(R.id.event_card);
+            locationName = (TextView) itemView.findViewById(R.id.event_name);
             locationImage = (ImageView) itemView.findViewById(R.id.dining_location_image);
         }
     }

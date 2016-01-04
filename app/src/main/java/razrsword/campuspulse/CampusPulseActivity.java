@@ -75,14 +75,14 @@ public class CampusPulseActivity extends AppCompatActivity {
             Iterator<StackOverflowXmlParser.Entry> eventListIterator = eventList.iterator();
             while (eventListIterator.hasNext()) {
                 StackOverflowXmlParser.Entry tempEntry = eventListIterator.next();
-                locationNameList.add(new EventCard(tempEntry.title,R.drawable.berkshire));
+                locationNameList.add(new EventCard(tempEntry.title,tempEntry.dateStart,tempEntry.description));
             }
         }else{
-        locationNameList.add(new EventCard("UMass Map",R.drawable.berkshire));
+        /*locationNameList.add(new EventCard("UMass Map",R.drawable.berkshire));
         locationNameList.add(new EventCard("UMass Bus", R.drawable.berkshire));
         locationNameList.add(new EventCard("Dining", R.drawable.berkshire));
         locationNameList.add(new EventCard("Campus Events", R.drawable.berkshire));
-        locationNameList.add(new EventCard("DeleteXML", R.drawable.berkshire));
+        locationNameList.add(new EventCard("DeleteXML", R.drawable.berkshire));*/
         }
         DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
         float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
@@ -134,7 +134,7 @@ public class CampusPulseActivity extends AppCompatActivity {
 
         // Ordinary Intent for launching a new activity
         Intent intent = new Intent(this, cls);
-        //intent.putExtra("locationName", locationNameList.get(position).locationName);
+        //intent.putExtra("eventName", locationNameList.get(position).eventName);
 
         // Get the transition name from the string
         String transitionName = getString(R.string.transition_string);
