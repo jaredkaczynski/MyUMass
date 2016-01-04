@@ -15,7 +15,7 @@ import java.util.List;
  * Created by razrs on 03-Jan-16.
  */
 public class StackOverflowXmlParser {
-        // We don't use namespaces
+        // We don't use namespaces???
         private final String ns = null;
 
         public List parse(InputStream in) throws XmlPullParserException, IOException {
@@ -32,14 +32,14 @@ public class StackOverflowXmlParser {
         private List readFeed(XmlPullParser parser) throws XmlPullParserException, IOException {
             List entries = new ArrayList();
 
-            parser.require(XmlPullParser.START_TAG, ns, "feed");
+            parser.require(XmlPullParser.START_TAG, ns, "rss");
             while (parser.next() != XmlPullParser.END_TAG) {
                 if (parser.getEventType() != XmlPullParser.START_TAG) {
                     continue;
                 }
                 String name = parser.getName();
                 // Starts by looking for the entry tag
-                if (name.equals("entry")) {
+                if (name.equals("item")) {
                     entries.add(readEntry(parser));
                 } else {
                     skip(parser);
@@ -87,7 +87,6 @@ public class StackOverflowXmlParser {
             String tag = parser.getName();
             String relType = parser.getAttributeValue(null, "rel");
             link = parser.getAttributeValue(0);
-            Log.v("Parser name", parser.getName());
             return link;
         }
 
