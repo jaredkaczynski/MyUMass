@@ -38,7 +38,7 @@ public class EventViewAdapter extends RecyclerView.Adapter<EventViewAdapter.main
     ImageLoader imageLoader = ImageLoader.getInstance(); // Get singleton instance
 
     DisplayImageOptions options = new DisplayImageOptions.Builder()
-            //.showImageOnFail(R.drawable.) // resource or drawable
+            .showImageOnFail(R.drawable.ic_event_white_48dp) // resource or drawable
             .cacheInMemory(false) // default
             .cacheOnDisk(false)
             .build();
@@ -60,7 +60,7 @@ public class EventViewAdapter extends RecyclerView.Adapter<EventViewAdapter.main
     }
 
     @Override
-    public void onBindViewHolder(final mainButtonHolder mainButtonHolder, int i) {
+    public void onBindViewHolder(mainButtonHolder mainButtonHolder, int i) {
         mainButtonHolder.eventName.setText(campusPulseCards.get(i).eventTitle);
         mainButtonHolder.eventDate.setText(campusPulseCards.get(i).eventDate);
         final ImageView temp = mainButtonHolder.locationImage;
@@ -69,10 +69,11 @@ public class EventViewAdapter extends RecyclerView.Adapter<EventViewAdapter.main
             ImageLoader.getInstance().init(config);
         Log.v("EventImageURL", campusPulseCards.get(i).eventImageURL);
             // Load image, decode it to Bitmap and return Bitmap to callback
-            ImageSize targetSize = new ImageSize(150, 100); // result Bitmap will be fit to this size
+            ImageSize targetSize = new ImageSize(500, 250); // result Bitmap will be fit to this size
             imageLoader.loadImage(campusPulseCards.get(i).eventImageURL, targetSize, options, new SimpleImageLoadingListener() {
                 @Override
                 public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+                    temp.setBackgroundResource(R.color.colorPrimary);
                     temp.setImageBitmap(loadedImage);
                     Log.v("Set image", "Set image to event");
                     temp.setScaleType(ImageView.ScaleType.CENTER_CROP);
@@ -80,9 +81,9 @@ public class EventViewAdapter extends RecyclerView.Adapter<EventViewAdapter.main
             });
             //mainButtonHolder.locationImage.setImageDrawable(LoadImageFromWebOperations(campusPulseCards.get(i).eventImageURL));
         } else {
-            temp.setImageResource(R.drawable.ic_event_black_48dp);
-            ColorFilter cf = new ColorFilter();
-            temp.setColorFilter(R.color.colorAccent);
+            temp.setImageResource(R.drawable.ic_event_white_48dp);
+            temp.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            temp.setBackgroundResource(R.color.colorPrimary);
         }
     }
 
