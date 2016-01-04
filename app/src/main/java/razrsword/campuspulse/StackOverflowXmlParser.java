@@ -41,6 +41,7 @@ public class StackOverflowXmlParser {
                 String name = parser.getName();
                 // Starts by looking for the entry tag
                 if (name.equals("item")) {
+                    Log.v("Reading Feed item"," item rss");
                     entries.add(readEntry(parser));
                 } else {
                     skip(parser);
@@ -87,9 +88,8 @@ public class StackOverflowXmlParser {
         private String readLink(XmlPullParser parser) throws IOException, XmlPullParserException {
             String link = "";
             parser.require(XmlPullParser.START_TAG, ns, "link");
-            String tag = parser.getName();
-            String relType = parser.getAttributeValue(null, "rel");
-            link = parser.getAttributeValue(0);
+            link = parser.getText();
+            //String relType = parser.getAttributeValue(null, "rel");
             return link;
         }
 
