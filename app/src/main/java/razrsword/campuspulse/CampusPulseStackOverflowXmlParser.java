@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * Created by razrs on 03-Jan-16.
  */
-public class StackOverflowXmlParser {
+public class CampusPulseStackOverflowXmlParser {
 
     private List<Entry> entries = new ArrayList<>();
     private Entry entry;

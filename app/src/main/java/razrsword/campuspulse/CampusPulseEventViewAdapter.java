@@ -1,10 +1,10 @@
 package razrsword.campuspulse;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.ColorFilter;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
+import android.graphics.drawable.GradientDrawable;
+import android.support.v7.graphics.Palette;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -31,10 +31,10 @@ import razrsword.main.R;
 /**
  * Created by razrs on 03-Jan-16.
  */
-public class EventViewAdapter extends RecyclerView.Adapter<EventViewAdapter.mainButtonHolder>
+public class CampusPulseEventViewAdapter extends RecyclerView.Adapter<CampusPulseEventViewAdapter.mainButtonHolder>
         implements ItemTouchHelperAdapter {
 
-    List<EventCard> campusPulseCards;
+    List<CampusPulseEventCard> campusPulseCards;
     ImageLoader imageLoader = ImageLoader.getInstance(); // Get singleton instance
 
     DisplayImageOptions options = new DisplayImageOptions.Builder()
@@ -50,7 +50,7 @@ public class EventViewAdapter extends RecyclerView.Adapter<EventViewAdapter.main
         return lvh;
     }
 
-    EventViewAdapter(List<EventCard> campusPulseCards) {
+    CampusPulseEventViewAdapter(List<CampusPulseEventCard> campusPulseCards) {
         this.campusPulseCards = campusPulseCards;
     }
 
@@ -74,7 +74,14 @@ public class EventViewAdapter extends RecyclerView.Adapter<EventViewAdapter.main
                 @Override
                 public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
                     temp.setBackgroundResource(R.color.colorPrimary);
+                    temp.setColorFilter(Color.argb(255, 255, 255, 255));
+                    Palette palette = Palette.from(loadedImage).generate();
                     temp.setImageBitmap(loadedImage);
+                    int[] colors = {Color.parseColor(palette.getVibrantSwatch().toString()),Color.parseColor(palette.getMutedSwatch().toString())};
+
+                    //create a new gradient color
+                    GradientDrawable gd = new GradientDrawable(
+                            GradientDrawable.Orientation.LEFT_RIGHT, colors);
                     Log.v("Set image", "Set image to event");
                     temp.setScaleType(ImageView.ScaleType.CENTER_CROP);
                 }

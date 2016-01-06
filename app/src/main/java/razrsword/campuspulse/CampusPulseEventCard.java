@@ -1,15 +1,12 @@
 package razrsword.campuspulse;
 
-import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
-
-import razrsword.main.R;
 
 /**
  * Created by razrs on 03-Jan-16.
  */
-public class EventCard implements Parcelable {
+public class CampusPulseEventCard implements Parcelable {
     String eventTitle;
     String eventDate;
     String eventDescription;
@@ -17,26 +14,26 @@ public class EventCard implements Parcelable {
 
 
 
-    public EventCard(String name, String date, String description, String event){
+    public CampusPulseEventCard(String name, String date, String description, String event){
         eventTitle = name;
         eventDate = date;
         eventDescription = description;
         eventImageURL = event;
     }
 
-    protected EventCard(Parcel in) {
+    protected CampusPulseEventCard(Parcel in) {
         eventTitle = in.readString();
     }
 
-    public static final Creator<EventCard> CREATOR = new Creator<EventCard>() {
+    public static final Creator<CampusPulseEventCard> CREATOR = new Creator<CampusPulseEventCard>() {
         @Override
-        public EventCard createFromParcel(Parcel in) {
-            return new EventCard(in);
+        public CampusPulseEventCard createFromParcel(Parcel in) {
+            return new CampusPulseEventCard(in);
         }
 
         @Override
-        public EventCard[] newArray(int size) {
-            return new EventCard[size];
+        public CampusPulseEventCard[] newArray(int size) {
+            return new CampusPulseEventCard[size];
         }
     };
 

@@ -33,7 +33,7 @@ import razrsword.mapping.UMassMapActivity;
 
 public class CampusPulseActivity extends AppCompatActivity {
     RecyclerView rv;
-    EventViewAdapter adapter;
+    CampusPulseEventViewAdapter adapter;
     String campusXmlLocalDirectory = Environment.getExternalStorageDirectory().getAbsolutePath() + "/CampusPulseXML.xml";
     Context context;
 
@@ -42,7 +42,7 @@ public class CampusPulseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_campus_pulse);
-        List<EventCard> locationNameList;
+        List<CampusPulseEventCard> locationNameList;
         setTitle("Campus Pulse Events");
         locationNameList = new ArrayList<>();
         locationClassList = new ArrayList<>();
@@ -52,9 +52,9 @@ public class CampusPulseActivity extends AppCompatActivity {
         locationClassList.add(CampusPulseActivity.class);
         File eventsXML = new File(campusXmlLocalDirectory);
         if(eventsXML.exists()){
-            StackOverflowXmlParser test = new StackOverflowXmlParser();
+            CampusPulseStackOverflowXmlParser test = new CampusPulseStackOverflowXmlParser();
             FileInputStream eventsInStream = null;
-            List<StackOverflowXmlParser.Entry> eventList = null;
+            List<CampusPulseStackOverflowXmlParser.Entry> eventList = null;
             try {
                 eventsInStream = new FileInputStream(eventsXML);
             } catch (FileNotFoundException e) {
@@ -62,21 +62,21 @@ public class CampusPulseActivity extends AppCompatActivity {
             }
                 eventList = test.parse(eventsInStream);
 
-            Iterator<StackOverflowXmlParser.Entry> eventListIterator = eventList.iterator();
+            Iterator<CampusPulseStackOverflowXmlParser.Entry> eventListIterator = eventList.iterator();
             while (eventListIterator.hasNext()) {
-                StackOverflowXmlParser.Entry tempEntry = eventListIterator.next();
-                locationNameList.add(new EventCard(tempEntry.title,tempEntry.dateStart,tempEntry.description,tempEntry.imageLink));
+                CampusPulseStackOverflowXmlParser.Entry tempEntry = eventListIterator.next();
+                locationNameList.add(new CampusPulseEventCard(tempEntry.title,tempEntry.dateStart,tempEntry.description,tempEntry.imageLink));
             }
         }else{
-        /*locationNameList.add(new EventCard("UMass Map",R.drawable.berkshire));
-        locationNameList.add(new EventCard("UMass Bus", R.drawable.berkshire));
-        locationNameList.add(new EventCard("Dining", R.drawable.berkshire));
-        locationNameList.add(new EventCard("Campus Events", R.drawable.berkshire));
-        locationNameList.add(new EventCard("DeleteXML", R.drawable.berkshire));*/
+        /*locationNameList.add(new CampusPulseEventCard("UMass Map",R.drawable.berkshire));
+        locationNameList.add(new CampusPulseEventCard("UMass Bus", R.drawable.berkshire));
+        locationNameList.add(new CampusPulseEventCard("Dining", R.drawable.berkshire));
+        locationNameList.add(new CampusPulseEventCard("Campus Events", R.drawable.berkshire));
+        locationNameList.add(new CampusPulseEventCard("DeleteXML", R.drawable.berkshire));*/
         }
         DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
         float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
-        adapter = new EventViewAdapter(locationNameList);
+        adapter = new CampusPulseEventViewAdapter(locationNameList);
         //adapter.diningLocations.add(new DiningLocation("Worcester"));
         //adapter.diningLocations.add(new DiningLocation("Berkshire"));
         // Inflate the layout for this fragment

@@ -105,4 +105,5 @@
     <string name="title_activity_diningtest">Diningtest</string>
     <string name="title_activity_detailed_dining_information">DetailedDiningInformation</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_campus_pulse_detail">CampusPulseDetailActivity</string>
 </resources>
