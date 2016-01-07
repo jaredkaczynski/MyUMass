@@ -34,9 +34,10 @@ import razrsword.main.R;
 public class CampusPulseEventViewAdapter extends RecyclerView.Adapter<CampusPulseEventViewAdapter.mainButtonHolder>
         implements ItemTouchHelperAdapter {
 
+    //list containing the cards displayed in the view
     List<CampusPulseEventCard> campusPulseCards;
     ImageLoader imageLoader = ImageLoader.getInstance(); // Get singleton instance
-
+    //Config for the image caching library i'm using
     DisplayImageOptions options = new DisplayImageOptions.Builder()
             .showImageOnFail(R.drawable.ic_event_white_48dp) // resource or drawable
             .cacheInMemory(false) // default
@@ -65,6 +66,7 @@ public class CampusPulseEventViewAdapter extends RecyclerView.Adapter<CampusPuls
         mainButtonHolder.eventDate.setText(campusPulseCards.get(i).eventDate);
         final ImageView temp = mainButtonHolder.locationImage;
         final ImageView gradient = mainButtonHolder.gradientImage;
+        //Setting the image and gradient is done here
         if(campusPulseCards.get(i).eventImageURL != null){
             ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(mainButtonHolder.cv.getContext()).build();
             ImageLoader.getInstance().init(config);
@@ -101,7 +103,7 @@ public class CampusPulseEventViewAdapter extends RecyclerView.Adapter<CampusPuls
             temp.setBackgroundResource(R.color.colorPrimary);
             //Palette palette = Palette.from(R.drawable.ic).generate();
             int vibrantColor = changeAlpha(R.color.colorPrimary, 255);
-            int vibrantLightColor = changeAlpha(R.color.colorLightPrimary, 70);
+            int vibrantLightColor = changeAlpha(R.color.colorPrimary, 70);
             int[] colors = {vibrantColor, vibrantLightColor ,vibrantLightColor};
             Log.v("Vibrant", String.valueOf(vibrantColor));
             Log.v("Muted", String.valueOf(vibrantLightColor));

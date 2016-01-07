@@ -56,8 +56,13 @@
                     android:gravity="left|center_vertical"
                     android:paddingLeft="50dp"
                     android:singleLine="true"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
                     android:text="The crazy event name"
-                    android:textColor="@color/cardBlack" />
+                    android:textColor="@android:color/white"
+                    android:shadowColor="@android:color/black"
+                    android:shadowRadius="5"
+                    android:lines="2" />
             </RelativeLayout>
 
             <TextView
