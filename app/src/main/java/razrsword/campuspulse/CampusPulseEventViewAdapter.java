@@ -18,6 +18,7 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageSize;
+import com.nostra13.universalimageloader.core.imageaware.ImageAware;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
 import java.io.InputStream;
@@ -73,27 +74,38 @@ public class CampusPulseEventViewAdapter extends RecyclerView.Adapter<CampusPuls
         Log.v("EventImageURL", campusPulseCards.get(i).eventImageURL);
             // Load image, decode it to Bitmap and return Bitmap to callback
             ImageSize targetSize = new ImageSize(500, 250); // result Bitmap will be fit to this size
-            imageLoader.loadImage(campusPulseCards.get(i).eventImageURL, targetSize, options, new SimpleImageLoadingListener() {
+            //imageLoader.displayImage(campusPulseCards.get(i).eventImageURL, temp);
+            imageLoader.displayImage(campusPulseCards.get(i).eventImageURL, temp, options, new SimpleImageLoadingListener() {
                 @Override
                 public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                    temp.setBackgroundResource(R.color.colorPrimary);
-                    temp.setImageBitmap(loadedImage);
-                    Palette palette = Palette.from(loadedImage).generate();
-                    int vibrantColor = changeAlpha(palette.getVibrantColor(Color.argb(255, 255, 255, 255)), 255);
-                    int vibrantLightColor = changeAlpha(palette.getLightVibrantColor(Color.argb(255, 255, 255, 255)),70);
-                    int[] colors = {vibrantColor, vibrantLightColor};
-                    Log.v("Vibrant", String.valueOf(palette.getVibrantColor(Color.argb(255, 255, 0, 255))));
-                    Log.v("Muted", String.valueOf(palette.getDarkVibrantColor(Color.argb(255, 255, 0, 255))));
+                    final ImageView temp2 = (ImageView) view;
+                    temp2.setBackgroundResource(R.color.colorPrimary);
+                    temp2.setImageBitmap(loadedImage);
+                    //final Palette palette = Palette.from(loadedImage).generate();
 
-                    //create a new gradient color
-                    GradientDrawable gd = new GradientDrawable(
-                            GradientDrawable.Orientation.LEFT_RIGHT, colors);
-                    gd.setSize(temp.getWidth(), temp.getHeight());
-                    gd.setShape(GradientDrawable.RECTANGLE);
-                    gradient.setImageDrawable(gd);
+                    //Doing the gradient async to hopefully fix the garbo framerate
+                    Palette.from(loadedImage).generate(new Palette.PaletteAsyncListener() {
+                        public void onGenerated(Palette p) {
+                            // Use generated instance
+                            int vibrantColor = changeAlpha(p.getVibrantColor(Color.argb(255, 255, 255, 255)), 255);
+                            int vibrantLightColor = changeAlpha(p.getLightVibrantColor(Color.argb(255, 255, 255, 255)), 70);
+                            int[] colors = {vibrantColor, vibrantLightColor};
+                            Log.v("Vibrant", String.valueOf(p.getVibrantColor(Color.argb(255, 255, 0, 255))));
+                            Log.v("Muted", String.valueOf(p.getDarkVibrantColor(Color.argb(255, 255, 0, 255))));
+
+                            //create a new gradient color
+                            GradientDrawable gd = new GradientDrawable(
+                                    GradientDrawable.Orientation.LEFT_RIGHT, colors);
+                            gd.setSize(temp2.getWidth(), temp2.getHeight());
+                            gd.setShape(GradientDrawable.RECTANGLE);
+                            gradient.setImageDrawable(gd);
+                            gradient.setVisibility(View.VISIBLE);
+                        }
+                    });
+
 
                     Log.v("Set image", "Set image to event");
-                    temp.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                    temp2.setScaleType(ImageView.ScaleType.CENTER_CROP);
                 }
             });
             //mainButtonHolder.locationImage.setImageDrawable(LoadImageFromWebOperations(campusPulseCards.get(i).eventImageURL));
@@ -101,8 +113,9 @@ public class CampusPulseEventViewAdapter extends RecyclerView.Adapter<CampusPuls
             temp.setImageResource(R.drawable.ic_event_white_48dp);
             temp.setScaleType(ImageView.ScaleType.FIT_CENTER);
             temp.setBackgroundResource(R.color.colorPrimary);
+            temp.setColorFilter(Color.argb(120, 136, 28, 28));
             //Palette palette = Palette.from(R.drawable.ic).generate();
-            int vibrantColor = changeAlpha(R.color.colorPrimary, 255);
+            /*int vibrantColor = changeAlpha(R.color.colorPrimary, 255);
             int vibrantLightColor = changeAlpha(R.color.colorPrimary, 70);
             int[] colors = {vibrantColor, vibrantLightColor ,vibrantLightColor};
             Log.v("Vibrant", String.valueOf(vibrantColor));
@@ -113,7 +126,8 @@ public class CampusPulseEventViewAdapter extends RecyclerView.Adapter<CampusPuls
                     GradientDrawable.Orientation.LEFT_RIGHT, colors);
             gd.setSize(temp.getWidth(), temp.getHeight());
             gd.setShape(GradientDrawable.RECTANGLE);
-            gradient.setImageDrawable(gd);
+            gradient.setImageDrawable(gd);*/
+            gradient.setVisibility(View.INVISIBLE);
         }
     }
 
