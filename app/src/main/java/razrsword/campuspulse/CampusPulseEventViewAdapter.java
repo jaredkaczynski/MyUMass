@@ -77,7 +77,9 @@ public class CampusPulseEventViewAdapter extends RecyclerView.Adapter<CampusPuls
                     temp.setBackgroundResource(R.color.colorPrimary);
                     temp.setImageBitmap(loadedImage);
                     Palette palette = Palette.from(loadedImage).generate();
-                    int[] colors = {(palette.getVibrantColor(Color.argb(255, 255, 0, 255))), (palette.getMutedColor(Color.argb(255, 255, 255, 0)))};
+                    int vibrantColor = changeAlpha(palette.getVibrantColor(Color.argb(255, 255, 255, 255)), 255);
+                    int vibrantLightColor = changeAlpha(palette.getLightVibrantColor(Color.argb(255, 255, 255, 255)),70);
+                    int[] colors = {vibrantColor, vibrantLightColor};
                     Log.v("Vibrant", String.valueOf(palette.getVibrantColor(Color.argb(255, 255, 0, 255))));
                     Log.v("Muted", String.valueOf(palette.getDarkVibrantColor(Color.argb(255, 255, 0, 255))));
 
@@ -87,7 +89,6 @@ public class CampusPulseEventViewAdapter extends RecyclerView.Adapter<CampusPuls
                     gd.setSize(temp.getWidth(), temp.getHeight());
                     gd.setShape(GradientDrawable.RECTANGLE);
                     gradient.setImageDrawable(gd);
-
 
                     Log.v("Set image", "Set image to event");
                     temp.setScaleType(ImageView.ScaleType.CENTER_CROP);
@@ -99,9 +100,11 @@ public class CampusPulseEventViewAdapter extends RecyclerView.Adapter<CampusPuls
             temp.setScaleType(ImageView.ScaleType.FIT_CENTER);
             temp.setBackgroundResource(R.color.colorPrimary);
             //Palette palette = Palette.from(R.drawable.ic).generate();
-            int[] colors = {R.color.colorPrimary,R.color.colorLightPrimary, Color.WHITE};
-            //Log.v("Vibrant", String.valueOf(palette.getVibrantColor(Color.argb(255, 255, 0, 255))));
-            //Log.v("Muted", String.valueOf(palette.getDarkVibrantColor(Color.argb(255, 255, 0, 255))));
+            int vibrantColor = changeAlpha(R.color.colorPrimary, 255);
+            int vibrantLightColor = changeAlpha(R.color.colorLightPrimary, 70);
+            int[] colors = {vibrantColor, vibrantLightColor ,vibrantLightColor};
+            Log.v("Vibrant", String.valueOf(vibrantColor));
+            Log.v("Muted", String.valueOf(vibrantLightColor));
 
             //create a new gradient color
             GradientDrawable gd = new GradientDrawable(
@@ -110,6 +113,11 @@ public class CampusPulseEventViewAdapter extends RecyclerView.Adapter<CampusPuls
             gd.setShape(GradientDrawable.RECTANGLE);
             gradient.setImageDrawable(gd);
         }
+    }
+
+    int changeAlpha(int origColor, int userInputedAlpha) {
+        origColor = origColor & 0x00ffffff; //drop the previous alpha value
+        return (userInputedAlpha << 24) | origColor; //add the one the user inputted
     }
 
     @Override
