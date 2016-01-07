@@ -64,6 +64,7 @@ public class CampusPulseEventViewAdapter extends RecyclerView.Adapter<CampusPuls
         mainButtonHolder.eventName.setText(campusPulseCards.get(i).eventTitle);
         mainButtonHolder.eventDate.setText(campusPulseCards.get(i).eventDate);
         final ImageView temp = mainButtonHolder.locationImage;
+        final ImageView gradient = mainButtonHolder.gradientImage;
         if(campusPulseCards.get(i).eventImageURL != null){
             ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(mainButtonHolder.cv.getContext()).build();
             ImageLoader.getInstance().init(config);
@@ -74,14 +75,20 @@ public class CampusPulseEventViewAdapter extends RecyclerView.Adapter<CampusPuls
                 @Override
                 public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
                     temp.setBackgroundResource(R.color.colorPrimary);
-                    temp.setColorFilter(Color.argb(255, 255, 255, 255));
-                    Palette palette = Palette.from(loadedImage).generate();
                     temp.setImageBitmap(loadedImage);
-                    int[] colors = {Color.parseColor(palette.getVibrantSwatch().toString()),Color.parseColor(palette.getMutedSwatch().toString())};
+                    Palette palette = Palette.from(loadedImage).generate();
+                    int[] colors = {(palette.getVibrantColor(Color.argb(255, 255, 0, 255))), (palette.getMutedColor(Color.argb(255, 255, 255, 0)))};
+                    Log.v("Vibrant", String.valueOf(palette.getVibrantColor(Color.argb(255, 255, 0, 255))));
+                    Log.v("Muted", String.valueOf(palette.getDarkVibrantColor(Color.argb(255, 255, 0, 255))));
 
                     //create a new gradient color
                     GradientDrawable gd = new GradientDrawable(
                             GradientDrawable.Orientation.LEFT_RIGHT, colors);
+                    gd.setSize(temp.getWidth(), temp.getHeight());
+                    gd.setShape(GradientDrawable.RECTANGLE);
+                    gradient.setImageDrawable(gd);
+
+
                     Log.v("Set image", "Set image to event");
                     temp.setScaleType(ImageView.ScaleType.CENTER_CROP);
                 }
@@ -91,6 +98,17 @@ public class CampusPulseEventViewAdapter extends RecyclerView.Adapter<CampusPuls
             temp.setImageResource(R.drawable.ic_event_white_48dp);
             temp.setScaleType(ImageView.ScaleType.FIT_CENTER);
             temp.setBackgroundResource(R.color.colorPrimary);
+            //Palette palette = Palette.from(R.drawable.ic).generate();
+            int[] colors = {R.color.colorPrimary,R.color.colorLightPrimary, Color.WHITE};
+            //Log.v("Vibrant", String.valueOf(palette.getVibrantColor(Color.argb(255, 255, 0, 255))));
+            //Log.v("Muted", String.valueOf(palette.getDarkVibrantColor(Color.argb(255, 255, 0, 255))));
+
+            //create a new gradient color
+            GradientDrawable gd = new GradientDrawable(
+                    GradientDrawable.Orientation.LEFT_RIGHT, colors);
+            gd.setSize(temp.getWidth(), temp.getHeight());
+            gd.setShape(GradientDrawable.RECTANGLE);
+            gradient.setImageDrawable(gd);
         }
     }
 
@@ -134,6 +152,7 @@ public class CampusPulseEventViewAdapter extends RecyclerView.Adapter<CampusPuls
         TextView eventName;
         TextView eventDate;
         ImageView locationImage;
+        ImageView gradientImage;
 
         mainButtonHolder(View itemView) {
             super(itemView);
@@ -141,6 +160,7 @@ public class CampusPulseEventViewAdapter extends RecyclerView.Adapter<CampusPuls
             eventName = (TextView) itemView.findViewById(R.id.event_name);
             eventDate = (TextView) itemView.findViewById(R.id.event_date);
             locationImage = (ImageView) itemView.findViewById(R.id.event_location_image);
+            gradientImage = (ImageView) itemView.findViewById(R.id.gradient_overlay);
         }
     }
 

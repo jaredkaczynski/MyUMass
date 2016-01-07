@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#003b5c</color>
     <color name="colorAccent">#5d2a2c</color>
     <color name="statusBarColo">#881c1c</color>
+    <color name="colorLightPrimary">#b77676</color>
     <color name="busy0">#4CAF50</color>
     <color name="foregroundCardColor">#F5F5F5</color>
     <color name="cardBackground">#e5e5e5</color>
