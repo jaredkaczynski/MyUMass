@@ -24,11 +24,12 @@ import java.util.List;
 public class CampusPulseStackOverflowXmlParser {
 
     private List<Entry> entries = new ArrayList<>();
-    private Entry entry;
     private String text;
 
     public List<Entry> parse(InputStream is) {
         try {
+            Entry entry = null;
+
             XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
             factory.setNamespaceAware(true);
             XmlPullParser parser = factory.newPullParser();
@@ -58,18 +59,25 @@ public class CampusPulseStackOverflowXmlParser {
 
                     case XmlPullParser.END_TAG:
                         if (tagname.equalsIgnoreCase("item")) {
-                            Log.v("Adding entry", " Entry Added to list");
+                            //Log.v("Adding entry", " Entry Added to list");
                             // add entry object to list
                             entries.add(entry);
                         } else if (tagname.equalsIgnoreCase("title")) {
-                            if (entry != null)
+
+                            if (entry != null) {
                                 entry.setTitle(text);
-                        } else if (tagname.equalsIgnoreCase("eventLink")) {
+                                Log.v("setting title", " Entry Created for storage");
+                            }
+                        } else if (tagname.equalsIgnoreCase("link")) {
                             if (entry != null)
                                 entry.setEventLink(text);
-                        } else if (tagname.equalsIgnoreCase("textField")) {
-                            if (entry != null)
+                        } else if (tagname.equalsIgnoreCase("description")) {
+                            if (entry != null) {
                                 entry.setTextField(text);
+                                entry.extractDate(text);
+                                entry.extractDescription(text);
+                                Log.v("HTML", entry.description + " date start");
+                            }
                         }
                         break;
 
@@ -142,8 +150,6 @@ public class CampusPulseStackOverflowXmlParser {
 
         public void setTextField(String textField) {
             this.textField = textField;
-            this.extractDate(this.textField);
-            this.extractDescription(this.textField);
         }
         public void setImageLink(String imageLink1) {
             this.imageLink = imageLink1;
@@ -170,7 +176,7 @@ public class CampusPulseStackOverflowXmlParser {
             Elements dateEnd = doc.select("span.dtend");
             this.dateStart = dateStart.get(0).text();
             this.dateEnd = dateEnd.get(0).text();
-            Log.v("HTML", this.dateStart);
+            Log.v("HTML", this.dateStart + " date start");
             return null;
         }
         public String extractDescription(String description){
@@ -180,7 +186,7 @@ public class CampusPulseStackOverflowXmlParser {
             Document doc = Jsoup.parse(description);
             Elements descriptionElement = doc.select("div.description");
             this.description = descriptionElement.get(0).text();
-            Log.v("Description", this.description);
+            Log.v("Description", this.description + " description");
             return null;
         }
 
