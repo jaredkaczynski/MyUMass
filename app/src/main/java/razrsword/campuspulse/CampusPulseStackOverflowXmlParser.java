@@ -1,6 +1,10 @@
 package razrsword.campuspulse;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
+
+import com.google.android.gms.drive.query.internal.FullTextSearchFilter;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -63,9 +67,9 @@ public class CampusPulseStackOverflowXmlParser {
                         } else if (tagname.equalsIgnoreCase("eventLink")) {
                             if (entry != null)
                                 entry.setEventLink(text);
-                        } else if (tagname.equalsIgnoreCase("description")) {
+                        } else if (tagname.equalsIgnoreCase("textField")) {
                             if (entry != null)
-                                entry.setDescription(text);
+                                entry.setTextField(text);
                         }
                         break;
 
@@ -88,13 +92,41 @@ public class CampusPulseStackOverflowXmlParser {
         return entries;
     }
 
-    public class Entry {
+    public static class Entry implements Parcelable {
         public String title;
-        public String description;
+        public String textField;
         public String dateStart;
         public String dateEnd;
         public String eventLink;
         public String imageLink;
+        public String description;
+
+        protected Entry(Parcel in) {
+            title = in.readString();
+            textField = in.readString();
+            dateStart = in.readString();
+            dateEnd = in.readString();
+            eventLink = in.readString();
+            imageLink = in.readString();
+            description = in.readString();
+        }
+
+        public static final Creator<Entry> CREATOR = new Creator<Entry>() {
+            @Override
+            public Entry createFromParcel(Parcel in) {
+                return new Entry(in);
+            }
+
+            @Override
+            public Entry[] newArray(int size) {
+                return new Entry[size];
+            }
+        };
+
+        public Entry() {
+
+        }
+
 
         public String getTitle() {
             return title;
@@ -104,13 +136,14 @@ public class CampusPulseStackOverflowXmlParser {
             this.title = title;
         }
 
-        public String getDescription() {
-            return description;
+        public String getTextField() {
+            return textField;
         }
 
-        public void setDescription(String description) {
-            this.description = description;
-            extractDate(description);
+        public void setTextField(String textField) {
+            this.textField = textField;
+            this.extractDate(this.textField);
+            this.extractDescription(this.textField);
         }
         public void setImageLink(String imageLink1) {
             this.imageLink = imageLink1;
@@ -129,7 +162,7 @@ public class CampusPulseStackOverflowXmlParser {
             return dateEnd;
         }
         public String extractDate(String description){
-            //Spanned ss = Html.fromHtml(Html.fromHtml(description).toString());
+            //Spanned ss = Html.fromHtml(Html.fromHtml(textField).toString());
             //String html = ss.toString();
 
             Document doc = Jsoup.parse(description);
@@ -140,6 +173,31 @@ public class CampusPulseStackOverflowXmlParser {
             Log.v("HTML", this.dateStart);
             return null;
         }
+        public String extractDescription(String description){
+            //Spanned ss = Html.fromHtml(Html.fromHtml(textField).toString());
+            //String html = ss.toString();
 
+            Document doc = Jsoup.parse(description);
+            Elements descriptionElement = doc.select("div.description");
+            this.description = descriptionElement.get(0).text();
+            Log.v("Description", this.description);
+            return null;
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeString(title);
+            dest.writeString(textField);
+            dest.writeString(dateStart);
+            dest.writeString(dateEnd);
+            dest.writeString(eventLink);
+            dest.writeString(imageLink);
+            dest.writeString(description);
+        }
     }
 }

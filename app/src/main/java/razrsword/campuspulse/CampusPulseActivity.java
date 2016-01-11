@@ -7,14 +7,12 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -36,6 +34,7 @@ public class CampusPulseActivity extends AppCompatActivity {
     CampusPulseEventViewAdapter adapter;
     String campusXmlLocalDirectory = Environment.getExternalStorageDirectory().getAbsolutePath() + "/CampusPulseXML.xml";
     Context context;
+    List<CampusPulseStackOverflowXmlParser.Entry> eventList;
 
     List<Class<?>> locationClassList;
     @Override
@@ -51,10 +50,11 @@ public class CampusPulseActivity extends AppCompatActivity {
         locationClassList.add(DiningActivity.class);
         locationClassList.add(CampusPulseActivity.class);
         File eventsXML = new File(campusXmlLocalDirectory);
+        eventList = null;
         if(eventsXML.exists()){
             CampusPulseStackOverflowXmlParser test = new CampusPulseStackOverflowXmlParser();
             FileInputStream eventsInStream = null;
-            List<CampusPulseStackOverflowXmlParser.Entry> eventList = null;
+
             try {
                 eventsInStream = new FileInputStream(eventsXML);
             } catch (FileNotFoundException e) {
@@ -65,7 +65,7 @@ public class CampusPulseActivity extends AppCompatActivity {
             Iterator<CampusPulseStackOverflowXmlParser.Entry> eventListIterator = eventList.iterator();
             while (eventListIterator.hasNext()) {
                 CampusPulseStackOverflowXmlParser.Entry tempEntry = eventListIterator.next();
-                locationNameList.add(new CampusPulseEventCard(tempEntry.title,tempEntry.dateStart,tempEntry.description,tempEntry.imageLink));
+                locationNameList.add(new CampusPulseEventCard(tempEntry.title,tempEntry.dateStart,tempEntry.textField,tempEntry.imageLink));
             }
         }else{
         /*locationNameList.add(new CampusPulseEventCard("UMass Map",R.drawable.berkshire));
@@ -95,7 +95,11 @@ public class CampusPulseActivity extends AppCompatActivity {
                 new RecyclerItemClickListener(this, new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        switch (position) {
+                        eventList.get(position);
+                        Intent intent = new Intent(CampusPulseActivity.this,CampusPulseDetailActivity.class).putExtra("eventObject", eventList.get(position));
+                        startActivity(intent);
+
+                        /*switch (position) {
                             case 0:
                                 CardView.LayoutParams lp = new CardView.LayoutParams(300, 1);
                                 rv.findViewHolderForAdapterPosition(position).itemView.setLayoutParams(lp);
@@ -115,8 +119,9 @@ public class CampusPulseActivity extends AppCompatActivity {
                                 file.delete();
                                 Toast.makeText(context, "XML Deleted", Toast.LENGTH_LONG).show();
                                 break;
-                        }
+                        }*/
                     }
+
                 })
         );
     }
