@@ -5,20 +5,23 @@ import android.os.Parcelable;
 
 /**
  * Created by razrs on 03-Jan-16.
+ * This holds the data in the cards in the main view
  */
 public class CampusPulseEventCard implements Parcelable {
     String eventTitle;
     String eventDate;
     String eventDescription;
     String eventImageURL;
+    int vibrantColor;
 
 
 
-    public CampusPulseEventCard(String name, String date, String description, String event){
+    public CampusPulseEventCard(String name, String date, String description, String event, int color){
         eventTitle = name;
         eventDate = date;
         eventDescription = description;
         eventImageURL = event;
+        vibrantColor = color;
     }
 
     protected CampusPulseEventCard(Parcel in) {

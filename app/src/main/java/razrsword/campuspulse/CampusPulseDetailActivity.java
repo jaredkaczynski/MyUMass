@@ -44,6 +44,8 @@ public class CampusPulseDetailActivity extends AppCompatActivity {
         //final ImageView locationImage = (ImageView) findViewById(R.id.toolbar_layout);
         //final ImageView gradient = mainButtonHolder.gradientImage;
         CampusPulseStackOverflowXmlParser.Entry entry = getIntent().getExtras().getParcelable("eventObject");
+        final int vibrantColor = getIntent().getExtras().getInt("entry");
+
         ImageView locationImage = (ImageView) findViewById(R.id.event_location_image);
         //locationImage.setBackgroundResource(R.color.colorPrimary);
         //locationImage.setColorFilter(Color.argb(120, 136, 28, 28));
@@ -65,14 +67,9 @@ public class CampusPulseDetailActivity extends AppCompatActivity {
                 if(loadedImage != null) {
                     //temp2.setBackgroundResource(R.color.colorPrimary);
                     temp2.setImageBitmap(loadedImage);
+                    temp2.setColorFilter(vibrantColor);
                     //Doing the gradient async to hopefully fix the garbo framerate
-                    Palette.from(loadedImage).generate(new Palette.PaletteAsyncListener() {
-                        public void onGenerated(Palette p) {
-                            // Use generated instance
-                            int vibrantColor = changeAlpha(p.getVibrantColor(Color.argb(255, 255, 255, 255)), 120);
-                            temp2.setColorFilter(vibrantColor);
-                        }
-                    });
+
                 } else {
                     temp2.setColorFilter(Color.argb(120, 136, 28, 28));
                 }

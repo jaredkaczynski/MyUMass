@@ -2,6 +2,7 @@ package razrsword.campuspulse;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -14,9 +15,11 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -41,14 +44,10 @@ public class CampusPulseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_campus_pulse);
-        List<CampusPulseEventCard> locationNameList;
+        final List<CampusPulseEventCard> locationNameList;
         setTitle("Campus Pulse Events");
         locationNameList = new ArrayList<>();
         locationClassList = new ArrayList<>();
-        locationClassList.add(UMassMapActivity.class);
-        locationClassList.add(BusTrackerActivity.class);
-        locationClassList.add(DiningActivity.class);
-        locationClassList.add(CampusPulseActivity.class);
         File eventsXML = new File(campusXmlLocalDirectory);
         eventList = null;
         if(eventsXML.exists()){
@@ -65,7 +64,7 @@ public class CampusPulseActivity extends AppCompatActivity {
             Iterator<CampusPulseStackOverflowXmlParser.Entry> eventListIterator = eventList.iterator();
             while (eventListIterator.hasNext()) {
                 CampusPulseStackOverflowXmlParser.Entry tempEntry = eventListIterator.next();
-                locationNameList.add(new CampusPulseEventCard(tempEntry.title,tempEntry.dateStart,tempEntry.textField,tempEntry.imageLink));
+                locationNameList.add(new CampusPulseEventCard(tempEntry.title,tempEntry.dateStart,tempEntry.textField,tempEntry.imageLink,0));
             }
         }else{
         /*locationNameList.add(new CampusPulseEventCard("UMass Map",R.drawable.berkshire));
@@ -96,7 +95,8 @@ public class CampusPulseActivity extends AppCompatActivity {
                     @Override
                     public void onItemClick(View view, int position) {
                         eventList.get(position);
-                        Intent intent = new Intent(CampusPulseActivity.this,CampusPulseDetailActivity.class).putExtra("eventObject", eventList.get(position));
+                        Intent intent = new Intent(CampusPulseActivity.this,CampusPulseDetailActivity.class).putExtra("eventObject", eventList.get(position)).putExtra("entry", locationNameList.get(position).vibrantColor);
+                        //createImageFromBitmap(locationNameList.get(position))
                         startActivity(intent);
 
                         /*switch (position) {
@@ -126,7 +126,22 @@ public class CampusPulseActivity extends AppCompatActivity {
         );
     }
 
-
+    //Used to save an image to file for fast load
+    public String createImageFromBitmap(Bitmap bitmap) {
+        String fileName = "myImage";//no .png or .jpg needed
+        try {
+            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+            FileOutputStream fo = openFileOutput(fileName, Context.MODE_PRIVATE);
+            fo.write(bytes.toByteArray());
+            // remember close file output
+            fo.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            fileName = null;
+        }
+        return fileName;
+    }
 
     public void animateIntent(View view,View sourceView, Class<?> cls,int position) {
 

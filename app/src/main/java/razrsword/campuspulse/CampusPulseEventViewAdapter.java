@@ -62,7 +62,7 @@ public class CampusPulseEventViewAdapter extends RecyclerView.Adapter<CampusPuls
     }
 
     @Override
-    public void onBindViewHolder(mainButtonHolder mainButtonHolder, int i) {
+    public void onBindViewHolder(mainButtonHolder mainButtonHolder, final int i) {
         mainButtonHolder.eventName.setText(campusPulseCards.get(i).eventTitle);
         mainButtonHolder.eventDate.setText(campusPulseCards.get(i).eventDate);
         final ImageView locationImage = mainButtonHolder.locationImage;
@@ -84,25 +84,29 @@ public class CampusPulseEventViewAdapter extends RecyclerView.Adapter<CampusPuls
                     //final Palette palette = Palette.from(loadedImage).generate();
 
                     //Doing the gradient async to hopefully fix the garbo framerate
-                    Palette.from(loadedImage).generate(new Palette.PaletteAsyncListener() {
-                        public void onGenerated(Palette p) {
-                            // Use generated instance
-                            int vibrantColor = changeAlpha(p.getVibrantColor(Color.argb(255, 255, 255, 255)), 255);
-                            int vibrantLightColor = changeAlpha(p.getLightVibrantColor(Color.argb(255, 255, 255, 255)), 70);
-                            int[] colors = {vibrantColor, vibrantLightColor};
-                            Log.v("Vibrant", String.valueOf(p.getVibrantColor(Color.argb(255, 255, 0, 255))));
-                            Log.v("Muted", String.valueOf(p.getDarkVibrantColor(Color.argb(255, 255, 0, 255))));
+                    if(campusPulseCards.get(i).vibrantColor == 0) {
+                        Palette.from(loadedImage).generate(new Palette.PaletteAsyncListener() {
+                            public void onGenerated(Palette p) {
+                                // Use generated instance
+                                int vibrantColor = changeAlpha(p.getVibrantColor(Color.argb(255, 255, 255, 255)), 255);
+                                campusPulseCards.get(i).vibrantColor = vibrantColor;
+                                int vibrantLightColor = changeAlpha(p.getLightVibrantColor(Color.argb(255, 255, 255, 255)), 70);
+                                int[] colors = {vibrantColor, vibrantLightColor};
+                                Log.v("Vibrant", String.valueOf(p.getVibrantColor(Color.argb(255, 255, 0, 255))));
+                                Log.v("Muted", String.valueOf(p.getDarkVibrantColor(Color.argb(255, 255, 0, 255))));
 
-                            //create a new gradient color
-                            GradientDrawable gd = new GradientDrawable(
-                                    GradientDrawable.Orientation.LEFT_RIGHT, colors);
-                            gd.setSize(temp2.getWidth(), temp2.getHeight());
-                            gd.setShape(GradientDrawable.RECTANGLE);
-                            gradient.setImageDrawable(gd);
-                            gradient.setVisibility(View.VISIBLE);
-                        }
-                    });
-
+                                //create a new gradient color
+                                GradientDrawable gd = new GradientDrawable(
+                                        GradientDrawable.Orientation.LEFT_RIGHT, colors);
+                                gd.setSize(temp2.getWidth(), temp2.getHeight());
+                                gd.setShape(GradientDrawable.RECTANGLE);
+                                gradient.setImageDrawable(gd);
+                                gradient.setVisibility(View.VISIBLE);
+                            }
+                        });
+                    } else {
+                        gradient.setColorFilter(campusPulseCards.get(i).vibrantColor);
+                    }
 
                     Log.v("Set image", "Set image to event");
                     temp2.setScaleType(ImageView.ScaleType.CENTER_CROP);
