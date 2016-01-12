@@ -65,7 +65,7 @@ public class CampusPulseEventViewAdapter extends RecyclerView.Adapter<CampusPuls
     public void onBindViewHolder(mainButtonHolder mainButtonHolder, int i) {
         mainButtonHolder.eventName.setText(campusPulseCards.get(i).eventTitle);
         mainButtonHolder.eventDate.setText(campusPulseCards.get(i).eventDate);
-        final ImageView temp = mainButtonHolder.locationImage;
+        final ImageView locationImage = mainButtonHolder.locationImage;
         final ImageView gradient = mainButtonHolder.gradientImage;
         //Setting the image and gradient is done here
         if(campusPulseCards.get(i).eventImageURL != null){
@@ -74,8 +74,8 @@ public class CampusPulseEventViewAdapter extends RecyclerView.Adapter<CampusPuls
         Log.v("EventImageURL", campusPulseCards.get(i).eventImageURL);
             // Load image, decode it to Bitmap and return Bitmap to callback
             ImageSize targetSize = new ImageSize(500, 250); // result Bitmap will be fit to this size
-            //imageLoader.displayImage(campusPulseCards.get(i).eventImageURL, temp);
-            imageLoader.displayImage(campusPulseCards.get(i).eventImageURL, temp, options, new SimpleImageLoadingListener() {
+            //imageLoader.displayImage(campusPulseCards.get(i).eventImageURL, locationImage);
+            imageLoader.displayImage(campusPulseCards.get(i).eventImageURL, locationImage, options, new SimpleImageLoadingListener() {
                 @Override
                 public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
                     final ImageView temp2 = (ImageView) view;
@@ -110,10 +110,10 @@ public class CampusPulseEventViewAdapter extends RecyclerView.Adapter<CampusPuls
             });
             //mainButtonHolder.locationImage.setImageDrawable(LoadImageFromWebOperations(campusPulseCards.get(i).eventImageURL));
         } else {
-            temp.setImageResource(R.drawable.ic_event_white_48dp);
-            temp.setScaleType(ImageView.ScaleType.FIT_CENTER);
-            temp.setBackgroundResource(R.color.colorPrimary);
-            temp.setColorFilter(Color.argb(120, 136, 28, 28));
+            locationImage.setImageResource(R.drawable.ic_event_white_48dp);
+            locationImage.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            locationImage.setBackgroundResource(R.color.colorPrimary);
+            locationImage.setColorFilter(Color.argb(120, 136, 28, 28));
             //Palette palette = Palette.from(R.drawable.ic).generate();
             /*int vibrantColor = changeAlpha(R.color.colorPrimary, 255);
             int vibrantLightColor = changeAlpha(R.color.colorPrimary, 70);
@@ -124,7 +124,7 @@ public class CampusPulseEventViewAdapter extends RecyclerView.Adapter<CampusPuls
             //create a new gradient color
             GradientDrawable gd = new GradientDrawable(
                     GradientDrawable.Orientation.LEFT_RIGHT, colors);
-            gd.setSize(temp.getWidth(), temp.getHeight());
+            gd.setSize(locationImage.getWidth(), locationImage.getHeight());
             gd.setShape(GradientDrawable.RECTANGLE);
             gradient.setImageDrawable(gd);*/
             gradient.setVisibility(View.INVISIBLE);
