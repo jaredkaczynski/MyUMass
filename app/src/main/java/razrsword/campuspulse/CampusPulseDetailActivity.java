@@ -43,20 +43,27 @@ public class CampusPulseDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_campus_pulse_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        TextView eventLocation = (TextView) findViewById(R.id.event_location);
+        TextView eventDate = (TextView) findViewById(R.id.event_date);
+
         setSupportActionBar(toolbar);
         //final ImageView locationImage = (ImageView) findViewById(R.id.toolbar_layout);
         //final ImageView gradient = mainButtonHolder.gradientImage;
         CampusPulseStackOverflowXmlParser.Entry entry = getIntent().getExtras().getParcelable("eventObject");
-        final int vibrantColor = getIntent().getExtras().getInt("entry");
+        final int vibrantColor = getIntent().getExtras().getInt("vibrantcolor");
+        final int lightColor = getIntent().getExtras().getInt("lightcolor");
+
         ImageView locationImage = (ImageView) findViewById(R.id.event_location_image);
         net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout toolbarLayout = (net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         toolbarLayout.setTitle(entry.getTitle());
         toolbarLayout.setExpandedTitleTextAppearance(R.style.toolbar_text);
 
+        eventDate.setText(entry.getDateStart());
+        eventLocation.setText(entry.getEventLocation());
         //locationImage.setBackgroundResource(R.color.colorPrimary);
         //locationImage.setColorFilter(Color.argb(120, 136, 28, 28));
         TextView eventDescription = (TextView) findViewById(R.id.event_description);
-        eventDescription.setText(entry.description);
+        eventDescription.setText(entry.getDescription());
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setVisibility(View.INVISIBLE);
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this).build();
@@ -70,7 +77,7 @@ public class CampusPulseDetailActivity extends AppCompatActivity {
         }
 
         if(bitmap != null){
-            if(entry.imageLink != null) {
+            if(entry.getImageLink() != null) {
                 locationImage.setImageBitmap(fastblur(bitmap,1,10));
                 //locationImage.setColorFilter(changeAlpha(vibrantColor, 50));
             } else {
@@ -80,7 +87,7 @@ public class CampusPulseDetailActivity extends AppCompatActivity {
             // Load image, decode it to Bitmap and return Bitmap to callback
             ImageSize targetSize = new ImageSize(500, 250); // result Bitmap will be fit to this size
             //imageLoader.displayImage(campusPulseCards.get(i).eventImageURL, temp);
-            imageLoader.displayImage(entry.imageLink, locationImage, options, new SimpleImageLoadingListener() {
+            imageLoader.displayImage(entry.getImageLink(), locationImage, options, new SimpleImageLoadingListener() {
                 @Override
                 public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
                     final ImageView temp2 = (ImageView) view;
@@ -89,7 +96,7 @@ public class CampusPulseDetailActivity extends AppCompatActivity {
                     //if (loadedImage != null) {
                         //temp2.setBackgroundResource(R.color.colorPrimary);
                         temp2.setImageBitmap(loadedImage);
-                        temp2.setColorFilter(changeAlpha(vibrantColor, 50));
+                        //temp2.setColorFilter(changeAlpha(vibrantColor, 50));
 
                     //}
 

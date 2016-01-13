@@ -174,7 +174,7 @@ public class CampusPulseActivity extends AppCompatActivity {
         if(locationNameList.size() < eventList.size()){
             while (eventListIterator.hasNext()) {
                 CampusPulseStackOverflowXmlParser.Entry tempEntry = eventListIterator.next();
-                locationNameList.add(new CampusPulseEventCard(tempEntry.title,tempEntry.dateStart,tempEntry.textField,tempEntry.imageLink,tempEntry.eventLocation,0,0));
+                locationNameList.add(new CampusPulseEventCard(tempEntry.getTitle(),tempEntry.getDateStart(),tempEntry.getTextField(),tempEntry.getImageLink(),tempEntry.getEventLocation(),0,0));
             }
         }
 

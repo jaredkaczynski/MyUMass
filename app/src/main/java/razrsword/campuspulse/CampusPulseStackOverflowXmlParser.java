@@ -26,7 +26,7 @@ public class CampusPulseStackOverflowXmlParser {
     private List<Entry> entries = new ArrayList<>();
     private String text;
 
-    public List<Entry> parse(InputStream is,int maxEntries) {
+    public List<Entry> parse(InputStream is, int maxEntries) {
         try {
             Entry entry = null;
 
@@ -37,7 +37,7 @@ public class CampusPulseStackOverflowXmlParser {
             parser.setInput(is, null);
 
             int eventType = parser.getEventType();
-            while (eventType != XmlPullParser.END_DOCUMENT && entries.size()<maxEntries) {
+            while (eventType != XmlPullParser.END_DOCUMENT && entries.size() < maxEntries) {
                 String tagname = parser.getName();
                 switch (eventType) {
                     case XmlPullParser.START_TAG:
@@ -48,7 +48,7 @@ public class CampusPulseStackOverflowXmlParser {
                         } else if (tagname.equalsIgnoreCase("enclosure")) {
                             if (entry != null) {
                                 entry.setImageLink(parser.getAttributeValue(null, "url"));
-                                Log.v("enclosureTag", "Log before url is added" + parser.getAttributeValue(null, "url") );
+                                Log.v("enclosureTag", "Log before url is added" + parser.getAttributeValue(null, "url"));
                             }
                         }
                         break;
@@ -102,14 +102,14 @@ public class CampusPulseStackOverflowXmlParser {
     }
 
     public static class Entry implements Parcelable {
-        public String title;
-        public String textField;
-        public String dateStart;
-        public String dateEnd;
-        public String eventLink;
-        public String imageLink;
-        public String description;
-        public String eventLocation;
+        private String title;
+        private String textField;
+        private String dateStart;
+        private String dateEnd;
+        private String eventLink;
+        private String imageLink;
+        private String description;
+        private String eventLocation;
 
         protected Entry(Parcel in) {
             title = in.readString();
@@ -154,23 +154,39 @@ public class CampusPulseStackOverflowXmlParser {
         public void setTextField(String textField) {
             this.textField = textField;
         }
+
         public void setImageLink(String imageLink1) {
             this.imageLink = imageLink1;
         }
 
-        public String getEventLink() {
-            return eventLink;
+        public String getImageLink() {
+            return this.imageLink;
         }
+
+        public String getEventLink() {
+            return this.eventLink;
+        }
+
         public void setEventLink(String eventLink) {
             this.eventLink = eventLink;
         }
+
         public String getDateStart() {
-            return dateStart;
+            return this.dateStart;
         }
+
+        public String getEventLocation() {
+            return this.eventLocation;
+        }
+        public String getDescription(){
+            return this.description;
+        }
+
         public String getDateEnd() {
-            return dateEnd;
+            return this.dateEnd;
         }
-        public String extractDate(String description){
+
+        public String extractDate(String description) {
             //Spanned ss = Html.fromHtml(Html.fromHtml(textField).toString());
             //String html = ss.toString();
 
@@ -182,7 +198,8 @@ public class CampusPulseStackOverflowXmlParser {
             Log.v("HTML", this.dateStart + " date start");
             return null;
         }
-        public String extractLocation(String description){
+
+        public String extractLocation(String description) {
             //Spanned ss = Html.fromHtml(Html.fromHtml(textField).toString());
             //String html = ss.toString();
 
@@ -192,7 +209,8 @@ public class CampusPulseStackOverflowXmlParser {
             Log.v("Location", this.eventLocation + " location");
             return null;
         }
-        public String extractDescription(String description){
+
+        public String extractDescription(String description) {
             //Spanned ss = Html.fromHtml(Html.fromHtml(textField).toString());
             //String html = ss.toString();
 
