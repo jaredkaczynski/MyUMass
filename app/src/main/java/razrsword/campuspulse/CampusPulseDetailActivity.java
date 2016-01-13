@@ -86,21 +86,13 @@ public class CampusPulseDetailActivity extends AppCompatActivity {
                 locationImage.setImageBitmap(fastblur(BitmapFactory.decodeResource(this.getResources(),
                         R.drawable.ic_event_white_48dp), 1, 10));
                 locationImage.setBackgroundResource(R.color.colorPrimary);
-                locationImage.setScaleType(ImageView.ScaleType.CENTER);
+                locationImage.setScaleType(ImageView.ScaleType.FIT_CENTER);
 
-                //locationImage.setColorFilter(Color.argb(120, 136, 28, 50));
             }
-        } else {
-
-
         }
-        locationImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
     }
-    int changeAlpha(int origColor, int userInputedAlpha) {
-        origColor = origColor & 0x00ffffff; //drop the previous alpha value
-        return (userInputedAlpha << 24) | origColor; //add the one the user inputted
-    }
+
     /**
      * Stack Blur v1.0 from
      * http://www.quasimondo.com/StackBlurForCanvas/StackBlurDemo.html

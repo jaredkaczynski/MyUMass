@@ -129,7 +129,7 @@ public class DiningViewFragment extends Fragment {
         intent.putExtra("locationName", locationNameList.get(position).locationName);
 
         // Get the transition name from the string
-        String transitionName = getString(R.string.transition_string);
+        String transitionName = getString(R.string.transition_string_one);
 
         // Define the view that the animation will start from
         View viewStart = sourceView;

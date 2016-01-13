@@ -1,9 +1,7 @@
 package razrsword.main;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -35,9 +33,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import razrsword.ExtendedItemAnimator;
 import razrsword.activities.BusTrackerActivity;
@@ -253,7 +249,7 @@ public class NewMainActivity extends AppCompatActivity {
         //intent.putExtra("locationName", locationNameList.get(position).locationName);
 
         // Get the transition name from the string
-        String transitionName = getString(R.string.transition_string);
+        String transitionName = getString(R.string.transition_string_one);
 
         // Define the view that the animation will start from
         View viewStart = sourceView;

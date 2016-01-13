@@ -22,23 +22,24 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical"
-            android:transitionName="@string/transition_string"
             android:background="@android:color/white">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight=".65">
+                android:layout_weight=".65"
+                >
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:id="@+id/event_card_image_block"
+                    android:transitionName="@string/transition_string_one">
 
                     <ImageView
                         android:id="@+id/event_location_image"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:transitionName="@string/transition_string"/>
+                        android:layout_height="match_parent" />
 
                     <ImageView
                         android:id="@+id/gradient_overlay"
@@ -65,7 +66,8 @@
                     android:shadowColor="@android:color/black"
                     android:shadowRadius="5"
                     android:lines="2"
-                    android:autoText="false" />
+                    android:autoText="false"
+                    android:transitionName="@string/transition_string_four" />
             </RelativeLayout>
 
             <TextView
@@ -78,7 +80,8 @@
                 android:gravity="left|center_vertical"
                 android:paddingLeft="10dp"
                 android:text="The crazy event date"
-                android:textColor="@color/cardBlack" />
+                android:textColor="@color/cardBlack"
+                android:transitionName="@string/transition_string_two"/>
 
             <TextView
                 android:id="@+id/event_location"
@@ -90,7 +93,8 @@
                 android:gravity="left|center_vertical"
                 android:paddingLeft="10dp"
                 android:text="The location"
-                android:textColor="@color/cardBlack" />
+                android:textColor="@color/cardBlack"
+                android:transitionName="@string/transition_string_three"/>
         </LinearLayout>
     </android.support.v7.widget.CardView>
 

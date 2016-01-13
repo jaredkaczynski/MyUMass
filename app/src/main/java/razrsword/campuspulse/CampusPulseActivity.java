@@ -27,12 +27,9 @@ import java.util.Iterator;
 import java.util.List;
 
 import razrsword.ExtendedItemAnimator;
-import razrsword.activities.BusTrackerActivity;
-import razrsword.dining.DiningActivity;
 import razrsword.dining.RecyclerItemClickListener;
 import razrsword.main.R;
 import razrsword.main.SimpleItemTouchHelperCallbackMain;
-import razrsword.mapping.UMassMapActivity;
 
 public class CampusPulseActivity extends AppCompatActivity {
     RecyclerView rv;
@@ -94,13 +91,6 @@ public class CampusPulseActivity extends AppCompatActivity {
                         createImageFromBitmap(locationNameList.get(position).mainImage);
                         animateIntent(view, CampusPulseDetailActivity.class, position);
 
-
-                        /*Intent intent = new Intent(CampusPulseActivity.this, CampusPulseDetailActivity.class)
-                                .putExtra("eventObject", eventList.get(position))
-                                .putExtra("vibrantcolor", locationNameList.get(position).vibrantColor)
-                                .putExtra("lightcolor", locationNameList.get(position).lightVibrantColor);
-
-                        startActivity(intent);*/
                     }
 
                 })
@@ -196,17 +186,27 @@ public class CampusPulseActivity extends AppCompatActivity {
         //intent.putExtra("eventName", locationNameList.get(position).eventName);
 
         // Get the transition name from the string
-        String transitionName = getString(R.string.transition_string);
+        String transitionNameOne = getString(R.string.transition_string_one);
+        String transitionNameTwo = getString(R.string.transition_string_two);
+        String transitionNameThree = getString(R.string.transition_string_three);
+        String transitionNameFour = getString(R.string.transition_string_four);
+
+
 
         // Define the view that the animation will start from
         View viewStart = sourceView;
-        Pair<View, String> p1 = Pair.create((View)viewStart.findViewById(R.id.event_location_image), transitionName);
+        Pair<View, String> p1 = Pair.create((View)viewStart.findViewById(R.id.event_card_image_block), transitionNameOne);
+        Pair<View, String> p2 = Pair.create((View)viewStart.findViewById(R.id.event_date), transitionNameTwo);
+        Pair<View, String> p3 = Pair.create((View)viewStart.findViewById(R.id.event_location), transitionNameThree);
+        //Pair<View, String> p4 = Pair.create((View)viewStart.findViewById(R.id.event_name), transitionNameFour);
 
 
         ActivityOptionsCompat options =
 
                 ActivityOptionsCompat.makeSceneTransitionAnimation(this,
-                        p1
+                        p1,
+                        p2,
+                        p3
                 );
         //Start the Intent
         ActivityCompat.startActivity(this, intent, options.toBundle());
