@@ -13,17 +13,19 @@ public class CampusPulseEventCard implements Parcelable {
     String eventDate;
     String eventDescription;
     String eventImageURL;
+    String eventLocation;
     int vibrantColor;
     int lightVibrantColor;
     Bitmap mainImage;
 
 
 
-    public CampusPulseEventCard(String name, String date, String description, String event, int color, int lightcolor){
+    public CampusPulseEventCard(String name, String date, String description, String event,String location, int color, int lightcolor){
         eventTitle = name;
         eventDate = date;
         eventDescription = description;
         eventImageURL = event;
+        eventLocation = location;
         vibrantColor = color;
         lightVibrantColor = lightcolor;
     }

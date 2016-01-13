@@ -76,6 +76,7 @@ public class CampusPulseStackOverflowXmlParser {
                                 entry.setTextField(text);
                                 entry.extractDate(text);
                                 entry.extractDescription(text);
+                                entry.extractLocation(text);
                                 Log.v("HTML", entry.description + " date start");
                             }
                         }
@@ -108,6 +109,7 @@ public class CampusPulseStackOverflowXmlParser {
         public String eventLink;
         public String imageLink;
         public String description;
+        public String eventLocation;
 
         protected Entry(Parcel in) {
             title = in.readString();
@@ -117,6 +119,7 @@ public class CampusPulseStackOverflowXmlParser {
             eventLink = in.readString();
             imageLink = in.readString();
             description = in.readString();
+            eventLocation = in.readString();
         }
 
         public static final Creator<Entry> CREATOR = new Creator<Entry>() {
@@ -179,6 +182,16 @@ public class CampusPulseStackOverflowXmlParser {
             Log.v("HTML", this.dateStart + " date start");
             return null;
         }
+        public String extractLocation(String description){
+            //Spanned ss = Html.fromHtml(Html.fromHtml(textField).toString());
+            //String html = ss.toString();
+
+            Document doc = Jsoup.parse(description);
+            Elements descriptionElement = doc.select("span.location");
+            this.eventLocation = descriptionElement.get(0).text();
+            Log.v("Location", this.eventLocation + " location");
+            return null;
+        }
         public String extractDescription(String description){
             //Spanned ss = Html.fromHtml(Html.fromHtml(textField).toString());
             //String html = ss.toString();
@@ -204,6 +217,7 @@ public class CampusPulseStackOverflowXmlParser {
             dest.writeString(eventLink);
             dest.writeString(imageLink);
             dest.writeString(description);
+            dest.writeString(eventLocation);
         }
     }
 }

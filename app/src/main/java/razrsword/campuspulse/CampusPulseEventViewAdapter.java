@@ -68,6 +68,7 @@ public class CampusPulseEventViewAdapter extends RecyclerView.Adapter<CampusPuls
     public void onBindViewHolder(mainButtonHolder mainButtonHolder, final int i) {
         mainButtonHolder.eventName.setText(campusPulseCards.get(i).eventTitle);
         mainButtonHolder.eventDate.setText(campusPulseCards.get(i).eventDate);
+        mainButtonHolder.eventLocation.setText(campusPulseCards.get(i).eventLocation);
         //mainButtonHolder.cv.setBackgroundResource(R.color.white);
         final ImageView locationImage = mainButtonHolder.locationImage;
         final ImageView gradient = mainButtonHolder.gradientImage;
@@ -130,7 +131,7 @@ public class CampusPulseEventViewAdapter extends RecyclerView.Adapter<CampusPuls
             locationImage.setImageResource(R.drawable.ic_event_white_48dp);
             locationImage.setScaleType(ImageView.ScaleType.FIT_CENTER);
             locationImage.setBackgroundResource(R.color.colorPrimary);
-            //locationImage.setColorFilter(Color.argb(120, 136, 28, 28));
+            locationImage.setColorFilter(Color.argb(120, 136, 28, 28));
             //Palette palette = Palette.from(R.drawable.ic).generate();
             /*int vibrantColor = changeAlpha(R.color.colorPrimary, 255);
             int vibrantLightColor = changeAlpha(R.color.colorPrimary, 70);
@@ -192,6 +193,7 @@ public class CampusPulseEventViewAdapter extends RecyclerView.Adapter<CampusPuls
         CardView cv;
         TextView eventName;
         TextView eventDate;
+        TextView eventLocation;
         ImageView locationImage;
         ImageView gradientImage;
 
@@ -200,6 +202,7 @@ public class CampusPulseEventViewAdapter extends RecyclerView.Adapter<CampusPuls
             cv = (CardView) itemView.findViewById(R.id.event_card);
             eventName = (TextView) itemView.findViewById(R.id.event_name);
             eventDate = (TextView) itemView.findViewById(R.id.event_date);
+            eventLocation = (TextView) itemView.findViewById(R.id.event_location);
             locationImage = (ImageView) itemView.findViewById(R.id.event_location_image);
             gradientImage = (ImageView) itemView.findViewById(R.id.gradient_overlay);
         }
