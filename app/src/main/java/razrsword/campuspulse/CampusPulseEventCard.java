@@ -1,5 +1,6 @@
 package razrsword.campuspulse;
 
+import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -13,6 +14,7 @@ public class CampusPulseEventCard implements Parcelable {
     String eventDescription;
     String eventImageURL;
     int vibrantColor;
+    Bitmap mainImage;
 
 
 

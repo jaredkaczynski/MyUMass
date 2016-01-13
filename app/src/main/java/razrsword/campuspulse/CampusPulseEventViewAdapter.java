@@ -85,6 +85,8 @@ public class CampusPulseEventViewAdapter extends RecyclerView.Adapter<CampusPuls
 
                     //Doing the gradient async to hopefully fix the garbo framerate
                     if(campusPulseCards.get(i).vibrantColor == 0) {
+                        //adding the image bitmap to the eventcard
+                        campusPulseCards.get(i).mainImage = loadedImage;
                         Palette.from(loadedImage).generate(new Palette.PaletteAsyncListener() {
                             public void onGenerated(Palette p) {
                                 // Use generated instance

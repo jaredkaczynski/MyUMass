@@ -48,7 +48,7 @@ public class CampusPulseActivity extends AppCompatActivity {
         setTitle("Campus Pulse Events");
         locationNameList = new ArrayList<>();
         locationClassList = new ArrayList<>();
-        File eventsXML = new File(campusXmlLocalDirectory);
+        final File eventsXML = new File(campusXmlLocalDirectory);
         eventList = null;
         if(eventsXML.exists()){
             CampusPulseStackOverflowXmlParser test = new CampusPulseStackOverflowXmlParser();
@@ -94,7 +94,9 @@ public class CampusPulseActivity extends AppCompatActivity {
                 new RecyclerItemClickListener(this, new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        eventList.get(position);
+                        //eventList.get(position);
+                        //pass image through
+                        createImageFromBitmap(locationNameList.get(position).mainImage);
                         Intent intent = new Intent(CampusPulseActivity.this,CampusPulseDetailActivity.class).putExtra("eventObject", eventList.get(position)).putExtra("entry", locationNameList.get(position).vibrantColor);
                         //createImageFromBitmap(locationNameList.get(position))
                         startActivity(intent);
@@ -128,7 +130,7 @@ public class CampusPulseActivity extends AppCompatActivity {
 
     //Used to save an image to file for fast load
     public String createImageFromBitmap(Bitmap bitmap) {
-        String fileName = "myImage";//no .png or .jpg needed
+        String fileName = "temppulseimage";//no .png or .jpg needed
         try {
             ByteArrayOutputStream bytes = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
