@@ -90,13 +90,16 @@ public class CampusPulseActivity extends AppCompatActivity {
                     public void onItemClick(View view, int position) {
                         //eventList.get(position);
                         //pass image through
-                        createImageFromBitmap(locationNameList.get(position).mainImage);
-                        Intent intent = new Intent(CampusPulseActivity.this, CampusPulseDetailActivity.class)
+
+                        animateIntent(view, CampusPulseDetailActivity.class, position);
+
+                        //createImageFromBitmap(locationNameList.get(position).mainImage);
+                        /*Intent intent = new Intent(CampusPulseActivity.this, CampusPulseDetailActivity.class)
                                 .putExtra("eventObject", eventList.get(position))
                                 .putExtra("vibrantcolor", locationNameList.get(position).vibrantColor)
                                 .putExtra("lightcolor", locationNameList.get(position).lightVibrantColor);
 
-                        startActivity(intent);
+                        startActivity(intent);*/
                     }
 
                 })
@@ -182,10 +185,13 @@ public class CampusPulseActivity extends AppCompatActivity {
         return locationNameList;
     }
 
-    public void animateIntent(View view,View sourceView, Class<?> cls,int position) {
+    public void animateIntent(View sourceView, Class<?> cls,int position) {
 
         // Ordinary Intent for launching a new activity
-        Intent intent = new Intent(this, cls);
+        Intent intent = new Intent(CampusPulseActivity.this, cls)
+                .putExtra("eventObject", eventList.get(position))
+                .putExtra("vibrantcolor", locationNameList.get(position).vibrantColor)
+                .putExtra("lightcolor", locationNameList.get(position).lightVibrantColor);
         //intent.putExtra("eventName", locationNameList.get(position).eventName);
 
         // Get the transition name from the string

@@ -37,7 +37,8 @@
                     <ImageView
                         android:id="@+id/event_location_image"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:transitionName="@string/transition_string"/>
 
                     <ImageView
                         android:id="@+id/gradient_overlay"

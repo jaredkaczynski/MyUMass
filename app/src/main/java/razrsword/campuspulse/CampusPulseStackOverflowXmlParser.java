@@ -195,6 +195,14 @@ public class CampusPulseStackOverflowXmlParser {
             Elements dateEnd = doc.select("span.dtend");
             this.dateStart = dateStart.get(0).text();
             this.dateEnd = dateEnd.get(0).text();
+            /*if(this.dateStart == ""){
+                dateEnd.select("span.value")
+                this.dateStart
+            }
+            this.dateStart = dateStart.attr("title");
+                        this.dateEnd = dateEnd.attr("title");
+            */
+
             Log.v("HTML", this.dateStart + " date start");
             return null;
         }
