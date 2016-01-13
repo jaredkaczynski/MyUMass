@@ -83,36 +83,16 @@ public class CampusPulseDetailActivity extends AppCompatActivity {
                 locationImage.setImageBitmap(fastblur(bitmap,1,10));
                 //locationImage.setColorFilter(changeAlpha(vibrantColor, 50));
             } else {
+                locationImage.setImageBitmap(fastblur(BitmapFactory.decodeResource(this.getResources(),
+                        R.drawable.ic_event_white_48dp), 1, 10));
+                locationImage.setBackgroundResource(R.color.colorPrimary);
+                locationImage.setScaleType(ImageView.ScaleType.CENTER);
+
                 //locationImage.setColorFilter(Color.argb(120, 136, 28, 50));
             }
         } else {
-            // Load image, decode it to Bitmap and return Bitmap to callback
-            ImageSize targetSize = new ImageSize(500, 250); // result Bitmap will be fit to this size
-            //imageLoader.displayImage(campusPulseCards.get(i).eventImageURL, temp);
-            imageLoader.displayImage(entry.getImageLink(), locationImage, options, new SimpleImageLoadingListener() {
-                @Override
-                public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                    final ImageView temp2 = (ImageView) view;
-
-                    //final Palette palette = Palette.from(loadedImage).generate();
-                    //if (loadedImage != null) {
-                        //temp2.setBackgroundResource(R.color.colorPrimary);
-                        temp2.setImageBitmap(loadedImage);
-                        //temp2.setColorFilter(changeAlpha(vibrantColor, 50));
-
-                    //}
 
 
-                    Log.v("Set image", "Set image to event");
-        /*fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        */
-                }
-            });
         }
         locationImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
 

@@ -94,7 +94,7 @@ public class CampusPulseActivity extends AppCompatActivity {
                         createImageFromBitmap(locationNameList.get(position).mainImage);
                         animateIntent(view, CampusPulseDetailActivity.class, position);
 
-                        
+
                         /*Intent intent = new Intent(CampusPulseActivity.this, CampusPulseDetailActivity.class)
                                 .putExtra("eventObject", eventList.get(position))
                                 .putExtra("vibrantcolor", locationNameList.get(position).vibrantColor)
