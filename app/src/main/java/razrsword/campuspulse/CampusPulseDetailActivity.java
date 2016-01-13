@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
@@ -45,6 +46,7 @@ public class CampusPulseDetailActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         TextView eventLocation = (TextView) findViewById(R.id.event_location);
         TextView eventDate = (TextView) findViewById(R.id.event_date);
+        NestedScrollView contentFrame = (NestedScrollView) findViewById(R.id.content_frame);
 
         setSupportActionBar(toolbar);
         //final ImageView locationImage = (ImageView) findViewById(R.id.toolbar_layout);
@@ -52,7 +54,7 @@ public class CampusPulseDetailActivity extends AppCompatActivity {
         CampusPulseStackOverflowXmlParser.Entry entry = getIntent().getExtras().getParcelable("eventObject");
         final int vibrantColor = getIntent().getExtras().getInt("vibrantcolor");
         final int lightColor = getIntent().getExtras().getInt("lightcolor");
-
+        //contentFrame.setBackgroundColor(vibrantColor);
         ImageView locationImage = (ImageView) findViewById(R.id.event_location_image);
         net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout toolbarLayout = (net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         toolbarLayout.setTitle(entry.getTitle());
