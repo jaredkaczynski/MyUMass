@@ -26,7 +26,7 @@ public class CampusPulseStackOverflowXmlParser {
     private List<Entry> entries = new ArrayList<>();
     private String text;
 
-    public List<Entry> parse(InputStream is) {
+    public List<Entry> parse(InputStream is,int maxEntries) {
         try {
             Entry entry = null;
 
@@ -37,7 +37,7 @@ public class CampusPulseStackOverflowXmlParser {
             parser.setInput(is, null);
 
             int eventType = parser.getEventType();
-            while (eventType != XmlPullParser.END_DOCUMENT) {
+            while (eventType != XmlPullParser.END_DOCUMENT && entries.size()<maxEntries) {
                 String tagname = parser.getName();
                 switch (eventType) {
                     case XmlPullParser.START_TAG:

@@ -2,6 +2,7 @@ package razrsword.campuspulse;
 
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.support.v7.graphics.Palette;
@@ -49,6 +50,8 @@ public class CampusPulseEventViewAdapter extends RecyclerView.Adapter<CampusPuls
     public mainButtonHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.event_card_layout, parent, false);
         mainButtonHolder lvh = new mainButtonHolder(v);
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(parent.getContext()).build();
+        ImageLoader.getInstance().init(config);
         return lvh;
     }
 
@@ -65,12 +68,12 @@ public class CampusPulseEventViewAdapter extends RecyclerView.Adapter<CampusPuls
     public void onBindViewHolder(mainButtonHolder mainButtonHolder, final int i) {
         mainButtonHolder.eventName.setText(campusPulseCards.get(i).eventTitle);
         mainButtonHolder.eventDate.setText(campusPulseCards.get(i).eventDate);
+        //mainButtonHolder.cv.setBackgroundResource(R.color.white);
         final ImageView locationImage = mainButtonHolder.locationImage;
         final ImageView gradient = mainButtonHolder.gradientImage;
         //Setting the image and gradient is done here
         if(campusPulseCards.get(i).eventImageURL != null){
-            ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(mainButtonHolder.cv.getContext()).build();
-            ImageLoader.getInstance().init(config);
+
         Log.v("EventImageURL", campusPulseCards.get(i).eventImageURL);
             // Load image, decode it to Bitmap and return Bitmap to callback
             ImageSize targetSize = new ImageSize(500, 250); // result Bitmap will be fit to this size

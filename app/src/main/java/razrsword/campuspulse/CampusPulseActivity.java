@@ -14,6 +14,7 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -37,35 +38,27 @@ public class CampusPulseActivity extends AppCompatActivity {
     CampusPulseEventViewAdapter adapter;
     String campusXmlLocalDirectory = Environment.getExternalStorageDirectory().getAbsolutePath() + "/CampusPulseXML.xml";
     Context context;
+    File eventsXML = new File(campusXmlLocalDirectory);
     List<CampusPulseStackOverflowXmlParser.Entry> eventList;
+    List<CampusPulseEventCard> locationNameList = new ArrayList<>();
 
-    List<Class<?>> locationClassList;
+    //number of entries to load on start
+    int numEntries = 20;
+    int entryChunk = 20;
+
+    private int previousTotal = 0;
+    private boolean loading = true;
+    private int visibleThreshold = 5;
+    int firstVisibleItem, visibleItemCount, totalItemCount;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_campus_pulse);
-        final List<CampusPulseEventCard> locationNameList;
         setTitle("Campus Pulse Events");
-        locationNameList = new ArrayList<>();
-        locationClassList = new ArrayList<>();
-        final File eventsXML = new File(campusXmlLocalDirectory);
-        eventList = null;
+        //eventList = null;
         if(eventsXML.exists()){
-            CampusPulseStackOverflowXmlParser test = new CampusPulseStackOverflowXmlParser();
-            FileInputStream eventsInStream = null;
-
-            try {
-                eventsInStream = new FileInputStream(eventsXML);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-                eventList = test.parse(eventsInStream);
-
-            Iterator<CampusPulseStackOverflowXmlParser.Entry> eventListIterator = eventList.iterator();
-            while (eventListIterator.hasNext()) {
-                CampusPulseStackOverflowXmlParser.Entry tempEntry = eventListIterator.next();
-                locationNameList.add(new CampusPulseEventCard(tempEntry.title,tempEntry.dateStart,tempEntry.textField,tempEntry.imageLink,0));
-            }
+            locationNameList = parseXML(numEntries);
         }else{
         /*locationNameList.add(new CampusPulseEventCard("UMass Map",R.drawable.berkshire));
         locationNameList.add(new CampusPulseEventCard("UMass Bus", R.drawable.berkshire));
@@ -79,7 +72,7 @@ public class CampusPulseActivity extends AppCompatActivity {
         //adapter.diningLocations.add(new DiningLocation("Worcester"));
         //adapter.diningLocations.add(new DiningLocation("Berkshire"));
         // Inflate the layout for this fragment
-        LinearLayoutManager llm = new LinearLayoutManager(this);
+        final LinearLayoutManager llm = new LinearLayoutManager(this);
         rv = (RecyclerView) this.findViewById(R.id.recyclerview_campus_pulse);
         assert rv != null;
         Log.v("RecyclerView", "Should be adding it");
@@ -97,35 +90,44 @@ public class CampusPulseActivity extends AppCompatActivity {
                         //eventList.get(position);
                         //pass image through
                         createImageFromBitmap(locationNameList.get(position).mainImage);
-                        Intent intent = new Intent(CampusPulseActivity.this,CampusPulseDetailActivity.class).putExtra("eventObject", eventList.get(position)).putExtra("entry", locationNameList.get(position).vibrantColor);
-                        //createImageFromBitmap(locationNameList.get(position))
+                        Intent intent = new Intent(CampusPulseActivity.this, CampusPulseDetailActivity.class).putExtra("eventObject", eventList.get(position)).putExtra("entry", locationNameList.get(position).vibrantColor);
                         startActivity(intent);
-
-                        /*switch (position) {
-                            case 0:
-                                CardView.LayoutParams lp = new CardView.LayoutParams(300, 1);
-                                rv.findViewHolderForAdapterPosition(position).itemView.setLayoutParams(lp);
-                                break;
-                            case 1:
-                                lp = new CardView.LayoutParams(300, 1);
-                                rv.findViewHolderForAdapterPosition(position).itemView.setLayoutParams(lp);
-                                break;
-                            case 2:
-                                animateIntent(view, rv.findViewHolderForAdapterPosition(position).itemView, locationClassList.get(position), position);
-                                break;
-                            case 3:
-                                animateIntent(view, rv.findViewHolderForAdapterPosition(position).itemView, locationClassList.get(position), position);
-                                break;
-                            case 4:
-                                File file = new File(campusXmlLocalDirectory);
-                                file.delete();
-                                Toast.makeText(context, "XML Deleted", Toast.LENGTH_LONG).show();
-                                break;
-                        }*/
                     }
 
                 })
         );
+        rv.addOnScrollListener(new RecyclerView.OnScrollListener() {
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                visibleItemCount = rv.getChildCount();
+                totalItemCount = llm.getItemCount();
+                firstVisibleItem = llm.findFirstVisibleItemPosition();
+
+                if (loading) {
+                    if (totalItemCount > previousTotal) {
+                        loading = false;
+                        previousTotal = totalItemCount;
+                    }
+                }
+                if (!loading && (totalItemCount - visibleItemCount)
+                        <= (firstVisibleItem + visibleThreshold)) {
+                    // End has been reached
+                    Log.v("Yaeye!", "end called");
+                    numEntries+=entryChunk;
+                    locationNameList = parseXML(numEntries);
+                    Toast.makeText(recyclerView.getContext(), "End reached " + locationNameList.size(), Toast.LENGTH_LONG).show();
+
+                    adapter.notifyItemRangeInserted(numEntries-1,entryChunk);
+
+
+
+                    loading = true;
+                }
+            }
+        });
     }
 
     //Used to save an image to file for fast load
@@ -143,6 +145,33 @@ public class CampusPulseActivity extends AppCompatActivity {
             fileName = null;
         }
         return fileName;
+    }
+
+    public List<CampusPulseEventCard>  parseXML(int parseCount){
+        CampusPulseStackOverflowXmlParser test = new CampusPulseStackOverflowXmlParser();
+        FileInputStream eventsInStream = null;
+
+        try {
+            eventsInStream = new FileInputStream(eventsXML);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        eventList = test.parse(eventsInStream, parseCount);
+
+        Iterator<CampusPulseStackOverflowXmlParser.Entry> eventListIterator = eventList.iterator();
+        if (eventListIterator.hasNext() && parseCount  >entryChunk  && eventList.size()%entryChunk<entryChunk){
+            int i = 0;
+            while(i < parseCount-entryChunk){
+                eventListIterator.next();
+                i++;
+            }
+        }
+
+        while (eventListIterator.hasNext()) {
+            CampusPulseStackOverflowXmlParser.Entry tempEntry = eventListIterator.next();
+            locationNameList.add(new CampusPulseEventCard(tempEntry.title,tempEntry.dateStart,tempEntry.textField,tempEntry.imageLink,0));
+        }
+        return locationNameList;
     }
 
     public void animateIntent(View view,View sourceView, Class<?> cls,int position) {
