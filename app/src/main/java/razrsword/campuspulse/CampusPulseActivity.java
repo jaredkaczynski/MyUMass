@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -90,10 +91,10 @@ public class CampusPulseActivity extends AppCompatActivity {
                     public void onItemClick(View view, int position) {
                         //eventList.get(position);
                         //pass image through
-
+                        createImageFromBitmap(locationNameList.get(position).mainImage);
                         animateIntent(view, CampusPulseDetailActivity.class, position);
 
-                        //createImageFromBitmap(locationNameList.get(position).mainImage);
+                        
                         /*Intent intent = new Intent(CampusPulseActivity.this, CampusPulseDetailActivity.class)
                                 .putExtra("eventObject", eventList.get(position))
                                 .putExtra("vibrantcolor", locationNameList.get(position).vibrantColor)
@@ -199,12 +200,13 @@ public class CampusPulseActivity extends AppCompatActivity {
 
         // Define the view that the animation will start from
         View viewStart = sourceView;
+        Pair<View, String> p1 = Pair.create((View)viewStart.findViewById(R.id.event_location_image), transitionName);
+
 
         ActivityOptionsCompat options =
 
                 ActivityOptionsCompat.makeSceneTransitionAnimation(this,
-                        viewStart,   // Starting view
-                        transitionName    // The String
+                        p1
                 );
         //Start the Intent
         ActivityCompat.startActivity(this, intent, options.toBundle());
