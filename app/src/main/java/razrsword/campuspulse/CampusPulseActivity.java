@@ -159,18 +159,21 @@ public class CampusPulseActivity extends AppCompatActivity {
         eventList = test.parse(eventsInStream, parseCount);
 
         Iterator<CampusPulseStackOverflowXmlParser.Entry> eventListIterator = eventList.iterator();
-        if (eventListIterator.hasNext() && parseCount  >entryChunk  && eventList.size()%entryChunk<entryChunk){
+        if (eventListIterator.hasNext() && parseCount > entryChunk && locationNameList.size() < eventList.size()){
             int i = 0;
             while(i < parseCount-entryChunk){
                 eventListIterator.next();
                 i++;
             }
         }
-
-        while (eventListIterator.hasNext()) {
-            CampusPulseStackOverflowXmlParser.Entry tempEntry = eventListIterator.next();
-            locationNameList.add(new CampusPulseEventCard(tempEntry.title,tempEntry.dateStart,tempEntry.textField,tempEntry.imageLink,0));
+        if(locationNameList.size() < eventList.size()){
+            while (eventListIterator.hasNext()) {
+                CampusPulseStackOverflowXmlParser.Entry tempEntry = eventListIterator.next();
+                locationNameList.add(new CampusPulseEventCard(tempEntry.title,tempEntry.dateStart,tempEntry.textField,tempEntry.imageLink,0));
+            }
         }
+
+
         return locationNameList;
     }
 
