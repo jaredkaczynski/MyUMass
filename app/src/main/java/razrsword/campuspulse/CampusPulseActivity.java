@@ -43,8 +43,9 @@ public class CampusPulseActivity extends AppCompatActivity {
     List<CampusPulseEventCard> locationNameList = new ArrayList<>();
 
     //number of entries to load on start
-    int numEntries = 20;
-    int entryChunk = 20;
+    int numEntries = 10;
+    //number of entries to load each end
+    int entryChunk = 10;
 
     private int previousTotal = 0;
     private boolean loading = true;
@@ -90,7 +91,11 @@ public class CampusPulseActivity extends AppCompatActivity {
                         //eventList.get(position);
                         //pass image through
                         createImageFromBitmap(locationNameList.get(position).mainImage);
-                        Intent intent = new Intent(CampusPulseActivity.this, CampusPulseDetailActivity.class).putExtra("eventObject", eventList.get(position)).putExtra("entry", locationNameList.get(position).vibrantColor);
+                        Intent intent = new Intent(CampusPulseActivity.this, CampusPulseDetailActivity.class)
+                                .putExtra("eventObject", eventList.get(position))
+                                .putExtra("vibrantcolor", locationNameList.get(position).vibrantColor)
+                                .putExtra("lightcolor", locationNameList.get(position).lightVibrantColor);
+
                         startActivity(intent);
                     }
 
@@ -169,7 +174,7 @@ public class CampusPulseActivity extends AppCompatActivity {
         if(locationNameList.size() < eventList.size()){
             while (eventListIterator.hasNext()) {
                 CampusPulseStackOverflowXmlParser.Entry tempEntry = eventListIterator.next();
-                locationNameList.add(new CampusPulseEventCard(tempEntry.title,tempEntry.dateStart,tempEntry.textField,tempEntry.imageLink,0));
+                locationNameList.add(new CampusPulseEventCard(tempEntry.title,tempEntry.dateStart,tempEntry.textField,tempEntry.imageLink,0,0));
             }
         }
 

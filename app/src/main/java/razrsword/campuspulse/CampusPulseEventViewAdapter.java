@@ -94,8 +94,9 @@ public class CampusPulseEventViewAdapter extends RecyclerView.Adapter<CampusPuls
                             public void onGenerated(Palette p) {
                                 // Use generated instance
                                 int vibrantColor = changeAlpha(p.getVibrantColor(Color.argb(255, 255, 255, 255)), 255);
-                                campusPulseCards.get(i).vibrantColor = vibrantColor;
                                 int vibrantLightColor = changeAlpha(p.getLightVibrantColor(Color.argb(255, 255, 255, 255)), 70);
+                                campusPulseCards.get(i).vibrantColor = vibrantColor;
+                                campusPulseCards.get(i).lightVibrantColor = vibrantLightColor;
                                 int[] colors = {vibrantColor, vibrantLightColor};
                                 Log.v("Vibrant", String.valueOf(p.getVibrantColor(Color.argb(255, 255, 0, 255))));
                                 Log.v("Muted", String.valueOf(p.getDarkVibrantColor(Color.argb(255, 255, 0, 255))));
@@ -110,7 +111,14 @@ public class CampusPulseEventViewAdapter extends RecyclerView.Adapter<CampusPuls
                             }
                         });
                     } else {
-                        gradient.setColorFilter(campusPulseCards.get(i).vibrantColor);
+                        int[] colors = {campusPulseCards.get(i).vibrantColor, campusPulseCards.get(i).lightVibrantColor};
+                        //create a new gradient color
+                        GradientDrawable gd = new GradientDrawable(
+                                GradientDrawable.Orientation.LEFT_RIGHT, colors);
+                        gd.setSize(temp2.getWidth(), temp2.getHeight());
+                        gd.setShape(GradientDrawable.RECTANGLE);
+                        gradient.setImageDrawable(gd);
+                        gradient.setVisibility(View.VISIBLE);
                     }
 
                     Log.v("Set image", "Set image to event");
@@ -122,7 +130,7 @@ public class CampusPulseEventViewAdapter extends RecyclerView.Adapter<CampusPuls
             locationImage.setImageResource(R.drawable.ic_event_white_48dp);
             locationImage.setScaleType(ImageView.ScaleType.FIT_CENTER);
             locationImage.setBackgroundResource(R.color.colorPrimary);
-            locationImage.setColorFilter(Color.argb(120, 136, 28, 28));
+            //locationImage.setColorFilter(Color.argb(120, 136, 28, 28));
             //Palette palette = Palette.from(R.drawable.ic).generate();
             /*int vibrantColor = changeAlpha(R.color.colorPrimary, 255);
             int vibrantLightColor = changeAlpha(R.color.colorPrimary, 70);
