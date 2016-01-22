@@ -150,15 +150,15 @@ public class DiningActivity extends AppCompatActivity implements DiningViewFragm
                 case 0:
                     locationNameList = new ArrayList<>();
                     locationNameList.add(new DiningLocation("Berkshire Dining Commons",R.drawable.berkshire));
-                    locationNameList.add(new DiningLocation("Worcester Dining Commons",R.drawable.berkshire));
-                    locationNameList.add(new DiningLocation("Hampshire Dining Commons",R.drawable.berkshire));
-                    locationNameList.add(new DiningLocation("Franklin Dining Commons",R.drawable.berkshire));
+                    locationNameList.add(new DiningLocation("Worcester Dining Commons",R.drawable.worcester));
+                    locationNameList.add(new DiningLocation("Hampshire Dining Commons",R.drawable.hampshire));
+                    locationNameList.add(new DiningLocation("Franklin Dining Commons",R.drawable.franklin));
                     return DiningViewFragment.newInstance("Butts", "butts", locationNameList);
                 case 1:
                     locationNameList = new ArrayList<>();
-                    locationNameList.add(new DiningLocation("Emma Wattson",R.drawable.berkshire));
-                    locationNameList.add(new DiningLocation("Alberta Canada",R.drawable.berkshire));
-                    locationNameList.add(new DiningLocation("Albert Einstein",R.drawable.berkshire));
+                    locationNameList.add(new DiningLocation("Emma Wattson",R.drawable.mainscreenimage));
+                    locationNameList.add(new DiningLocation("Alberta Canada",R.drawable.mainscreenimage));
+                    locationNameList.add(new DiningLocation("Albert Einstein",R.drawable.mainscreenimage));
                     return DiningViewFragment.newInstance("Butts", "butts", locationNameList);
                 default:
                     return PlaceholderFragment.newInstance(position + 1);
