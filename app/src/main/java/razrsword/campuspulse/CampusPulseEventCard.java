@@ -10,7 +10,8 @@ import android.os.Parcelable;
  */
 public class CampusPulseEventCard implements Parcelable {
     String eventTitle;
-    String eventDate;
+    String eventDateStart;
+    String eventDateEnd;
     String eventDescription;
     String eventImageURL;
     String eventLocation;
@@ -20,9 +21,10 @@ public class CampusPulseEventCard implements Parcelable {
 
 
 
-    public CampusPulseEventCard(String name, String date, String description, String event,String location, int color, int lightcolor){
+    public CampusPulseEventCard(String name, String dateStart, String dateEnd, String description, String event,String location, int color, int lightcolor){
         eventTitle = name;
-        eventDate = date;
+        eventDateStart = dateStart;
+        eventDateEnd = dateEnd;
         eventDescription = description;
         eventImageURL = event;
         eventLocation = location;

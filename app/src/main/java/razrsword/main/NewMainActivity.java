@@ -142,11 +142,11 @@ public class NewMainActivity extends AppCompatActivity {
                             case 3:
                                 animateIntent(view, rv.findViewHolderForAdapterPosition(position).itemView, locationClassList.get(position), position);
                                 break;
-                            case 4:
+                            /*case 4:
                                 File file = new File(campusXmlLocalDirectory);
                                 file.delete();
                                 Toast.makeText(context, "XML Deleted", Toast.LENGTH_LONG).show();
-                                break;
+                                break;*/
                         }
                     }
                 })
@@ -211,23 +211,6 @@ public class NewMainActivity extends AppCompatActivity {
             checkForUpdateData();
         }
     }
-    /*
-    private List<MainCard> getGridOrder(){
-        SharedPreferences prefs=this.getSharedPreferences("mainactivityprefs", Context.MODE_PRIVATE);
-        Set<MainCard> set = prefs.getStringSet("gridlist", null);
-        return null;
-    }
-
-    private void setGridOrder(List<MainCard> locationNameList){
-        SharedPreferences prefs=this.getSharedPreferences("mainactivityprefs", Context.MODE_PRIVATE);
-        //Set the values
-        Set<MainCard> set = new HashSet<MainCard>();
-        set.addAll(locationNameList);
-        prefs.putStringSet("gridlist", set);
-        scoreEditor.commit();
-        String value = prefs.getString("list", null);
-
-    }*/
 
     private void checkForUpdateData(){
         File file = new File(campusXmlLocalDirectory);

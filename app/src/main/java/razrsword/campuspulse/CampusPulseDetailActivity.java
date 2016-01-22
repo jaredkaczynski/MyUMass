@@ -60,7 +60,7 @@ public class CampusPulseDetailActivity extends AppCompatActivity {
         toolbarLayout.setTitle(entry.getTitle());
         toolbarLayout.setExpandedTitleTextAppearance(R.style.toolbar_text);
 
-        eventDate.setText(entry.getDateStart());
+        eventDate.setText(entry.getDateStart() + " - " + entry.getDateEnd());
         eventLocation.setText(entry.getEventLocation());
         //locationImage.setBackgroundResource(R.color.colorPrimary);
         //locationImage.setColorFilter(Color.argb(120, 136, 28, 28));

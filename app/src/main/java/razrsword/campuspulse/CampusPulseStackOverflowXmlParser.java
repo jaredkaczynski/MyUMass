@@ -194,6 +194,7 @@ public class CampusPulseStackOverflowXmlParser {
             Elements dateStart = doc.select("span.dtstart");
             Elements dateEnd = doc.select("span.dtend");
             this.dateStart = dateStart.get(0).text();
+            this.dateStart = this.dateStart.replace("(","");
             this.dateEnd = dateEnd.get(0).text();
             /*if(this.dateStart == ""){
                 dateEnd.select("span.value")

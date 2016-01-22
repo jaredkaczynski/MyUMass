@@ -2,7 +2,6 @@ package razrsword.campuspulse;
 
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.support.v7.graphics.Palette;
@@ -19,7 +18,6 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageSize;
-import com.nostra13.universalimageloader.core.imageaware.ImageAware;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
 import java.io.InputStream;
@@ -67,7 +65,7 @@ public class CampusPulseEventViewAdapter extends RecyclerView.Adapter<CampusPuls
     @Override
     public void onBindViewHolder(mainButtonHolder mainButtonHolder, final int i) {
         mainButtonHolder.eventName.setText(campusPulseCards.get(i).eventTitle);
-        mainButtonHolder.eventDate.setText(campusPulseCards.get(i).eventDate);
+        mainButtonHolder.eventDate.setText(campusPulseCards.get(i).eventDateStart + " - " + campusPulseCards.get(i).eventDateEnd);
         mainButtonHolder.eventLocation.setText(campusPulseCards.get(i).eventLocation);
         //mainButtonHolder.cv.setBackgroundResource(R.color.white);
         final ImageView locationImage = mainButtonHolder.locationImage;
