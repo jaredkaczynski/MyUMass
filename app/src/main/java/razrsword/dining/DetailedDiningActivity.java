@@ -64,17 +64,20 @@ public class DetailedDiningActivity extends AppCompatActivity implements Detaile
 
         @SuppressLint("WrongViewCast") AppCompatImageView test = (AppCompatImageView) this.findViewById(R.id.dining_location_image);
         int statusBarHeight = (int) Math.ceil(25 * DetailedDiningActivity.this.getResources().getDisplayMetrics().density);
-        test.setPadding(0,getStatusBarHeight(),0,0);
+        test.setPadding(0, getStatusBarHeight(), 0, 0);
         test.setScaleType(ImageView.ScaleType.CENTER_CROP);
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setVisibility(View.INVISIBLE);
 
         Bundle extras = getIntent().getExtras();
         String location = "error";
+        int resource = 0;
         if (extras != null) {
-            location = extras.getString("locationName");
+            location = extras.getString("foodName");
+            resource = extras.getInt("resource");
         }
-
+        test.setImageResource(resource);
         TextView locationName = (TextView) this.findViewById(R.id.event_name);
         locationName.setText(location);
     }
@@ -192,7 +195,7 @@ public class DetailedDiningActivity extends AppCompatActivity implements Detaile
                 case 2:
                     return "Dinner";
                 case 3:
-                    return "Information";
+                    return "Info";
             }
             return null;
         }

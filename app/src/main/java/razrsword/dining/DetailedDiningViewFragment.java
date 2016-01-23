@@ -130,7 +130,7 @@ public class DetailedDiningViewFragment extends Fragment {
 
         // Ordinary Intent for launching a new activity
         Intent intent = new Intent(getContext(), cls);
-        intent.putExtra("locationName", locationNameList.get(position).locationName);
+        intent.putExtra("foodName", locationNameList.get(position).locationName);
 
         // Get the transition name from the string
         String transitionName = getString(R.string.transition_string_one);
