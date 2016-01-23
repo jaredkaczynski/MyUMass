@@ -1,5 +1,6 @@
 package razrsword.campuspulse;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -26,6 +27,12 @@ import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListene
 import org.w3c.dom.Text;
 
 import java.io.FileNotFoundException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import razrsword.main.R;
 
@@ -88,8 +95,39 @@ public class CampusPulseDetailActivity extends AppCompatActivity {
 
             }
         }
+        addToCalendar(entry.getTitle(),entry.getDateStart(),entry.getDateEnd());
 
     }
+
+    public String dateToHHmm(String dateInput){
+        if(!dateInput.contains(",")){
+            DateFormat formatter = new SimpleDateFormat("EEEE, MMMM dd, yyyy h:mm a", Locale.US);
+            Date date = null;
+            try {
+                date = (Date)formatter.parse(dateInput);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            formatter = new SimpleDateFormat("MM dd, yyyy ");
+            dateInput = formatter.format(date);
+        }
+        return dateInput;
+    }
+
+    public void addToCalendar(String title, long beginTime, long endTime){
+        Calendar cal = Calendar.getInstance();
+        Intent intent = new Intent(Intent.ACTION_EDIT);
+        intent.setType("vnd.android.cursor.item/event");
+        intent.putExtra("beginTime", beginTime);
+        intent.putExtra("endTime", endTime);
+        intent.putExtra("title", title);
+        startActivity(intent);
+    }
+
+    /*public long fixTimeFormat(long inputTime){
+        DateFormat formatter = new SimpleDateFormat("MMMM dd, yyyy h:mm a", Locale.US);
+        return timestamp;
+    }*/
 
     /**
      * Stack Blur v1.0 from

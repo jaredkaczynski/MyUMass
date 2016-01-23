@@ -22,9 +22,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 
 import razrsword.ExtendedItemAnimator;
 import razrsword.callbacks.SimpleItemTouchHelperCallback;
@@ -168,7 +172,16 @@ public class CampusPulseActivity extends AppCompatActivity {
         if(locationNameList.size() < eventList.size()){
             while (eventListIterator.hasNext()) {
                 CampusPulseStackOverflowXmlParser.Entry tempEntry = eventListIterator.next();
-                locationNameList.add(new CampusPulseEventCard(tempEntry.getTitle(),tempEntry.getDateStart(), tempEntry.getDateEnd(),tempEntry.getTextField(),tempEntry.getImageLink(),tempEntry.getEventLocation(),0,0));
+                String dateStart;
+                String dateEnd;
+                DateFormat formatter = new SimpleDateFormat("EEEE, MMMM dd, yyyy h:mm a", Locale.US);
+                dateStart = formatter.format(new Date(tempEntry.getDateStart()));
+                dateEnd = formatter.format(new Date(tempEntry.getDateEnd()));
+                DateFormat dayFormat = new SimpleDateFormat("dd", Locale.US);
+                if(dayFormat.format(tempEntry.getDateStart()) == dayFormat.format(tempEntry.getDateEnd())){
+                    dateEnd = new SimpleDateFormat("h:mm a", Locale.US).format(dateStart);
+                }
+                locationNameList.add(new CampusPulseEventCard(tempEntry.getTitle(),dateStart, dateEnd,tempEntry.getTextField(),tempEntry.getImageLink(),tempEntry.getEventLocation(),0,0));
             }
         }
 

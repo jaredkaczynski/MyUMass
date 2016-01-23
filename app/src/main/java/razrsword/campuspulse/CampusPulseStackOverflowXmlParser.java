@@ -15,8 +15,13 @@ import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by razrs on 03-Jan-16.
@@ -104,8 +109,8 @@ public class CampusPulseStackOverflowXmlParser {
     public static class Entry implements Parcelable {
         private String title;
         private String textField;
-        private String dateStart;
-        private String dateEnd;
+        private long dateStart;
+        private long dateEnd;
         private String eventLink;
         private String imageLink;
         private String description;
@@ -114,8 +119,8 @@ public class CampusPulseStackOverflowXmlParser {
         protected Entry(Parcel in) {
             title = in.readString();
             textField = in.readString();
-            dateStart = in.readString();
-            dateEnd = in.readString();
+            dateStart = in.readLong();
+            dateEnd = in.readLong();
             eventLink = in.readString();
             imageLink = in.readString();
             description = in.readString();
@@ -171,7 +176,7 @@ public class CampusPulseStackOverflowXmlParser {
             this.eventLink = eventLink;
         }
 
-        public String getDateStart() {
+        public long getDateStart() {
             return this.dateStart;
         }
 
@@ -182,28 +187,51 @@ public class CampusPulseStackOverflowXmlParser {
             return this.description;
         }
 
-        public String getDateEnd() {
+        public long getDateEnd() {
             return this.dateEnd;
         }
 
+        /**
+         *
+         * @param description
+         * @return
+         * I convert the date and time to a time in seconds since epoch to keep consistent data and avoid difficult conversions
+         */
         public String extractDate(String description) {
             //Spanned ss = Html.fromHtml(Html.fromHtml(textField).toString());
             //String html = ss.toString();
-
+            String start;
+            String end;
             Document doc = Jsoup.parse(description);
             Elements dateStart = doc.select("span.dtstart");
             Elements dateEnd = doc.select("span.dtend");
-            this.dateStart = dateStart.get(0).text();
-            this.dateStart = this.dateStart.replace("(","");
-            this.dateEnd = dateEnd.get(0).text();
-            /*if(this.dateStart == ""){
-                dateEnd.select("span.value")
-                this.dateStart
+            start = dateStart.get(0).text();
+            start = start.replaceAll("[()]", "");
+            end = dateEnd.get(0).text();
+            end = end.replaceAll("[()]", "");
+            DateFormat formatter = new SimpleDateFormat("EEEE, MMMM dd, yyyy h:mm a", Locale.US);
+            try {
+                this.dateStart = formatter.parse(start).getTime();
+            } catch (ParseException e) {
+                e.printStackTrace();
             }
-            this.dateStart = dateStart.attr("title");
-                        this.dateEnd = dateEnd.attr("title");
-            */
-
+            if(!end.contains(",")){
+                Date date = new Date(this.dateStart);
+                formatter = new SimpleDateFormat("EEEE, MMMM dd, yyyy ");
+                end = formatter.format(date) + " " + end;
+                formatter = new SimpleDateFormat("EEEE, MMMM dd, yyyy h:mm a", Locale.US);
+                try {
+                    this.dateEnd = formatter.parse(end).getTime();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                try {
+                    this.dateEnd = formatter.parse(end).getTime();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
             Log.v("HTML", this.dateStart + " date start");
             return null;
         }
@@ -239,8 +267,8 @@ public class CampusPulseStackOverflowXmlParser {
         public void writeToParcel(Parcel dest, int flags) {
             dest.writeString(title);
             dest.writeString(textField);
-            dest.writeString(dateStart);
-            dest.writeString(dateEnd);
+            dest.writeLong(dateStart);
+            dest.writeLong(dateEnd);
             dest.writeString(eventLink);
             dest.writeString(imageLink);
             dest.writeString(description);
