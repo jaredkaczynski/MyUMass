@@ -26,7 +26,7 @@ public class DetailedDiningViewAdapter extends RecyclerView.Adapter<DetailedDini
 
     @Override
     public locationViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.dining_card_layout, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.menu_item_card, parent, false);
         locationViewHolder lvh = new locationViewHolder(v);
         return lvh;
     }
@@ -44,8 +44,6 @@ public class DetailedDiningViewAdapter extends RecyclerView.Adapter<DetailedDini
     @Override
     public void onBindViewHolder(locationViewHolder locationViewHolder, int i) {
         locationViewHolder.locationName.setText(diningLocations.get(i).locationName);
-        locationViewHolder.locationImage.setImageDrawable(ContextCompat.getDrawable(context, diningLocations.get(i).imageID));
-        locationViewHolder.locationImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
     }
 
     @Override
@@ -76,13 +74,11 @@ public class DetailedDiningViewAdapter extends RecyclerView.Adapter<DetailedDini
     public static class locationViewHolder extends RecyclerView.ViewHolder {
         CardView cv;
         TextView locationName;
-        ImageView locationImage;
 
         locationViewHolder(View itemView) {
             super(itemView);
-            cv = (CardView) itemView.findViewById(R.id.event_card);
-            locationName = (TextView) itemView.findViewById(R.id.event_name);
-            locationImage = (ImageView) itemView.findViewById(R.id.dining_location_image);
+            cv = (CardView) itemView.findViewById(R.id.food_card);
+            locationName = (TextView) itemView.findViewById(R.id.food_name);
         }
     }
 
