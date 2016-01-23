@@ -1,30 +1,33 @@
 package razrsword.dining;
 
+import android.annotation.SuppressLint;
+import android.graphics.Rect;
 import android.net.Uri;
-import android.support.design.widget.TabLayout;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import razrsword.main.R;
 
-public class DiningActivity extends AppCompatActivity implements DiningViewFragment.OnFragmentInteractionListener {
+public class DetailedDiningInformationActivity extends AppCompatActivity implements DetailedDiningViewFragment.OnFragmentInteractionListener {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -44,35 +47,47 @@ public class DiningActivity extends AppCompatActivity implements DiningViewFragm
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dining);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Dining at UMass");
-        setSupportActionBar(toolbar);
+        setContentView(R.layout.activity_detailed_dining_information);
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.event_card);
+        mViewPager = (ViewPager) findViewById(R.id.dining_information);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
+        @SuppressLint("WrongViewCast") AppCompatImageView test = (AppCompatImageView) this.findViewById(R.id.dining_location_image);
+        int statusBarHeight = (int) Math.ceil(25 * DetailedDiningInformationActivity.this.getResources().getDisplayMetrics().density);
+        test.setPadding(0,getStatusBarHeight(),0,0);
+        test.setScaleType(ImageView.ScaleType.CENTER_CROP);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        fab.setVisibility(View.INVISIBLE);
 
+        Bundle extras = getIntent().getExtras();
+        String location = "error";
+        if (extras != null) {
+            location = extras.getString("locationName");
+        }
+
+        TextView locationName = (TextView) this.findViewById(R.id.event_name);
+        locationName.setText(location);
     }
-
-
+    int getStatusBarHeight(){
+        Rect rectangle = new Rect();
+        Window window = getWindow();
+        window.getDecorView().getWindowVisibleDisplayFrame(rectangle);
+        int statusBarHeight = rectangle.top;
+        int contentViewTop = window.findViewById(Window.ID_ANDROID_CONTENT).getTop();
+        int titleBarHeight= contentViewTop - statusBarHeight;
+        Log.v("statusbar height", statusBarHeight + " ");
+        return statusBarHeight;
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -124,8 +139,6 @@ public class DiningActivity extends AppCompatActivity implements DiningViewFragm
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_dining_commons, container, false);
-            //TextView textView = (TextView) rootView.findViewById(R.id.);
-            //textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
             return rootView;
         }
     }
@@ -154,13 +167,10 @@ public class DiningActivity extends AppCompatActivity implements DiningViewFragm
                     locationNameList.add(new DiningLocation("Worcester Dining Commons",R.drawable.worcester));
                     locationNameList.add(new DiningLocation("Hampshire Dining Commons",R.drawable.hampshire));
                     locationNameList.add(new DiningLocation("Franklin Dining Commons",R.drawable.franklin));
-                    return DiningViewFragment.newInstance("Butts", "butts", locationNameList);
+                    return DetailedDiningViewFragment.newInstance("Butts", "butts", locationNameList);
+                    //return PlaceholderFragment.newInstance(position + 1);
                 case 1:
-                    locationNameList = new ArrayList<>();
-                    locationNameList.add(new DiningLocation("Emma Wattson",R.drawable.mainscreenimage));
-                    locationNameList.add(new DiningLocation("Alberta Canada",R.drawable.mainscreenimage));
-                    locationNameList.add(new DiningLocation("Albert Einstein",R.drawable.mainscreenimage));
-                    return DiningViewFragment.newInstance("Butts", "butts", locationNameList);
+                    return PlaceholderFragment.newInstance(position + 1);
                 default:
                     return PlaceholderFragment.newInstance(position + 1);
             }
@@ -168,28 +178,26 @@ public class DiningActivity extends AppCompatActivity implements DiningViewFragm
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
-            return 5;
+            // Show 4 total pages.
+            return 4;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Dining Commons";
+                    return "Breakfast";
                 case 1:
-                    return "Campus Center";
+                    return "Lunch";
                 case 2:
-                    return "Around Campus";
+                    return "Dinner";
                 case 3:
-                    return "University Club";
-                case 4:
-                    return "Express";
+                    return "Information";
             }
             return null;
         }
     }
-    public void OnDiningCommonInteractionListener(Uri uri){
+    public void onDetailedDiningInteractionListener(Uri uri){
         Log.v("Interaction", "Logging interaction with fragment");
     }
 }

@@ -30,7 +30,7 @@ import razrsword.main.R;
  * Use the {@link DiningViewFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class DiningViewFragment extends Fragment {
+public class DetailedDiningViewFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -44,7 +44,7 @@ public class DiningViewFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public DiningViewFragment() {
+    public DetailedDiningViewFragment() {
         // Required empty public constructor
     }
 
@@ -57,8 +57,8 @@ public class DiningViewFragment extends Fragment {
      * @return A new instance of fragment DiningViewFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static DiningViewFragment newInstance(String param1, String param2, List<DiningLocation> param3) {
-        DiningViewFragment fragment = new DiningViewFragment();
+    public static DetailedDiningViewFragment newInstance(String param1, String param2, List<DiningLocation> param3) {
+        DetailedDiningViewFragment fragment = new DetailedDiningViewFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -85,6 +85,8 @@ public class DiningViewFragment extends Fragment {
 
         final DiningViewAdapter adapter = new DiningViewAdapter(locationNameList,getContext());
 
+        //adapter.diningLocations.add(new DiningLocation("Worcester"));
+        //adapter.diningLocations.add(new DiningLocation("Berkshire"));
         // Inflate the layout for this fragment
         LinearLayoutManager llm = new LinearLayoutManager(this.getContext());
         View v = inflater.inflate(R.layout.fragment_dining_commons, container, false);
@@ -101,7 +103,6 @@ public class DiningViewFragment extends Fragment {
                 new RecyclerItemClickListener(this.getContext(), new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
                         //// TODO: 23-Dec-15 add activity swap that's pretty
-
                         switch (position){
                             case 0:
                                 animateIntent(view,rv.findViewHolderForAdapterPosition(position).itemView,DetailedDiningInformationActivity.class,position);
@@ -147,7 +148,7 @@ public class DiningViewFragment extends Fragment {
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.OnDiningCommonInteractionListener(uri);
+            mListener.onDetailedDiningInteractionListener(uri);
         }
     }
 
@@ -180,7 +181,7 @@ public class DiningViewFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void OnDiningCommonInteractionListener(Uri uri);
+        void onDetailedDiningInteractionListener(Uri uri);
     }
 
 }
