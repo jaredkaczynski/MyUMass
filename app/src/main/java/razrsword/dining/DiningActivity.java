@@ -168,7 +168,7 @@ public class DiningActivity extends AppCompatActivity implements DiningViewFragm
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
+            // Show 5 total pages.
             return 5;
         }
 

@@ -104,13 +104,13 @@ public class DiningViewFragment extends Fragment {
 
                         switch (position){
                             case 0:
-                                animateIntent(view,rv.findViewHolderForAdapterPosition(position).itemView,DetailedDiningInformationActivity.class,position);
+                                animateIntent(view,rv.findViewHolderForAdapterPosition(position).itemView,DetailedDiningActivity.class,position);
                                 break;
                             case 1:
-                                animateIntent(view,rv.findViewHolderForAdapterPosition(position).itemView,DetailedDiningInformationActivity.class,position);
+                                animateIntent(view,rv.findViewHolderForAdapterPosition(position).itemView,DetailedDiningActivity.class,position);
                                 break;
                             case 2:
-                                animateIntent(view,rv.findViewHolderForAdapterPosition(position).itemView,DetailedDiningInformationActivity.class,position);
+                                animateIntent(view,rv.findViewHolderForAdapterPosition(position).itemView,DetailedDiningActivity.class,position);
                                 break;
                         }
                     }

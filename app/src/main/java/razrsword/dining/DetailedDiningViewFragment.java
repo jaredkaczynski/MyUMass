@@ -109,13 +109,13 @@ public class DetailedDiningViewFragment extends Fragment {
                         //// TODO: 23-Dec-15 add activity swap that's pretty
                         switch (position){
                             case 0:
-                                animateIntent(view,rv.findViewHolderForAdapterPosition(position).itemView,DetailedDiningInformationActivity.class,position);
+                                animateIntent(view,rv.findViewHolderForAdapterPosition(position).itemView,DetailedDiningActivity.class,position);
                                 break;
                             case 1:
-                                animateIntent(view,rv.findViewHolderForAdapterPosition(position).itemView,DetailedDiningInformationActivity.class,position);
+                                animateIntent(view,rv.findViewHolderForAdapterPosition(position).itemView,DetailedDiningActivity.class,position);
                                 break;
                             case 2:
-                                animateIntent(view,rv.findViewHolderForAdapterPosition(position).itemView,DetailedDiningInformationActivity.class,position);
+                                animateIntent(view,rv.findViewHolderForAdapterPosition(position).itemView,DetailedDiningActivity.class,position);
                                 break;
                         }
                     }

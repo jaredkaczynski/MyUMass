@@ -27,7 +27,7 @@ import java.util.List;
 
 import razrsword.main.R;
 
-public class DetailedDiningInformationActivity extends AppCompatActivity implements DetailedDiningViewFragment.OnFragmentInteractionListener {
+public class DetailedDiningActivity extends AppCompatActivity implements DetailedDiningViewFragment.OnFragmentInteractionListener {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -63,7 +63,7 @@ public class DetailedDiningInformationActivity extends AppCompatActivity impleme
         tabLayout.setupWithViewPager(mViewPager);
 
         @SuppressLint("WrongViewCast") AppCompatImageView test = (AppCompatImageView) this.findViewById(R.id.dining_location_image);
-        int statusBarHeight = (int) Math.ceil(25 * DetailedDiningInformationActivity.this.getResources().getDisplayMetrics().density);
+        int statusBarHeight = (int) Math.ceil(25 * DetailedDiningActivity.this.getResources().getDisplayMetrics().density);
         test.setPadding(0,getStatusBarHeight(),0,0);
         test.setScaleType(ImageView.ScaleType.CENTER_CROP);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
