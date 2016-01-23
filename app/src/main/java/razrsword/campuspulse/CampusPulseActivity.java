@@ -176,10 +176,14 @@ public class CampusPulseActivity extends AppCompatActivity {
                 String dateEnd;
                 DateFormat formatter = new SimpleDateFormat("EEEE, MMMM dd, yyyy h:mm a", Locale.US);
                 dateStart = formatter.format(new Date(tempEntry.getDateStart()));
-                dateEnd = formatter.format(new Date(tempEntry.getDateEnd()));
-                DateFormat dayFormat = new SimpleDateFormat("dd", Locale.US);
-                if(dayFormat.format(tempEntry.getDateStart()) == dayFormat.format(tempEntry.getDateEnd())){
-                    dateEnd = new SimpleDateFormat("h:mm a", Locale.US).format(dateStart);
+                DateFormat dayFormat = new SimpleDateFormat("D", Locale.US);
+                Log.v("Dates", String.valueOf(tempEntry.getDateStart()) + String.valueOf(tempEntry.getDateEnd()));
+                if(dayFormat.format(tempEntry.getDateStart()).compareTo(dayFormat.format(tempEntry.getDateEnd())) == 0){
+                    DateFormat hourFormat = new SimpleDateFormat("h:mm a", Locale.US);
+                    Log.v("DateCheck", "Dates were same day");
+                    dateEnd = hourFormat.format(tempEntry.getDateStart());
+                } else {
+                    dateEnd = formatter.format(new Date(tempEntry.getDateEnd()));
                 }
                 locationNameList.add(new CampusPulseEventCard(tempEntry.getTitle(),dateStart, dateEnd,tempEntry.getTextField(),tempEntry.getImageLink(),tempEntry.getEventLocation(),0,0));
             }

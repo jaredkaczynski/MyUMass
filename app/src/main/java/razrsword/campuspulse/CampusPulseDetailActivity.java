@@ -56,9 +56,9 @@ public class CampusPulseDetailActivity extends AppCompatActivity {
         NestedScrollView contentFrame = (NestedScrollView) findViewById(R.id.content_frame);
 
         setSupportActionBar(toolbar);
-        //final ImageView locationImage = (ImageView) findViewById(R.id.toolbar_layout);
-        //final ImageView gradient = mainButtonHolder.gradientImage;
         CampusPulseStackOverflowXmlParser.Entry entry = getIntent().getExtras().getParcelable("eventObject");
+
+        
         final int vibrantColor = getIntent().getExtras().getInt("vibrantcolor");
         final int lightColor = getIntent().getExtras().getInt("lightcolor");
         //contentFrame.setBackgroundColor(vibrantColor);
@@ -66,8 +66,15 @@ public class CampusPulseDetailActivity extends AppCompatActivity {
         net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout toolbarLayout = (net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         toolbarLayout.setTitle(entry.getTitle());
         toolbarLayout.setExpandedTitleTextAppearance(R.style.toolbar_text);
-
-        eventDate.setText(entry.getDateStart() + " - " + entry.getDateEnd());
+        DateFormat dayFormat = new SimpleDateFormat("D", Locale.US);
+        DateFormat formatter = new SimpleDateFormat("EEEE, MMMM dd, yyyy h:mm a", Locale.US);
+        String dateEnd = null;
+        if(dayFormat.format(entry.getDateStart()).compareTo(dayFormat.format(entry.getDateEnd())) == 0){
+            dateEnd = new SimpleDateFormat("h:mm a", Locale.US).format(entry.getDateEnd());
+        } else {
+            dateEnd = formatter.format(entry.getDateEnd());
+        }
+        eventDate.setText(formatter.format(entry.getDateStart()) + " - " + dateEnd);
         eventLocation.setText(entry.getEventLocation());
         //locationImage.setBackgroundResource(R.color.colorPrimary);
         //locationImage.setColorFilter(Color.argb(120, 136, 28, 28));
@@ -95,7 +102,8 @@ public class CampusPulseDetailActivity extends AppCompatActivity {
 
             }
         }
-        addToCalendar(entry.getTitle(),entry.getDateStart(),entry.getDateEnd());
+        //WORKS NOW YEEEEE
+        //addToCalendar(entry.getTitle(),entry.getDateStart(),entry.getDateEnd());
 
     }
 
