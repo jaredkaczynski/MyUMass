@@ -19,16 +19,16 @@
 
         <LinearLayout
             android:id="@+id/event_information_block"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:background="@android:color/white">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight=".65"
-                >
+                android:layout_weight="1"
+                android:id="@+id/top_element">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -54,7 +54,6 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:layout_weight=".22"
                     android:background="@android:color/transparent"
                     android:gravity="left|center_vertical"
                     android:paddingLeft="50dp"
@@ -66,16 +65,14 @@
                     android:shadowColor="@android:color/black"
                     android:shadowRadius="5"
                     android:lines="2"
-                    android:autoText="false"
                     android:transitionName="@string/transition_string_four" />
             </RelativeLayout>
 
             <TextView
                 android:id="@+id/event_date"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="0dp"
-                android:layout_weight=".12"
                 android:background="@android:color/white"
                 android:gravity="left|center_vertical"
                 android:paddingLeft="10dp"
@@ -86,9 +83,8 @@
             <TextView
                 android:id="@+id/event_location"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="0dp"
-                android:layout_weight=".22"
                 android:background="@android:color/white"
                 android:gravity="left|center_vertical"
                 android:paddingLeft="10dp"

@@ -87,6 +87,14 @@ public class DetailedDiningViewFragment extends Fragment {
         locationNameList.add(new DiningLocation("Worcester Dining Commons",R.drawable.worcester));
         locationNameList.add(new DiningLocation("Hampshire Dining Commons",R.drawable.hampshire));
         locationNameList.add(new DiningLocation("Franklin Dining Commons",R.drawable.franklin));
+        locationNameList.add(new DiningLocation("Berkshire Dining Commons",R.drawable.berkshire));
+        locationNameList.add(new DiningLocation("Worcester Dining Commons",R.drawable.worcester));
+        locationNameList.add(new DiningLocation("Hampshire Dining Commons",R.drawable.hampshire));
+        locationNameList.add(new DiningLocation("Franklin Dining Commons",R.drawable.franklin));
+        locationNameList.add(new DiningLocation("Berkshire Dining Commons",R.drawable.berkshire));
+        locationNameList.add(new DiningLocation("Worcester Dining Commons",R.drawable.worcester));
+        locationNameList.add(new DiningLocation("Hampshire Dining Commons",R.drawable.hampshire));
+        locationNameList.add(new DiningLocation("Franklin Dining Commons",R.drawable.franklin));
         final DetailedDiningViewAdapter adapter = new DetailedDiningViewAdapter(locationNameList,getContext());
 
         //adapter.diningLocations.add(new DiningLocation("Worcester"));
