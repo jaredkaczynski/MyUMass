@@ -56,9 +56,9 @@ public class CampusPulseDetailActivity extends AppCompatActivity {
         NestedScrollView contentFrame = (NestedScrollView) findViewById(R.id.content_frame);
 
         setSupportActionBar(toolbar);
-        CampusPulseStackOverflowXmlParser.Entry entry = getIntent().getExtras().getParcelable("eventObject");
+        final CampusPulseStackOverflowXmlParser.Entry entry = getIntent().getExtras().getParcelable("eventObject");
 
-        
+
         final int vibrantColor = getIntent().getExtras().getInt("vibrantcolor");
         final int lightColor = getIntent().getExtras().getInt("lightcolor");
         //contentFrame.setBackgroundColor(vibrantColor);
@@ -102,8 +102,12 @@ public class CampusPulseDetailActivity extends AppCompatActivity {
 
             }
         }
-        //WORKS NOW YEEEEE
-        //addToCalendar(entry.getTitle(),entry.getDateStart(),entry.getDateEnd());
+        FloatingActionButton myFab = (FloatingActionButton) findViewById(R.id.fab);
+        myFab.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                addToCalendar(entry.getTitle(), entry.getDateStart(), entry.getDateEnd(), entry.getDescription(), entry.getEventLocation());
+            }
+        });
 
     }
 
@@ -122,13 +126,15 @@ public class CampusPulseDetailActivity extends AppCompatActivity {
         return dateInput;
     }
 
-    public void addToCalendar(String title, long beginTime, long endTime){
+    public void addToCalendar(String title, long beginTime, long endTime, String description, String location){
         Calendar cal = Calendar.getInstance();
         Intent intent = new Intent(Intent.ACTION_EDIT);
         intent.setType("vnd.android.cursor.item/event");
         intent.putExtra("beginTime", beginTime);
         intent.putExtra("endTime", endTime);
         intent.putExtra("title", title);
+        intent.putExtra("description", description);
+        intent.putExtra("eventLocation", location);
         startActivity(intent);
     }
 
