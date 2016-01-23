@@ -66,8 +66,6 @@ public class CampusPulseDetailActivity extends AppCompatActivity {
         //locationImage.setColorFilter(Color.argb(120, 136, 28, 28));
         TextView eventDescription = (TextView) findViewById(R.id.event_description);
         eventDescription.setText(entry.getDescription());
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setVisibility(View.INVISIBLE);
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this).build();
         ImageLoader.getInstance().init(config);
         Bitmap bitmap = null;

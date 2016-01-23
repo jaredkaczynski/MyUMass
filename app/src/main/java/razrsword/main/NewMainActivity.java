@@ -37,6 +37,7 @@ import java.util.List;
 
 import razrsword.ExtendedItemAnimator;
 import razrsword.activities.BusTrackerActivity;
+import razrsword.callbacks.SimpleItemTouchHelperCallback;
 import razrsword.campuspulse.CampusPulseActivity;
 import razrsword.dining.DiningActivity;
 import razrsword.dining.RecyclerItemClickListener;
@@ -97,15 +98,15 @@ public class NewMainActivity extends AppCompatActivity {
         locationNameList = new ArrayList<>();
         locationClassList = new ArrayList<>();
         locationClassList.add(UMassMapActivity.class);
-        locationClassList.add(BusTrackerActivity.class);
         locationClassList.add(DiningActivity.class);
         locationClassList.add(CampusPulseActivity.class);
+        //locationClassList.add(BusTrackerActivity.class);
 
         locationNameList.add(new MainCard("UMass Map",R.drawable.berkshire));
-        locationNameList.add(new MainCard("UMass Bus", R.drawable.berkshire));
         locationNameList.add(new MainCard("Dining", R.drawable.berkshire));
         locationNameList.add(new MainCard("Campus Events", R.drawable.berkshire));
-        locationNameList.add(new MainCard("DeleteXML", R.drawable.berkshire));
+        //locationNameList.add(new MainCard("UMass Bus", R.drawable.berkshire));
+        //locationNameList.add(new MainCard("DeleteXML", R.drawable.berkshire));
         DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
         float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
         adapter = new MainViewAdapter(locationNameList,locationClassList);
@@ -120,7 +121,8 @@ public class NewMainActivity extends AppCompatActivity {
         rv.setLayoutManager(llm);
         rv.setAdapter(adapter);
 
-        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallbackMain(adapter);
+        SimpleItemTouchHelperCallback callback = new SimpleItemTouchHelperCallback(adapter);
+        callback.setDragFlags(ItemTouchHelper.UP | ItemTouchHelper.DOWN | ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
         ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
         touchHelper.attachToRecyclerView(rv);
         rv.addOnItemTouchListener(

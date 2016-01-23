@@ -27,9 +27,9 @@ import java.util.Iterator;
 import java.util.List;
 
 import razrsword.ExtendedItemAnimator;
+import razrsword.callbacks.SimpleItemTouchHelperCallback;
 import razrsword.dining.RecyclerItemClickListener;
 import razrsword.main.R;
-import razrsword.main.SimpleItemTouchHelperCallbackMain;
 
 public class CampusPulseActivity extends AppCompatActivity {
     RecyclerView rv;
@@ -79,7 +79,7 @@ public class CampusPulseActivity extends AppCompatActivity {
         rv.setLayoutManager(llm);
         rv.setAdapter(adapter);
 
-        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallbackMain(adapter);
+        SimpleItemTouchHelperCallback callback = new SimpleItemTouchHelperCallback(adapter);
         ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
         touchHelper.attachToRecyclerView(rv);
         rv.addOnItemTouchListener(

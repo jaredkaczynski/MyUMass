@@ -1,5 +1,7 @@
 package razrsword.dining;
 
+import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,7 +21,7 @@ import razrsword.main.R;
 
 public class DiningViewAdapter extends RecyclerView.Adapter<DiningViewAdapter.locationViewHolder>
         implements ItemTouchHelperAdapter {
-
+    Context context;
     List<DiningLocation> diningLocations;
 
     @Override
@@ -29,8 +31,9 @@ public class DiningViewAdapter extends RecyclerView.Adapter<DiningViewAdapter.lo
         return lvh;
     }
 
-    DiningViewAdapter(List<DiningLocation> diningLocations) {
+    DiningViewAdapter(List<DiningLocation> diningLocations, Context context) {
         this.diningLocations = diningLocations;
+        this.context = context;
     }
 
     @Override
@@ -41,7 +44,7 @@ public class DiningViewAdapter extends RecyclerView.Adapter<DiningViewAdapter.lo
     @Override
     public void onBindViewHolder(locationViewHolder locationViewHolder, int i) {
         locationViewHolder.locationName.setText(diningLocations.get(i).locationName);
-        locationViewHolder.locationImage.setImageResource(diningLocations.get(i).imageID);
+        locationViewHolder.locationImage.setImageDrawable(ContextCompat.getDrawable(context, diningLocations.get(i).imageID));
         locationViewHolder.locationImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
     }
 

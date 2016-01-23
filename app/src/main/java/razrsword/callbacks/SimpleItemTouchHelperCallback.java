@@ -1,17 +1,25 @@
-package razrsword.dining;
+package razrsword.callbacks;
 
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 
+import razrsword.dining.ItemTouchHelperAdapter;
+
 /**
  * Created by razrs on 23-Dec-15.
  */
-public class SimpleItemTouchHelperCallbackDining extends ItemTouchHelper.Callback {
+public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
 
     private final ItemTouchHelperAdapter mAdapter;
+    int dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
+    private int swipeFlags = ItemTouchHelper.START | ItemTouchHelper.END;
 
-    public SimpleItemTouchHelperCallbackDining(ItemTouchHelperAdapter adapter) {
+    public SimpleItemTouchHelperCallback(ItemTouchHelperAdapter adapter) {
         mAdapter = adapter;
+    }
+
+    public void setDragFlags(int dragFlags1){
+        dragFlags = dragFlags1;
     }
 
     @Override
@@ -26,8 +34,6 @@ public class SimpleItemTouchHelperCallbackDining extends ItemTouchHelper.Callbac
 
     @Override
     public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
-        int dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
-        int swipeFlags = ItemTouchHelper.START | ItemTouchHelper.END;
         return makeMovementFlags(dragFlags, swipeFlags);
     }
 

@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import razrsword.callbacks.SimpleItemTouchHelperCallback;
 import razrsword.main.R;
 
 /**
@@ -82,7 +83,7 @@ public class DiningViewFragment extends Fragment {
         }
 
 
-        final DiningViewAdapter adapter = new DiningViewAdapter(locationNameList);
+        final DiningViewAdapter adapter = new DiningViewAdapter(locationNameList,getContext());
 
         //adapter.diningLocations.add(new DiningLocation("Worcester"));
         //adapter.diningLocations.add(new DiningLocation("Berkshire"));
@@ -95,7 +96,7 @@ public class DiningViewFragment extends Fragment {
         rv.setItemAnimator(new DefaultItemAnimator());
         rv.setLayoutManager(llm);
         ItemTouchHelper.Callback callback =
-                new SimpleItemTouchHelperCallbackDining(adapter);
+                new SimpleItemTouchHelperCallback(adapter);
         ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
         touchHelper.attachToRecyclerView(rv);
         rv.addOnItemTouchListener(
