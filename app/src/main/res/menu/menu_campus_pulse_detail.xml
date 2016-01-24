@@ -1,4 +1,4 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+<menu xmlns:android="http://schemas.android.com/apk/lib/auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="razrsword.campuspulse.CampusPulseDetailActivity">
