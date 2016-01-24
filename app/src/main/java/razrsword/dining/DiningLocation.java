@@ -11,6 +11,8 @@ import java.util.List;
  */
 public class DiningLocation implements Parcelable{
     String locationName;
+    String openTime;
+    String closeTime;
     int imageID;
 
 
