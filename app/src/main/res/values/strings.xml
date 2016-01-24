@@ -99,4 +99,15 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="search_umass">Search UMass</string>
+    <string name="title_activity_dining">DiningActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="transition_string_one">cardTransition1</string>
+    <string name="transition_string_two">cardTransition2</string>
+    <string name="transition_string_three">cardTransition3</string>
+    <string name="transition_string_four">cardTransition4</string>
+
+    <string name="title_activity_diningtest">Diningtest</string>
+    <string name="title_activity_detailed_dining_information">DetailedDiningInformation</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_campus_pulse_detail">CampusPulseDetailActivity</string>
 </resources>

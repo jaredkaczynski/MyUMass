@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="razrsword.campuspulse.CampusPulseDetailActivity"
+    tools:showIn="@layout/activity_campus_pulse_detail"
+    android:id="@+id/content_frame">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight=".2">
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_today_black_24dp"
+                android:scaleType="centerInside"
+                android:tint="@color/gray"
+                android:layout_gravity="center"
+                android:layout_weight=".2"/>
+            <TextView
+                android:id="@+id/event_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/text_margin"
+                android:layout_weight=".8"
+                android:text="Today"
+                android:transitionName="@string/transition_string_two"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight=".2">
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_place_black_24dp"
+                android:tint="@color/gray"
+                android:layout_weight=".2"
+                android:scaleType="centerInside"
+                android:layout_gravity="center" />
+
+            <TextView
+                android:id="@+id/event_location"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/text_margin"
+                android:text="UMass"
+                android:layout_weight=".8"
+                android:transitionName="@string/transition_string_three"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/event_description"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/text_margin"
+            android:layout_weight=".6"
+            android:text="@string/large_text" />
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

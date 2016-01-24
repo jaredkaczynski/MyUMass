@@ -9,14 +9,24 @@
     <LinearLayout
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:layout_width="0px"
-        android:layout_height="0px">
-    </LinearLayout>
-    <org.oscim.android.MapView
-        android:focusable="true"
-        android:id="@+id/map"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />
+        android:layout_height="fill_parent">
+    </LinearLayout>
+
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/googlemap"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="visible"
+        android:transitionName="@string/transition_string_one"/>
+
+    <org.osmdroid.views.MapView
+        android:focusable="true"
+        android:id="@+id/osmmap"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="gone" />
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/locateFab"
         android:layout_width="wrap_content"
@@ -41,7 +51,8 @@
         android:layout_marginTop="@dimen/fab_margin"
         android:layout_alignEnd="@+id/locateFab"
         android:layout_alignParentEnd="false"
-        android:layout_alignRight="@+id/locateFab">
+        android:layout_alignRight="@+id/locateFab"
+        android:elevation="15dp">
 
         <TableRow
             android:layout_width="match_parent"

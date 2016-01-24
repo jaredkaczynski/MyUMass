@@ -11,10 +11,6 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/vtm-0.6.0-SNAPSHOT" />
-            <option value="$PROJECT_DIR$/vtm-android-release" />
-            <option value="$PROJECT_DIR$/vtm-extras-0.6.0-SNAPSHOT" />
-            <option value="$PROJECT_DIR$/vtm-jeo-0.6.0-SNAPSHOT" />
           </set>
         </option>
       </GradleProjectSettings>
