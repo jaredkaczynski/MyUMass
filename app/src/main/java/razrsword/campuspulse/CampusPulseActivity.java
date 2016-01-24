@@ -181,7 +181,7 @@ public class CampusPulseActivity extends AppCompatActivity {
                 if(dayFormat.format(tempEntry.getDateStart()).compareTo(dayFormat.format(tempEntry.getDateEnd())) == 0){
                     DateFormat hourFormat = new SimpleDateFormat("h:mm a", Locale.US);
                     Log.v("DateCheck", "Dates were same day");
-                    dateEnd = hourFormat.format(tempEntry.getDateStart());
+                    dateEnd = hourFormat.format(tempEntry.getDateEnd());
                 } else {
                     dateEnd = formatter.format(new Date(tempEntry.getDateEnd()));
                 }
