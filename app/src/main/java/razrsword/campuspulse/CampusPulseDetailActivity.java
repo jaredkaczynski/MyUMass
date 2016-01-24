@@ -85,7 +85,7 @@ public class CampusPulseDetailActivity extends AppCompatActivity {
         Bitmap bitmap = null;
         try {
              bitmap = BitmapFactory.decodeStream(this.getApplicationContext()
-                    .openFileInput("temppulseimage"));//here context can be anything like getActivity() for fragment, this or MainActivity.this
+                    .openFileInput("temppulseimage"));//here context can be anything like getActivity() for fragment, this or
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
