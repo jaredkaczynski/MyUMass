@@ -121,7 +121,7 @@ public class CampusPulseActivity extends AppCompatActivity {
                     Log.v("Yaeye!", "end called");
                     numEntries+=entryChunk;
                     locationNameList = parseXML(numEntries);
-                    Toast.makeText(recyclerView.getContext(), "End reached " + locationNameList.size(), Toast.LENGTH_LONG).show();
+                    //Toast.makeText(recyclerView.getContext(), "End reached " + locationNameList.size(), Toast.LENGTH_LONG).show();
 
                     adapter.notifyItemRangeInserted(numEntries-1,entryChunk);
 

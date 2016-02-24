@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dining_locations>
+   <dining_group>
+      <name>Dining Commons</name>
+      <dining_location>
+         <name>Worcester Dining Commons</name>
+		 <uuid>1</uuid>
+		 <image>R.drawable.worcester</image>
+         <regularhours>
+            <day name="Monday" open="7:00AM" close="11:59PM" />
+            <day name="Tuesday" open="7:00AM" close="11:59PM" />
+            <day name="Wednesday" open="7:00AM" close="11:59PM" />
+            <day name="Thursday" open="7:00AM" close="11:59PM" />
+            <day name="Friday" open="7:00AM" close="11:59PM" />
+            <day name="Saturday" open="7:00AM" close="11:59PM" />
+            <day name="Sunday" open="7:00AM" close="11:59PM" />
+         </regularhours>
+      </dining_location>
+      <dining_location>
+         <name>Berkshire Dining Commons</name>
+		 <uuid>2</uuid>
+		 <image>R.drawable.berkshire</image>
+         <regularhours>
+            <day name="Monday" open="11:00AM" close="11:59PM" />
+            <day name="Tuesday" open="11:00AM" close="11:59PM" />
+            <day name="Wednesday" open="11:00AM" close="11:59PM" />
+            <day name="Thursday" open="11:00AM" close="11:59PM" />
+            <day name="Friday" open="11:00AM" close="11:59PM" />
+            <day name="Saturday" open="11:00AM" close="11:59PM" />
+            <day name="Sunday" open="11:00AM" close="11:59PM" />
+         </regularhours>
+      </dining_location>
+      <dining_location>
+         <name>Hampshire Dining Commons</name>
+		 <uuid>3</uuid>
+		 <image>R.drawable.hampshire</image>
+         <regularhours>
+            <day name="Monday" open="7:00AM" close="10:00PM" />
+            <day name="Tuesday" open="7:00AM" close="10:00PM" />
+            <day name="Wednesday" open="7:00AM" close="10:00PM" />
+            <day name="Thursday" open="7:00AM" close="10:00PM" />
+            <day name="Friday" open="7:00AM" close="10:00PM" />
+            <day name="Saturday" open="7:00AM" close="10:00PM" />
+            <day name="Sunday" open="7:00AM" close="10:00PM" />
+         </regularhours>
+      </dining_location>
+      <dining_location>
+         <name>Franklin Dining Commons</name>
+		 <uuid>4</uuid>
+		 <image>R.drawable.franklin</image>
+         <regularhours>
+            <day name="Monday" open="7:00AM" close="9:00PM" />
+            <day name="Tuesday" open="7:00AM" close="9:00PM" />
+            <day name="Wednesday" open="7:00AM" close="9:00PM" />
+            <day name="Thursday" open="7:00AM" close="9:00PM" />
+            <day name="Friday" open="7:00AM" close="9:00PM" />
+            <day name="Saturday" open="7:00AM" close="9:00PM" />
+            <day name="Sunday" open="7:00AM" close="9:00PM" />
+         </regularhours>
+      </dining_location>
+   </dining_group>
+   <dining_group>
+      <name>Campus Center</name>
+      <dining_location>
+         <name>People's Organic Coffee</name>
+		 <uuid>11</uuid>
+         <description>Located on the main concourse of the Campus Center, French Meadow offers natural, organic, and sustainable foods. Choose from Salads, Paninis, Fresh Cookies, Locally Baked Pastries, and so much more. French Meadow serves People’s Organic Fair Trade coffees and features a variety of specialty coffee beverages and organic teas.</description>
+         <regularhours>
+            <day name="Monday" open="7:00AM" close="7:00PM" />
+            <day name="Tuesday" open="7:00AM" close="7:00PM" />
+            <day name="Wednesday" open="7:00AM" close="7:00PM" />
+            <day name="Thursday" open="7:00AM" close="7:00PM" />
+            <day name="Friday" open="7:00AM" close="4:00PM" />
+            <day name="Saturday" open="8:00AM" close="2:00PM" />
+            <day name="Sunday" open="8:00AM" close="2:00PM" />
+         </regularhours>
+      </dining_location>
+      <dining_location>
+         <name>U-Pub</name>
+		 <uuid>12</uuid>
+         <description>Formerly known as the grad lounge, the UMass UPub has been completely renovated with a number of improvements. Now offering a full food menu along with beer and wine, the UPub is exclusive to guests 21+. Come check out the new furniture, decor, outdoor seating, free pool table, and big screen TV. Located on the concourse level of the UMass Campus Center.</description>
+         <regularhours>
+            <day name="Monday" open="10:30AM" close="9:00PM" />
+            <day name="Tuesday" open="10:30AM" close="9:00PM" />
+            <day name="Wednesday" open="10:30AM" close="9:00PM" />
+            <day name="Thursday" open="10:30AM" close="9:00PM" />
+            <day name="Friday" open="10:30AM" close="9:00PM" />
+            <day name="Saturday" open="CLOSED" close="CLOSED" />
+            <day name="Sunday" open="CLOSED" close="CLOSED" />
+         </regularhours>
+      </dining_location>
+      <dining_location>
+         <name>Harvest Market</name>
+		 <uuid>13</uuid>
+         <description>Harvest Fresh Market is a full service market serving healthy, sustainable and delicious fare for our on the go customers. Our hot bar features Indian, Ethiopian, traditional American and many other world cuisines. Don’t miss our salad bar featuring freshly prepared composed salads using locally sourced in –season ingredients when available. Our bagels are freshly made every day from a local baker. Other highlights include Chobani yogurt bar, all natural and organic snacks, local cheeses and deli meats, grab-and-go salads and sandwiches, and a made-to-order juice and smoothie bar.</description>
+         <regularhours>
+            <day name="Monday" open="8:00AM" close="11:00PM" />
+            <day name="Tuesday" open="8:00AM" close="11:00PM" />
+            <day name="Wednesday" open="8:00AM" close="11:00PM" />
+            <day name="Thursday" open="8:00AM" close="11:00PM" />
+            <day name="Friday" open="8:00AM" close="4:00PM" />
+            <day name="Saturday" open="8:00AM" close="2:00PM" />
+            <day name="Sunday" open="8:00AM" close="2:00PM" />
+         </regularhours>
+      </dining_location>
+      <dining_location>
+         <name>Famous Famiglia</name>
+		 <uuid>14</uuid>
+         <description>Our fresh, house made dough shines through at Famous Famiglia Pizza. Offering a variety of house made pizzas, grinders, pasta, salads and more.</description>
+         <regularhours>
+            <day name="Monday" open="10:30AM" close="9:00PM" />
+            <day name="Tuesday" open="10:30AM" close="9:00PM" />
+            <day name="Wednesday" open="10:30AM" close="9:00PM" />
+            <day name="Thursday" open="10:30AM" close="9:00PM" />
+            <day name="Friday" open="10:30AM" close="9:00PM" />
+            <day name="Saturday" open="10:30AM" close="9:00PM" />
+            <day name="Sunday" open="10:30AM" close="9:00PM" />
+         </regularhours>
+      </dining_location>
+   </dining_group>
+</dining_locations>

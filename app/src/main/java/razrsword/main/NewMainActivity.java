@@ -109,6 +109,7 @@ public class NewMainActivity extends AppCompatActivity {
         locationNameList.add(new MainCard("UMass Map",R.drawable.berkshire));
         locationNameList.add(new MainCard("Dining", R.drawable.berkshire));
         locationNameList.add(new MainCard("Campus Events", R.drawable.berkshire));
+        locationNameList.add(new MainCard("Laundry", R.drawable.berkshire));
         //locationNameList.add(new MainCard("UMass Bus", R.drawable.berkshire));
         //locationNameList.add(new MainCard("DeleteXML", R.drawable.berkshire));
         DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
